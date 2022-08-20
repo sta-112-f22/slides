@@ -339,7 +339,7 @@ class: center, middle
 
 .question[
  $$ 
- \LARGE \color{blue}{logit(y)} = \beta_0 + \beta_1X_1 + \beta_2X_2+...+ \epsilon 
+ \LARGE \color{blue}{logit(y)} = \beta_0 + \beta_1X_1 + \beta_2X_2+...
  $$
 ]
 
