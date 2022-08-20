@@ -317,10 +317,12 @@ logistic regression
 
 ## {{< fa laptop >}} `Penguin fun!` {.smaller}
 
-- Once you log on to RStudio Pro, find the project `01-welcome-penguins`, click it
-- In the Files pane in the bottom right corner, spot the file called `welcome-penguins.Rmd`. Open it, and then click on the "Knit" button. 
+- Once you log on to RStudio Pro, create a new project. Then File > New File > Quarto Document
+- Go to [`bit.ly/sta-112-f22-appex-01`](https://bit.ly/sta-112-f22-appex-01). Copy the starter code and paste in  your new file
+- Click the "Render" button
 - Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
-- Then, scroll to the `plot` chunk, below **Palmer Penguins**. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill **depth**. _Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot_. Knit again & voila!
+- Then, scroll to the `plot` chunk, below **Palmer Penguins**. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill **depth**. _Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot_. 
+- Knit again & voila!
 
 ```{r}
 #| echo: false
