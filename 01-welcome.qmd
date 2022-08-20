@@ -339,13 +339,13 @@ countdown(minutes = 8, font_size = "1.5em")
   - How to find policies
 ---
 
-## {{< fa laptop >}} `Practice asking or answer a question`
+## {{< fa laptop >}} `Practice annotating slides`
 
-- Click on "Class feed" on the top left. You should see a post from me titled `Hello!` 
-- Practice responding to this post, up-voting it, etc.
-- Click on "Rooms" then `#general`
-- Practice posting here - post a fun fact about your self, respond with an emoji `r emo::ji("+1")`, etc
-
+- Click on "Schedule" on the top right
+- Click the first {{< fa laptop >}} under the "notes" column
+- Click "Load Hypothesis in a new window"
+- Find this slide
+- Add an annotation
 
 # Course structure and policies
 
@@ -378,7 +378,8 @@ Students with disabilities who believe that they may need accommodations in the 
 
 All course questions can be posted on the Canvas Q&A board
     
-- See course policies for tips on posting questions.
+- This is a place to post your course-related questions. I encourage you to try to answer each other’s questions. 
+- At the end of the semester, I will tally up the total number of questions answered and you can get up to **1 point extra credit on your final grade.**
 - For personal and grade related questions, use email.
 
 
