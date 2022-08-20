@@ -1,16 +1,15 @@
 ---
 title: "Welcome to Statistical Models"
-author: "Dr. D'Agostino McGowan"
-date: "2022-08-23"
-output:
-  xaringan::moon_reader:
-    css: "css/slides.css"
-    logo: img/favicon.png
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: custom.scss
+    transition: fade
+    slide-number: true
+    chalkboard: true
 ---
 
 

@@ -6,7 +6,7 @@ logo: "img/favicon.png"
 editor: source
 format: 
   revealjs: 
-    theme: custom.scss
+    theme: [custom.scss]
     transition: fade
     slide-number: true
     chalkboard: true
@@ -43,28 +43,28 @@ library(countdown)
 :::
 
 
-# $y = \color{blue}{f(\mathbf{X})} + \epsilon$ 
+# $y = \color{green}{f(\mathbf{X})} + \epsilon$ 
 
 
 ::: {.larger}
 model 
 :::
 
-# $y = f(\color{blue}{\mathbf{X}}) + \epsilon$ 
+# $y = f(\color{green}{\mathbf{X}}) + \epsilon$ 
 
 ::: {.larger}
 data (to build the model) 
 :::
 
 
-# $\color{blue}y = f(\mathbf{X}) + \epsilon$ 
+# $\color{green}y = f(\mathbf{X}) + \epsilon$ 
 
 
 ::: {.larger}
 data (outcome) 
 :::
 
-# $y = \color{blue}{\beta_0 + \beta_1X
+# $y = \color{green}{\beta_0 + \beta_1X
  }+ \epsilon$ 
 
 ::: {.larger}
@@ -102,7 +102,13 @@ Bob at Easel from  [Wikipedia](https://en.wikipedia.org/wiki/File:Bob_at_Easel.j
 
 ::: {.column width="50%"}
 
-```{r, message = FALSE, warning = FALSE, echo = FALSE, fig.height = 6}
+```{r}
+#| label: plot-1
+#| cache: true
+#| message: false
+#| warning: false
+#| echo: false
+#| fig-height: 6
 library(fivethirtyeight)
 
 bob_ross %>%
@@ -137,6 +143,12 @@ Data: [FiveThirtyEight](https://fivethirtyeight.com/features/a-statistical-analy
 ::: {.column width="50%"}
 
 ```{r, message = FALSE, warning = FALSE, echo = FALSE, fig.height = 6}
+#| label: plot-2
+#| cache: true
+#| message: false
+#| warning: false
+#| echo: false
+#| fig-height: 6
 bob_ross %>%
   filter(season < 15) %>%
   group_by(season) %>%
@@ -154,7 +166,7 @@ bob_ross %>%
 . . . 
 
 ::: {.small}
-$y = \color{blue}{\beta_0 + \beta_1X}+ \epsilon$ 
+$y = \color{green}{\beta_0 + \beta_1X}+ \epsilon$ 
 :::
 
 ##
@@ -169,7 +181,13 @@ $y = \color{blue}{\beta_0 + \beta_1X}+ \epsilon$
 
 ::: {.column width="50%"}
 
-```{r, message = FALSE, warning = FALSE, echo = FALSE, fig.height = 6}
+```{r}
+#| label: plot-3
+#| cache: true
+#| message: false
+#| warning: false
+#| echo: false
+#| fig-height: 6
 bob_ross %>%
   filter(season < 15) %>%
   group_by(season) %>%
@@ -185,7 +203,7 @@ bob_ross %>%
 ::::
 
 ::: {.small}
-$\text{# of paintings with clouds} = \color{blue}{\beta_0 + \beta_1 season}+ \epsilon$
+$\text{# of paintings with clouds} = \color{green}{\beta_0 + \beta_1 season}+ \epsilon$
 :::
 
 
@@ -201,7 +219,13 @@ $\text{# of paintings with clouds} = \color{blue}{\beta_0 + \beta_1 season}+ \ep
 
 ::: {.column width="50%"}
 
-```{r, message = FALSE, warning = FALSE, echo = FALSE, fig.height = 6}
+```{r}
+#| label: plot-4
+#| cache: true
+#| message: false
+#| warning: false
+#| echo: false
+#| fig-height: 6
 bob_ross %>%
   group_by(season) %>%
   summarise(clouds = sum(clouds)) %>%
@@ -226,8 +250,13 @@ bob_ross %>%
 
 ::: {.column width="50%"}
 
-```{r, message = FALSE, warning = FALSE, echo = FALSE, fig.height = 6}
-
+```{r}
+#| label: plot-5
+#| cache: true
+#| message: false
+#| warning: false
+#| echo: false
+#| fig-height: 6
 bob_ross %>%
   group_by(season) %>%
   summarise(clouds = sum(clouds)) %>%
@@ -244,11 +273,11 @@ bob_ross %>%
 . . .
 
 ::: {.small}
-$\text{# of paintings with clouds} = \color{blue}{\beta_0 + \boldsymbol\beta f(season)}+ \epsilon$
+$\text{# of paintings with clouds} = \color{green}{\beta_0 + \boldsymbol\beta f(season)}+ \epsilon$
 :::
 
 
-# $\tiny y = \color{blue}{\beta_0 + \beta_1X_1 + \beta_2X_2+...}+ \epsilon$
+# $\tiny y = \color{green}{\beta_0 + \beta_1X_1 + \beta_2X_2+...}+ \epsilon$
 
 . . . 
 
@@ -256,9 +285,9 @@ $\text{# of paintings with clouds} = \color{blue}{\beta_0 + \boldsymbol\beta f(s
 multiple linear regression
 :::
 
-# $\tiny\color{blue}{f(y)} = \beta_0 + \beta_1X_1 + \beta_2X_2+...$ {.smaller}
+# $\tiny\color{green}{f(y)} = \beta_0 + \beta_1X_1 + \beta_2X_2+...$ {.smaller}
 
-# $\tiny\color{blue}{logit(y)} = \beta_0 + \beta_1X_1 + \beta_2X_2+...$
+# $\tiny\color{green}{logit(y)} = \beta_0 + \beta_1X_1 + \beta_2X_2+...$
 
 ::: {.larger}
 logistic regression
@@ -283,7 +312,7 @@ logistic regression
 - The password is: **R2D2Star!**
 
 
-![](img/01/rstudio-pro.png){width="1000" height="300"}
+![](img/01/rstudio-pro.png){width="1000" height="350"}
 
 
 ## {{< fa laptop >}} `Penguin fun!` {.smaller}

@@ -1,5 +1,11 @@
 /*-- scss:defaults --*/
 
+@import 'https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap';
+
+$font-family-sans-serif: "Noto Sans", sans-serif;
+$presentation-heading-color: #86a293;
+$body-color: #404040;
+
 /*-- scss:rules --*/
 
 .small {
@@ -20,6 +26,14 @@
 
 .largest {
   font-size: 3em;
+}
+
+.inverse {
+  background-color: #6CA0DC;
+  color: #ffffff;
+}
+.inverse h1, .inverse h2, .inverse h3 {
+  color: #f3f3f3;
 }
 
 .reveal .slide .v-center-container {
