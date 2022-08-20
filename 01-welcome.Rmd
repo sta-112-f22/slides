@@ -327,7 +327,7 @@ class: center, middle
 
 .question[
  $$ 
- \LARGE \color{blue}{f(y)} = \beta_0 + \beta_1X_1 + \beta_2X_2+...+ \epsilon 
+ \LARGE \color{blue}{f(y)} = \beta_0 + \beta_1X_1 + \beta_2X_2+...
  $$
 ]
 
@@ -363,59 +363,27 @@ class: center, middle
 
 ---
 
-## Join RStudio.cloud
+## Login to RStudio Pro
 
-Go to [bit.ly/sta-212-f19-rstudio-join](http://bit.ly/sta-212-f19-rstudio-join) and sign up.
+- **Note:** if you are off campus, you will need to use a [VPN to connect](https://is.wfu.edu/services/vpn/)
+- Go to [rstudio.hpc.ar53.wfu.edu:8787](rstudio.hpc.ar53.wfu.edu:8787)
+- Your username is your WFU username (typically the first part of your email)
+- The password is: **R2D2Star!**
 
-<font color="#E34132">
-Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
-</font>
-.my-footer[
-  <font size="2"> Slides adapted from <a href="https://github.com/Sta199-S18/website" target="_blank">Dr. Mine Çetinkaya-Rundel</a> by Dr. Lucy D'Agostino McGowan</font>
-]
+
+![](img/01/rstudio-pro.png)
 ---
+class: inverse
 
-## <i class="fas fa-laptop"></i> Create your first data visualization
+`r countdown::countdown(minutes = 5)`
 
-- Once you log on to RStudio Cloud, click on this course's workspace "STA 212 - Fall 19" then click "Projects"
-- You should see a project called `UN Votes`, click it.
-- In the Files pane in the bottom right corner, spot the file called `un-votes.Rmd`. Open it, and then click on the "Knit" button. *You will likely see an pop-up error, click "Try Again"*
+## <i class="fas fa-laptop"></i> `Penguin fun!`
+
+- Once you log on to RStudio Pro, find the project `01-welcome-penguins`, click it
+- In the Files pane in the bottom right corner, spot the file called `welcome-penguins.Rmd`. Open it, and then click on the "Knit" button. 
 - Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
-- Then, change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again & voila, your first data visualization!
+- Then, scroll to the `plot` chunk, below **Palmer Penguins**. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill **depth**. _Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot_. Knit again & voila!
 
-<font color="#E34132">
-Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
-</font>
-.my-footer[
-  <font size="2"> Slides adapted from <a href="https://github.com/Sta199-S18/website" target="_blank">Dr. Mine Çetinkaya-Rundel</a> by Dr. Lucy D'Agostino McGowan</font>
-]
----
-
-## Join Campuswire
-
-Go to [bit.ly/sta-212-f19-discuss-join](http://bit.ly/sta-212-f19-discuss-join) and sign up.
-
-<font color="#E34132">
-Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
-</font>
-.my-footer[
-  <font size="2"> Slides adapted from <a href="https://github.com/Sta199-S18/website" target="_blank">Dr. Mine Çetinkaya-Rundel</a> by Dr. Lucy D'Agostino McGowan</font>
-]
----
-
-## <i class="fas fa-laptop"></i> Practice answering a question or posting in a channel
-
-- Click on "Class feed" on the top left. You should see a post from me titled `Hello!` 
-- Practice responding to this post, up-voting it, etc.
-- Click on "Rooms" then `#general`
-- Practice posting here - post a fun fact about your self, respond with an emoji `r emo::ji("+1")`, etc
-
-<font color="#E34132">
-Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
-</font>
-.my-footer[
-  <font size="2"> Slides adapted from <a href="https://github.com/Sta199-S18/website" target="_blank">Dr. Mine Çetinkaya-Rundel</a> by Dr. Lucy D'Agostino McGowan</font>
-]
 ---
 
 ## Let's take a tour - class website
@@ -427,9 +395,18 @@ Once done, place a green sticky on your laptop. If you have questions, place a p
 - Concepts introduced:
   - How to find slides
   - How to find assignments
-  - How to find RStudio Cloud
+  - How to find RStudio Pro
   - How to get help
   - How to find policies
+---
+
+## <i class="fas fa-laptop"></i> Practice asking or answer a question
+
+- Click on "Class feed" on the top left. You should see a post from me titled `Hello!` 
+- Practice responding to this post, up-voting it, etc.
+- Click on "Rooms" then `#general`
+- Practice posting here - post a fun fact about your self, respond with an emoji `r emo::ji("+1")`, etc
+
 ---
 
 class: center, middle
@@ -479,8 +456,8 @@ All course discussion will be via Campuswire: [bit.ly/sta-212-f19-help](https://
 #### Math & Stats center
 
 * Located in Kirby Hall 117
-* Study sessions: (beginning Sept 3) Monday 7-9pm
-* Make an appointment: (beginning Sept 10) [https://mathandstatscenter.wfu.edu/](https://mathandstatscenter.wfu.edu/)
+* Study sessions
+* Make an appointment: [https://mathandstatscenter.wfu.edu/](https://mathandstatscenter.wfu.edu/)
 
 ---
 
@@ -502,30 +479,28 @@ Adhere to the Wake Forest Honor Code. Academic dishonesty will not be tolerated.
 
 
 - Application exercises: Usually start in class and finish in teams by the next class period, check/no check
-- In class quizzes: unannounced, ~10 minutes, no make-ups, lowest two will be dropped
-- Homework: lowest score dropped
-- Lab: start in class, lowest score dropped
+- Check-ins
+- Homework
+- Lab: start in class
 - Exams: 2 in class midterms
 - Final project: Presentations during the last week of class, you must participate in the project and be in class to present to pass this class
-- Self paced tutorials: Individual, check/no check, extra credit
 
 ---
 
 ## Grading
 
 
-Component             | Weight
-----------------------|----------------
-Participation & application exercises       | 5%
-Quizzes               | 10%
-Homework              | 15%
-Labs                  | 10%
-Midterm exam 1        | 20%
-Midterm exam 2        | 20%
-Final project         | 20%
+| |  
+|----------------------|----------------|  
+Application exercises & Annotations | 5%  
+Midterm 01 | 20%
+Midterm 02 | 20%
+Check-ins | 20%  
+Homework | 10%
+Labs | 10%  
+Final Project | 15%
 
-- Class attendance is a firm expectation; frequent absences or tardiness 
-will be considered a legitimate cause for grade reduction.
+
 
 ---
 
@@ -548,17 +523,6 @@ will be considered a legitimate cause for grade reduction.
 
 ---
 
-class: center, middle
-
-a quick survey
-
-
-# [bit.ly/sta-212-f19-form](https://bit.ly/sta-212-f19-form)
-
-
-
----
-
 ## Intros
 
 - name
@@ -567,8 +531,6 @@ a quick survey
 
 ---
 
-## RStudio Cloud
+## RStudio Pro
 
-- If you had issues creating your RStudio Cloud account, opening the project, or running the analysis, stick around to try it again.
-    - Go to [bit.ly/sta-212-f19-rstudio-join](http://bit.ly/sta-212-f19-rstudio-join) and sign up.
-- If RStudio Cloud worked for you and you were able to run the analysis, you're free to leave.
+- If you had issues creating your RStudio Pro account, opening the project, or running the analysis, stick around to try it again.
