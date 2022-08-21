@@ -44,8 +44,7 @@ format:
 - Using R as a calculator
 - Environment
 - Loading and viewing a data frame
-- Accessing a column in a data frame
-- R functions
+- Creating a Project
 
 ::: {.footer}
 <img src="img/dsbox-logo.png" width="50"></img>Slides adapted from <a href="https://datasciencebox.org" target="_blank">datasciencebox.org</a> by Dr. Lucy D'Agostino McGowan
@@ -252,7 +251,7 @@ What happens? Why the error?
 ## How will we use Quarto?
 
 - Every assignment / report / project / etc. is a Quarto document
-- You'll always have a template Quarto document to start with
+- You'll often have a template Quarto document to start with
 - The amount of scaffolding in the template will decrease over the semester
 - You will turn in the .html file on Canvas
 
