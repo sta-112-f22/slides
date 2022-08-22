@@ -308,8 +308,6 @@ logistic regression
 
 - **Note:** if you are off campus, you will need to use a [VPN to connect](https://is.wfu.edu/services/vpn/)
 - Go to [rstudio.deac.wfu.edu](rstudio.deac.wfu.edu)
-- Your username is your WFU username (typically the first part of your email)
-- The password is: **R2D2Star!**
 
 
 ![](img/01/rstudio-pro.png){width="1000" height="350"}
