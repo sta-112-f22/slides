@@ -200,7 +200,7 @@ Would this code chunk be "included" in the final report?
 
 - Log into RStudio Pro 
 - Open the project you created in the last class
-- Explor the visual editor -- try adding some **bold** text to the document
+- Explore the visual editor -- try adding some **bold** text to the document
 
 ```{r}
 #| echo: false
