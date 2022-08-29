@@ -447,8 +447,7 @@ Adhere to the Wake Forest Honor Code. Academic dishonesty will not be tolerated.
 - Homework
 - Lab: start in class
 - Exams: 2 in class midterms
-- Final project: Presentations during the last week of class, you must participate in the project and be in class to present to pass this class
-
+- Final project: Presentations during the last week of class
 
 
 ## Grading
@@ -471,8 +470,7 @@ Final Project | 15%
 - Late work policy for homework assignments:
     - late, but within 24 hours of due date/time: -50%
     - any later: no credit
-- Late work will not be accepted the final project.
-- You must complete the final project and be in class to present it in order to pass this course.
+- Late work will not be accepted for the final project.
 
 
 ## Other policies
