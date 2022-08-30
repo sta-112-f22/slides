@@ -593,6 +593,8 @@ ggplot(penguins,
 
 BONUS: Is there any missing data? What is the plot doing with the missing values? See if you can get rid of the warning message.
 
+6. Download the .html file and upload on canvas under <br> [Upload Application Exercise 02]
+
 ```{r}
 countdown::countdown(10)
 ```
