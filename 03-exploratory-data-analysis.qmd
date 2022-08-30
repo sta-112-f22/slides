@@ -528,6 +528,8 @@ ggplot(datasaurus_dozen, aes(x = x, y = dataset, color = dataset)) +
 
 4. Add labels and a title to this plot
 
+5. Download the .html file and upload on canvas under [Upload Application Exercise 03]
+
 ```{r}
 countdown::countdown(8)
 ```
