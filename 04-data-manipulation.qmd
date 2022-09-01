@@ -1,0 +1,1060 @@
+---
+title: "Manipulating Data in R"
+author: "Lucy D'Agostino McGowan"
+footer:  "Slides adapted from Andrew Heiss by [Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+library(tidyverse)
+library(flair)
+library(knitr)
+library(kableExtra)
+```
+
+## {{< fa laptop >}} `Application Exercise`
+
+1. Create a new project using my template here: 
+
+```bash
+https://github.com/sta-112-f22/appex-04-starwars.git
+```
+
+2. Run the R chunk labeled `"load-packages"`
+3. Take a look at the `starwars` data
+
+```{r}
+countdown::countdown(minutes = 4)
+```
+
+
+## dplyr: verbs for manipulating data {.small}
+
+<table>
+  <tr>
+    <td>Extract rows with <code>filter()</code></td>
+    <td><img src="img/04/filter.png" alt="filter" title="filter" height="80px"></td>
+  </tr>
+  <tr>
+    <td>Extract columns with <code>select()</code></td>
+    <td><img src="img/04/select.png" alt="select" title="select" height="80px"></td>
+  </tr>
+  <tr>
+    <td>Arrange/sort rows with <code>arrange()</code></td>
+    <td><img src="img/04/arrange.png" alt="arrange" title="arrange" height="80px"></td>
+  </tr>
+  <tr>
+    <td>Make new columns with <code>mutate()</code></td>
+    <td><img src="img/04/mutate.png" alt="mutate" title="mutate" height="80px"></td>
+  </tr>
+  <tr>
+    <td>Make group summaries with<br><code>group_by() %>% summarize()</code></td>
+    <td><img src="img/04/summarize.png" alt="summarize" title="summarize" height="80px"></td>
+  </tr>
+</table>
+
+# `filter()`
+
+## `filter()`
+
+Extract rows that meet some sort of test
+
+::: {layout-ncol=2}
+
+::: {.large}
+
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">filter(.data = <b><span style='background-color:#FFDFD1'>DATA</span></b>, <b><span style='background-color:#FFD0CF'>...</span></b>)</code></pre>
+</div>
+
+:::
+
+- <b><span style="background: #FFDFD1">`DATA`</span></b> = Data frame to transform
+- <b><span style="background: #FFD0CF">`...`</span></b> = One or more tests [`filter()` returns each row for which the test is TRUE]{.small}
+
+:::
+
+##
+
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">filter(.data = <b><span style='background-color:#FFDFD1'>starwars</span></b>, <b><span style='background-color:#FFD0CF'>species == "Droid"</span></b>)
+</code></pre>
+</div>
+
+:::: {.columns }
+
+::: {.column width=50% .small}
+```{r}
+starwars %>%
+  select(name, species, height) %>%
+  head(5) %>%
+  mutate(height = as.character(height)) %>%
+  bind_rows(tibble(name = "…", species = "…", height = "…")) %>% 
+  knitr::kable(format = "html")
+```
+:::
+
+::::
+
+##
+
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">filter(.data = <b><span style='background-color:#FFDFD1'>starwars</span></b>, <b><span style='background-color:#FFD0CF'>species == "Droid"</span></b>)
+</code></pre>
+</div>
+
+:::: {.columns }
+
+::: {.column width=50% .small}
+```{r}
+starwars %>%
+  select(name, species, height) %>%
+  head(5) %>%
+  mutate(height = as.character(height)) %>%
+  bind_rows(tibble(name = "…", species = "…", height = "…")) %>% 
+  knitr::kable(format = "html")
+```
+:::
+
+::: {.column width=50% .small}
+
+```{r}
+starwars %>%
+  select(name, species, height) %>%
+  filter(species == "Droid") %>%
+  knitr::kable(format = "html")
+```
+
+
+:::
+
+::::
+
+## `filter()`
+
+::: {layout-ncol=2}
+
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, 
+       species == "Droid")
+```
+
+> - One `=` sets an argument
+> - Two `==` checks for equality <br> [returns `TRUE` or `FALSE`]{.small}
+
+:::
+
+## Logical tests {.small}
+
+<table>
+  <tr>
+    <th class="cell-center">Test</th>
+    <th class="cell-left">Meaning</th>
+    <th class="cell-center">Test</th>
+    <th class="cell-left">Meaning</th>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x < y</code></td>
+    <td class="cell-left">Less than</td>
+    <td class="cell-center"><code class="remark-inline-code">x %in% y</code></td>
+    <td class="cell-left">In (group membership)</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x > y</code></td>
+    <td class="cell-left">Greater than</td>
+    <td class="cell-center"><code class="remark-inline-code">is.na(x)</code></td>
+    <td class="cell-left">Is missing</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">==</code></td>
+    <td class="cell-left">Equal to</td>
+    <td class="cell-center"><code class="remark-inline-code">!is.na(x)</code></td>
+    <td class="cell-left">Is not missing</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x <= y</code></td>
+    <td class="cell-left">Less than or equal to</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x >= y</code></td>
+    <td class="cell-left">Greater than or equal to</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x != y</code></td>
+    <td class="cell-left">Not equal to</td>
+  </tr>
+</table>
+
+## {{< fa laptop >}} `Application Exercise`
+
+In the Console, use `filter()` and logical tests to show...
+
+1. The data for Humans
+2. The data for characters with a homeworld Alderaan
+3. Rows where the mass is greater than 1000
+
+```{r}
+countdown::countdown(minutes = 4)
+```
+
+##
+
+::: {.larger}
+
+```{r}
+#| eval: false
+#| echo: true
+filter(starwars, species == "Human")
+```
+
+:::
+
+<br><br>
+
+. . .
+
+
+::: {.larger}
+```{r}
+#| eval: false
+#| echo: true
+filter(starwars, homeworld == "Alderaan")
+```
+:::
+
+. . .
+
+<br><br>
+
+::: {.larger}
+```{r}
+#| eval: false
+#| echo: true
+filter(starwars, mass > 1000)
+```
+:::
+
+## Common mistakes
+
+:::: {.columns}
+
+::: {.column}
+
+#### Using `=` instead of `==`
+
+`r emo::ji("-1")` 
+
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, 
+       homeworld = "Alderaan")
+```
+
+`r emo::ji("+1")` 
+
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, 
+       homeworld == "Alderaan")
+```
+
+
+:::
+
+::::
+
+## Common mistakes
+
+:::: {.columns}
+
+::: {.column}
+
+#### Using `=` instead of `==`
+
+`r emo::ji("-1")` 
+
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, 
+       homeworld = "Alderaan")
+```
+
+`r emo::ji("+1")` 
+
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, 
+       homeworld == "Alderaan")
+```
+
+
+:::
+
+::: {.column}
+
+#### Quotes
+
+`r emo::ji("-1")` 
+
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, 
+       homeworld == Alderaan)
+```
+
+`r emo::ji("+1")` 
+
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, 
+       homeworld == "Alderaan")
+```
+
+:::
+
+::::
+
+## `filter()` with multiple conditions
+
+Extract rows that meet *every* test
+
+. . .
+
+::: {.larger}
+
+```{r}
+#| eval: false
+#| echo: true
+filter(starwars, 
+       species == "Droid",
+       height > 100)
+```
+
+:::
+
+##
+
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">filter(.data = <b><span style='background-color:#FFDFD1'>starwars</span></b>, <b><span style='background-color:#FFD0CF'>species == "Droid", height > 100</span></b>)
+</code></pre>
+</div>
+
+:::: {.columns }
+
+::: {.column width=50% .small}
+```{r}
+starwars %>%
+  select(name, species, height) %>%
+  head(5) %>%
+  mutate(height = as.character(height)) %>%
+  bind_rows(tibble(name = "…", species = "…", height = "…")) %>% 
+  knitr::kable(format = "html")
+```
+:::
+
+::::
+
+##
+
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">filter(.data = <b><span style='background-color:#FFDFD1'>starwars</span></b>, <b><span style='background-color:#FFD0CF'>species == "Droid", height > 100</span></b>)
+</code></pre>
+</div>
+
+:::: {.columns }
+
+::: {.column width=50% .small}
+```{r}
+starwars %>%
+  select(name, species, height) %>%
+  head(5) %>%
+  mutate(height = as.character(height)) %>%
+  bind_rows(tibble(name = "…", species = "…", height = "…")) %>% 
+  knitr::kable(format = "html")
+```
+:::
+
+::: {.column width=50% .small}
+
+```{r}
+starwars %>%
+  select(name, species, height) %>%
+  filter(species == "Droid", height > 100) %>%
+  knitr::kable(format = "html")
+```
+
+
+:::
+
+::::
+
+## Boolean operators
+
+<table>
+  <tr>
+    <th class="cell-center">Operator</th>
+    <th class="cell-center">Meaning</th>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">a & b</code></td>
+    <td class="cell-center">and</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">a | b</code></td>
+    <td class="cell-center">or</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">!a</code></td>
+    <td class="cell-center">not</td>
+  </tr>
+</table>
+
+## Default is "and"
+
+#### These do the same thing:
+
+::: {.large}
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, species == "Droid", height > 100)
+```
+:::
+
+<br>
+
+::: {.large}
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, species == "Droid" & height > 100)
+```
+:::
+
+## {{< fa laptop >}} `Application Exercise` 
+
+Create a new R chunk in your .qmd file. Use `filter()` and Boolean logical tests to show...
+
+1. Droids more than 70 kg
+2. Characters that are born before 56 and have blue eyes
+3. Characters that are born before 56 and have blue eyes and are not Human
+
+```{r}
+countdown::countdown(minutes = 4)
+```
+
+## 
+
+
+::: {.larger}
+```{r}
+#| eval: false
+#| echo: true
+filter(starwars, species == "Droid", mass > 70)
+```
+:::
+
+. . .
+
+<br><br>
+
+::: {.larger}
+```{r}
+#| eval: false
+#| echo: true
+filter(starwars, birth_year > 56, 
+       eye_color == "blue")
+```
+:::
+
+. . .
+
+<br> <br>
+
+::: {.larger}
+```{r}
+#| eval: false
+#| echo: true
+filter(starwars, birth_year > 56, 
+       eye_color == "blue", !species == "Human")
+```
+:::
+
+
+## Common mistakes
+
+:::: {.columns}
+
+::: {.column}
+
+#### Collapsing multiple tests into one
+
+`r emo::ji("-1")` 
+
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, 
+       50 < mass < 100)
+```
+
+`r emo::ji("+1")` 
+
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, 
+       mass > 50,
+       mass < 100)
+```
+
+
+:::
+
+::: {.column}
+
+#### Using multiple tests instead of `%in%`
+
+`r emo::ji("-1")` 
+
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, 
+       homeworld == "Alderaan",
+       homeworld == "Bespin",
+       homeworld == "Corellia")
+```
+
+`r emo::ji("+1")` 
+
+```{r}
+#| echo: true
+#| eval: false
+filter(starwars, 
+       homeworld %in% c("Alderaan", "Bespin", "Corellia"))
+```
+
+:::
+
+::::
+
+## Common syntax
+
+>* Every dplyr verb function follows the same pattern
+>* First argument is a data frame; returns a data frame
+
+. . .
+
+:::: {.columns}
+
+::: {.column}
+
+::: {.large}
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><b><span style='background-color:#EFB3FF'>VERB</span></b>(<b><span style='background-color:#FFDFD1'>DATA</span></b>, <b><span style='background-color:#FFD0CF'>...</span></b>)
+</code></pre></div>
+:::
+
+:::
+
+::: {.column}
+
+- <b><span style="background: #EFB3FF">`VERB`</span></b> = dplyr function/verb
+- <b><span style="background: #FFDFD1">`DATA`</span></b> = Data frame to transform
+- <b><span style="background: #FFD0CF">`...`</span></b> = Stuff the verb does
+
+:::
+
+::::
+
+
+## `mutate()`
+
+#### Create new columns
+
+::: {layout-ncol=2}
+
+::: {.large}
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">mutate(<b><span style='background-color:#FFDFD1'>.data</span></b>, <b><span style='background-color:#FFD0CF'>...</span></b>)</code>
+</pre></div>
+
+:::
+
+
+
+- <b><span style="background: #FFDFD1">`DATA`</span></b> = Data frame to transform
+- <b><span style="background: #FFD0CF">`...`</span></b> = Columns to make
+
+:::
+
+
+##
+
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">mutate(.data = <b><span style='background-color:#FFDFD1'>starwars</span></b>, <b><span style='background-color:#FFD0CF'>bmi = mass / (height / 100)^2</span></b>)
+</code></pre>
+</div>
+
+:::: {.columns }
+
+::: {.column width=50% .small}
+```{r}
+starwars %>%
+  select(name, mass, height) %>%
+  head(5) %>%
+  mutate(
+    mass = as.character(mass),
+    height = as.character(height)) %>%
+  bind_rows(tibble(name = "…", mass = "…", height = "…")) %>% 
+  knitr::kable(format = "html")
+```
+
+:::
+
+::::
+
+##
+
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">mutate(.data = <b><span style='background-color:#FFDFD1'>starwars</span></b>, <b><span style='background-color:#FFD0CF'>bmi = mass / (height / 100)^2</span></b>)
+</code></pre>
+</div>
+
+:::: {.columns }
+
+::: {.column width=50% .small}
+```{r}
+starwars %>%
+  select(name, mass, height) %>%
+  head(5) %>%
+  mutate(
+    mass = as.character(mass),
+    height = as.character(height)) %>%
+  bind_rows(tibble(name = "…", mass = "…", height = "…")) %>% 
+  knitr::kable(format = "html")
+```
+
+:::
+
+::: {.column width=50% .small}
+
+```{r}
+starwars %>%
+  select(name, mass, height) %>%
+  mutate(
+    height_m = height / 100,
+    bmi = as.character(round(mass / (height_m)^2, 2))) %>%
+  mutate(`…` = "…") %>% 
+  select(name, `…`, bmi) %>% 
+  head(5) %>%
+  bind_rows(tibble(name = "…", `…` = "…", bmi = "…")) %>% 
+  knitr::kable(format = "html")
+
+```
+
+
+:::
+
+::::
+##
+
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">mutate(.data = <b><span style='background-color:#FFDFD1'>starwars</span></b>, <b><span style='background-color:#FFD0CF'>
+       height_m = height / 100,
+       bmi = mass / (height_m)^2</span></b>)
+</code></pre>
+</div>
+
+:::: {.columns }
+
+::: {.column width=50% .small}
+
+```{r}
+starwars %>%
+  select(name, mass, height) %>%
+  head(5) %>%
+  mutate(
+    mass = as.character(mass),
+    height = as.character(height)) %>%
+  bind_rows(tibble(name = "…", mass = "…", height = "…")) %>% 
+  knitr::kable(format = "html")
+```
+
+:::
+
+::::
+
+##
+
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">mutate(.data = <b><span style='background-color:#FFDFD1'>starwars</span></b>, <b><span style='background-color:#FFD0CF'>
+       height_m = height / 100,
+       bmi = mass / (height_m)^2</span></b>)
+</code></pre>
+</div>
+
+:::: {.columns }
+
+::: {.column width=50% .small}
+
+```{r}
+starwars %>%
+  select(name, mass, height) %>%
+  head(5) %>%
+  mutate(
+    mass = as.character(mass),
+    height = as.character(height)) %>%
+  bind_rows(tibble(name = "…", mass = "…", height = "…")) %>% 
+  knitr::kable(format = "html")
+```
+
+:::
+
+::: {.column width=50% .small}
+
+```{r}
+starwars %>%
+  select(name, mass, height) %>%
+  mutate(
+    height_m = height / 100,
+    bmi = as.character(round(mass / (height_m)^2, 2)),
+    height_m = as.character(height_m)) %>%
+  mutate(`…` = "…") %>% 
+  select(name, `…`, height_m, bmi) %>% 
+  head(5) %>%
+  bind_rows(tibble(name = "…", `…` = "…", height_m = "…", bmi = "…")) %>% 
+  knitr::kable(format = "html")
+
+```
+
+
+:::
+
+::::
+
+
+## `ifelse()`
+
+#### Do conditional tests within `mutate()`
+
+:::: {.columns}
+
+::: {.column .large}
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">ifelse(<b><span style='background-color:#FFC0DC'>TEST</span></b>,      <b><span style='background-color:#FFDFD1'>
+       VALUE_IF_TRUE</span></b>, <b><span style='background-color:#CBB5FF'>
+       VALUE_IF_FALSE</span></b>)</code>
+</pre></div>
+
+:::
+
+::: {.column}
+- <b><span style="background: #FFC0DC">`TEST`</span></b> = A logical test
+- <b><span style="background: #FFDFD1">`VALUE_IF_TRUE`</span></b> = What happens if test is true
+- <b><span style="background: #CBB5FF">`VALUE_IF_FALSE`</span></b> = What happens if test is false
+
+:::
+
+::::
+
+## {{< fa laptop >}} `Application Exercise`
+
+Create a new R chunk in your .qmd file. Use `mutate()` to 
+
+1. Add a `droid` column that is `TRUE` if the species is a Droid
+2. Add a column for the logged weight (hint: use `log()`)
+3. Add a `human_droid` column that says "Human or Droid" if the character is a human or a droid and "Not Human or Droid" if it's not
+
+```{r}
+countdown::countdown(5)
+```
+
+
+## What if you have multiple verbs?
+
+#### Make a dataset of just Droids and calculate their BMI
+
+. . .
+
+### Pipes!
+
+The `%>%` operator (pipe) takes an object on the left and passes it as the first argument of the function on the right
+
+. . .
+
+::: {.large}
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><b><span style='background-color:#FFDFD1'>starwars</span></b> %>% filter(<b><span style='background-color:#FFDFD1'>_</span></b>, species == "Droid")
+</code></pre>
+</div>
+
+:::
+
+## What if you have multiple verbs?
+
+#### These do the same thing!
+
+<br>
+
+::: {.large}
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r">filter(<b><span style='background-color:#FFDFD1'>starwars</span></b>, species == "Droid")
+</code></pre>
+</div>
+
+<br>
+
+<div class="sourceCode cell-code">
+<pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><b><span style='background-color:#FFDFD1'>starwars</span></b> %>% filter(species == "Droid")
+</code></pre>
+</div>
+
+:::
+
+## What if you have multiple verbs?
+
+#### Make a dataset of just Droids and calculate their BMI
+
+```{r}
+#| echo: true
+#| eval: false
+starwars %>%
+  filter(species == "Droid") %>%
+  mutate(bmi = mass / (height / 100)^2)
+```
+
+## `%>%` {.large}
+
+
+```{r}
+#| echo: true
+#| eval: false
+leave_house(get_dressed(get_out_of_bed(wake_up(me, time = "8:00"), side = "correct"), pants = TRUE, shirt = TRUE), car = TRUE, bike = FALSE)
+```
+
+<br><br>
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+me %>% 
+  wake_up(time = "8:00") %>% 
+  get_out_of_bed(side = "correct") %>% 
+  get_dressed(pants = TRUE, shirt = TRUE) %>% 
+  leave_house(car = TRUE, bike = FALSE)
+```
+
+## `summarize()`
+
+#### Compute a table of summaries
+
+```{r}
+#| echo: true
+#| eval: false
+starwars %>%
+  summarise(mean_height = mean(height, na.rm = TRUE))
+```
+
+:::: {.columns}
+
+::: {.column width=50% .small}
+```{r}
+starwars %>%
+  select(name, species, height) %>%
+  head(5) %>%
+  mutate(height = as.character(height)) %>%
+  bind_rows(tibble(name = "…", species = "…", height = "…")) %>% 
+  knitr::kable(format = "html")
+```
+
+:::
+
+::::
+
+
+## `summarize()`
+
+#### Compute a table of summaries
+
+```{r}
+#| echo: true
+#| eval: false
+starwars %>%
+  summarise(mean_height = mean(height, na.rm = TRUE))
+```
+
+:::: {.columns}
+
+::: {.column width=50% .small}
+```{r}
+starwars %>%
+  select(name, species, height) %>%
+  head(5) %>%
+  mutate(height = as.character(height)) %>%
+  bind_rows(tibble(name = "…", species = "…", height = "…")) %>% 
+  knitr::kable(format = "html")
+```
+
+:::
+
+::: {.column width=50% .small}
+
+```{r}
+starwars %>%
+  summarize(mean_height = mean(height, na.rm = TRUE)) %>%
+  knitr::kable(format = "html")
+```
+
+:::
+::::
+
+. . .
+
+::: {.question}
+
+What do you think `na.rm = TRUE` does?
+
+:::
+
+```{r}
+countdown::countdown(0, 30)
+```
+
+## `summarize()`
+
+```{r}
+#| echo: true
+#| eval: false
+starwars %>%
+  summarise(mean_height = mean(height, na.rm = TRUE),
+            max_height = max(height, na.rm = TRUE))
+```
+
+. . .
+
+:::: {.columns}
+
+::: {.column width=50% .small}
+```{r}
+starwars %>%
+  select(name, species, height) %>%
+  head(5) %>%
+  mutate(height = as.character(height)) %>%
+  bind_rows(tibble(name = "…", species = "…", height = "…")) %>% 
+  knitr::kable(format = "html")
+```
+
+:::
+
+::: {.column width=50% .small}
+
+```{r}
+starwars %>%
+  summarize(mean_height = mean(height, na.rm = TRUE),
+            max_height = max(height, na.rm = TRUE)) %>%
+  knitr::kable(format = "html")
+```
+
+:::
+::::
+
+## {{< fa laptop >}} `Application Exercise`
+
+Create a new R chunk in your .qmd file. Use `summarize()` to calculate...
+
+1. The first (minimum) birth year in the dataset
+2. The last (maximum) birth year in the dataset
+3. The number of distinct homeworlds in the dataset (use the cheatsheet)
+
+```{r}
+countdown::countdown(6)
+```
+
+##
+
+::: {.large}
+
+```{r}
+#| echo: true
+#| eval: false
+starwars %>%
+  summarise(first = min(birth_year, na.rm = TRUE),
+            last = max(birth_year, na.rm = TRUE),
+            num_rows = n(),
+            num_unique = n_distinct(homeworld))
+```
+
+:::
+
+
+## {{< fa laptop >}} `Application Exercise`
+
+Create a new R chunk in your .qmd file. Use `filter()` and `summarize()` to calculate
+
+1. The number of unique homeworlds and
+2. The median height for characters from Tatooine born before the year 100
+
+```{r}
+countdown::countdown(5)
+```
+
+## `group_by()`
+
+#### Put rows into groups based on values in a column
+
+```{r}
+#| eval: false
+#| echo: true
+starwars %>% group_by(species)
+```
+
+. . .
+
+#### Nothing happens by itself!
+
+. . .
+
+#### Powerful when combined with `summarize()`
+
+## {.large}
+
+```{r}
+#| echo: true
+#| eval: false
+starwars %>%
+  group_by(gender) %>%
+  summarize(n_species = n_distinct(species))
+```
+
+## {{< fa laptop >}} `Application Exercise`
+
+Create a new R chunk in your .qmd file.
+
+1. Find the minimum, maximum, and median mass for each species
+2. Find the minimum, maximum, and median mass for each species from Tatooine
+
+```{r}
+countdown::countdown(6)
+```
+
+

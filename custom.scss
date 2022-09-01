@@ -9,6 +9,10 @@ $body-color: #404040;
 
 /*-- scss:rules --*/
 
+tbody tr:nth-child(odd) {
+  background-color: #DCDCDC;
+}
+
 strong {
   color: #44745A;
   font-weight: 900;
