@@ -1,0 +1,443 @@
+---
+title: "Simple Linear Regression"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+    fig-height: 3.5
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+```{r, child = "setup.rmd"}
+```
+
+
+
+# Relationship between two continuous variables
+
+## Visualizing two continuous variables
+
+::: {.question .smaller}
+How can we visualize the relationship between two continuous variables?
+:::
+
+. . .
+
+```{r}
+starwars_nojabba <- starwars %>%
+  drop_na(height, mass) %>%
+  filter(mass < 1000)
+ggplot(starwars_nojabba, aes(x = height, mass)) + 
+  geom_point(color = "#86a293")
+```
+## Visualizing two continuous variables
+
+::: {.question .smaller}
+If we know a Star Wars character's height, can we guess how much they weigh?
+:::
+
+```{r}
+ggplot(starwars_nojabba, aes(x = height, mass)) + 
+  geom_point(color = "#86a293")
+```
+
+# Data = model + error
+
+# $y = f(x) + \varepsilon$
+
+```{r}
+#| results: "asis"
+#| echo: false
+iterative_latex(
+  "Simple linear regression",
+  "\\Large\\mathbf{y} = f(\\mathbf{x}) + \\varepsilon",
+  list("\\\\mathbf\\{y\\}", "\\\\mathbf\\{x\\}", "f\\(\\\\mathbf\\{x\\}\\)"),
+  list("continuous (dependent) variable",
+       "continuous (independent) variable",
+       "a function that gives the mean value of $y$ at any value of $x$")
+)
+```
+
+## Simple linear regression
+
+::: {.question .small}
+What function do you think we are using to get the mean value of $y$ with simple **linear** regression?
+:::
+
+. . .
+
+```{r}
+ggplot(starwars_nojabba, aes(x = height, mass)) + 
+  geom_point(color = "#86a293") + 
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") + 
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```
+
+# We express the mean mass of the Star Wars characters as a *linear function* of their height {.small}
+
+## Simple linear regression
+
+::: {.question}
+What is the equation that represents this line?
+:::
+
+```{r}
+starwars %>%
+  drop_na(height, mass) %>%
+  filter(mass < 1000) %>%
+  ggplot(aes(x = height, mass)) + 
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") + 
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```
+## Simple linear regression
+
+$$\Large y = \beta_0 + \beta_1 x$$
+```{r}
+starwars %>%
+  drop_na(height, mass) %>%
+  filter(mass < 1000) %>%
+  ggplot(aes(x = height, mass)) + 
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") + 
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```
+
+## Simple linear regression
+
+$$\Large \textrm{mass} = \beta_0 + \beta_1 \times \textrm{height}$$
+```{r}
+starwars %>%
+  drop_na(height, mass) %>%
+  filter(mass < 1000) %>%
+  ggplot(aes(x = height, mass)) + 
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") + 
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```
+
+## Simple linear regression
+
+::: {.question .small}
+What is $\beta_0$?
+:::
+
+```{r}
+starwars %>%
+  drop_na(height, mass) %>%
+  filter(mass < 1000) %>%
+  ggplot(aes(x = height, mass)) + 
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") + 
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```
+
+
+## Simple linear regression
+
+::: {.question .small}
+What is $\beta_0$?
+:::
+
+```{r}
+library(geomtextpath)
+starwars_nojabba <- starwars %>%
+  drop_na(height, mass) %>%
+  filter(mass < 1000)
+
+new_data <- tibble(
+  height = seq(-5, 35, by = 1),
+) 
+
+new_data$mass <- lm(mass ~ height, data = starwars_nojabba) %>%
+  predict(newdata = new_data)
+
+ggplot(new_data, aes(height, mass)) +
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_texthline(
+    yintercept = -32.54,
+    lty = 2,
+    lwd = 6,
+    label = as.character(expression(beta[0])),
+    parse = TRUE,
+    hjust = 0.1
+  ) +
+  geom_point(aes(y = -32.54, x = 0), color = "red", size = 3) +
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```
+
+## Simple linear regression
+
+::: {.question .small}
+Is this meaningful in this dataset?
+:::
+
+```{r}
+ggplot(new_data, aes(height, mass)) +
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_texthline(
+    yintercept = -32.54,
+    lty = 2,
+    lwd = 6,
+    label = as.character(expression(beta[0])),
+    parse = TRUE,
+    hjust = 0.1
+  ) +
+  geom_point(aes(y = -32.54, x = 0), color = "red", size = 3) +
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```
+
+## Simple linear regression
+
+::: {.question .small}
+What is $\beta_1$?
+:::
+
+```{r}
+ggplot(starwars_nojabba, aes(x = height, mass)) + 
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") + 
+  geom_textsegment(aes(x = 125, y = 85, xend = 158, yend = 75), 
+                   label = as.character(expression(beta[1])), parse = TRUE,
+                   arrow = arrow(length = unit(0.1, "cm"))) + 
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```
+
+# Do all of the points fall exactly on the line?
+
+# $y = \beta_0 + \beta_1 x + \color{blue}{\varepsilon}$
+
+
+## Simple linear regression
+
+$$y = \beta_0 + \beta_1 x + \color{blue}{\varepsilon}$$
+
+```{r}
+ggplot(starwars_nojabba, aes(x = height, mass)) +
+  geom_point(color = "#86a293") +
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") + 
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```
+
+## Simple linear regression
+
+$$y = \beta_0 + \beta_1 x + \color{blue}{\varepsilon}$$
+
+```{r}
+starwars_nojabba <- starwars_nojabba %>%
+  mutate(fitted = fitted(lm(mass ~ height, data = starwars_nojabba)))
+
+ggplot(starwars_nojabba, aes(x = height, mass)) +
+  geom_point(color = "#86a293") +
+  geom_segment(aes(x = height, y = mass, xend = height, yend = fitted),
+               color = "blue") +
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") + 
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```
+
+## The truth
+
+$$\Large y = \beta_0 + \beta_1 x + \varepsilon$$
+
+![](https://media.giphy.com/media/s7uHDGT8SoJAQ/giphy.gif){fig-align="center"}
+
+. . .
+
+* If we had the **whole population** of the Star Wars universe we could quantify the exact relationship between $x$ and $y$
+
+
+## The reality {.small}
+
+$$\Large \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$$
+::: {layout-ncol=2}
+![](https://media.giphy.com/media/3o6nURrfzsAC9zZaG4/giphy.gif){fig-align="center"}
+
+###
+
+> * In reality, we have a **sample** of Star Wars characters to **estimate** the relationship between $x$ and $y$ (`height` and `mass`).
+> * The "hats" represent the estimated (fitted) values
+
+:::
+
+## Put a hat on it
+
+::: {.question}
+How can you tell the difference between a **parameter** that is from the whole population versus an estimate from the **sample**?
+:::
+
+![](https://media.giphy.com/media/dZ0yRjxBulRjW/giphy.gif){fig-align="center"}
+
+# {{< fa pause >}} Let's pause for definitions
+
+## Definitions
+
+::: {layout-ncol=2}
+* **parameters**
+* $\beta_0$
+* $\beta_1$
+* **simple linear model**
+
+###
+
+> * $\beta_0$, $\beta_1$
+> * intercept
+> * slope
+> * $y = \beta_0 + \beta_1 x + \varepsilon$ **estimated by** $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$
+
+:::
+
+# Let's do this in R
+
+## Simple linear regression
+
+```{r}
+#| code-fold: false
+library(tidyverse)
+
+starwars_nojabba <- starwars %>%
+  filter(mass < 1000)
+
+lm(mass ~ height, data = starwars_nojabba)
+```
+
+. . . 
+
+* `lm` = "linear model"
+
+## Simple linear regression
+
+```{r}
+#| code-fold: false
+library(tidyverse)
+
+starwars_nojabba <- starwars %>%
+  filter(mass < 1000)
+
+lm(mass ~ height, data = starwars_nojabba)
+```
+
+::: {.question}
+What is $\hat\beta_0$?
+:::
+
+## Simple linear regression
+
+```{r}
+#| code-fold: false
+library(tidyverse)
+
+starwars_nojabba <- starwars %>%
+  filter(mass < 1000)
+
+lm(mass ~ height, data = starwars_nojabba)
+```
+
+::: {.question}
+What is $\hat\beta_1$?
+:::
+
+## Simple linear regression
+
+```{r}
+#| code-fold: false
+mod <- lm(mass ~ height, data = starwars_nojabba)
+```
+
+<br>
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "2"
+starwars_nojabba %>%
+  mutate(y_hat = fitted(mod)) %>%
+  select(y_hat, mass, height)
+```
+
+# Where did these $\hat{y}$ values come from?
+
+## Fitted values
+
+::: {layout-ncol=2}
+
+```{r}
+#| code-fold: false
+lm(mass ~ height, 
+   data = starwars_nojabba)
+```
+
+
+```{r}
+#| code-fold: false
+starwars_nojabba %>%
+  mutate(y_hat = fitted(mod)) %>%
+  select(y_hat, mass, height) %>%
+  slice(1:3)
+```
+
+:::
+
+. . .
+
+### $\hat{y}_1 = -32.5 + 0.62 \times 172$
+
+. . .
+
+### $\hat{y}_2 = -32.5 + 0.62 \times 167$
+
+. . .
+
+### $\hat{y}_3 = -32.5 + 0.62 \times 96$
+
+## Simple linear regression
+
+::: {.question}
+How did we decide on **this** line?
+:::
+
+
+```{r}
+starwars_nojabba <- starwars_nojabba %>%
+  mutate(fitted = fitted(lm(mass ~ height, data = starwars_nojabba)))
+
+ggplot(starwars_nojabba, aes(x = height, mass)) +
+  geom_point(color = "#86a293") +
+  geom_segment(aes(x = height, y = mass, xend = height, yend = fitted),
+               color = "blue") +
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") + 
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```
+
+
+## Minimize Least Squares
+
+
+
+```{r}
+starwars_nojabba <- starwars_nojabba %>%
+  mutate(fitted = fitted(lm(mass ~ height, data = starwars_nojabba)))
+
+ggplot(starwars_nojabba, aes(x = height, mass)) +
+  geom_rect(aes(xmin = height, xmax = height + mass - fitted,
+                ymin = mass, ymax = fitted), fill = "blue", color = "blue", alpha = 0.2) +
+  geom_smooth(method = "lm", se = FALSE, formula = "y ~ x", color = "#86a293") + 
+  geom_point(color = "#86a293") +
+  coord_fixed() +
+  labs(title = "The relationship between mass and height for Star Wars characters",
+       caption = "Data from SWAPI (swapi.dev)")
+```

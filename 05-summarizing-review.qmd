@@ -1,0 +1,450 @@
+---
+title: "Summarizing data, a Review"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+---
+
+## {{< fa laptop >}} `Application Exercise`
+
+### [bit.ly/sta-112-f22-appex-05](https://bit.ly/sta-112-f22-appex-05)
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQggmYqlOSXsSZxEASw6BI9ptHqIlBQ0dQpGstxu5-ZDVaLvU1l8FLJoMTcDJylegUxgiiPZ4mzEdWx/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+# One continuous variable
+
+```{r, child = "setup.rmd"}
+```
+
+
+## One continuous variable
+
+::: {.question}
+How can we visualize a single continuous variable?
+:::
+
+. . . 
+
+::: {layout-ncol=3 .incremental}
+
+### Histogram
+
+```{r}
+#| code-fold: true
+#| echo: true
+#| fig-width: 3
+#| fig-height: 3
+starwars %>%
+  drop_na(height) %>%
+  ggplot(aes(x = height)) +
+  geom_histogram(bins = 30, fill = "#86a293")
+```
+### Density
+
+```{r}
+#| code-fold: true
+#| echo: true
+#| fig-width: 3
+#| fig-height: 3
+starwars %>%
+  drop_na(height) %>%
+  ggplot(aes(x = height)) +
+  geom_density(color = "#86a293")
+```
+### Boxplot
+
+```{r}
+#| code-fold: true
+#| echo: true
+#| fig-width: 3
+#| fig-height: 3
+starwars %>%
+  drop_na(height) %>%
+  ggplot(aes(x = height, y = 1)) +
+  geom_boxplot(outlier.shape = NA, color = "#86a293") + 
+  geom_jitter(color = "#86a293") + 
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+:::
+
+## One continuous variable
+
+::: {.question}
+How can we numerically summarize a single continuous variable?
+:::
+
+. . .
+
+<br> 
+
+```{r}
+#| echo: true
+starwars %>%
+  summarise(mean = mean(height, na.rm = TRUE),
+            sd = sd(height, na.rm = TRUE))
+```
+
+## One continuous variable
+
+```{r}
+#| code-fold: true
+#| echo: true
+#| fig-height: 4
+library(geomtextpath)
+starwars %>%
+  drop_na(height) %>%
+  ggplot(aes(x = height)) +
+  geom_histogram(bins = 30, fill = "#86a293") +
+  geom_textvline(xintercept = 174, 
+                 lwd = 6, 
+                 linewidth = 2, 
+                 label = "mean = 174",
+                 hjust = 0.25)
+```
+
+## One continuous variable
+
+
+```{r}
+#| code-fold: true
+#| echo: true
+#| fig-height: 4
+starwars %>%
+  drop_na(height) %>%
+  ggplot(aes(x = height)) +
+  geom_histogram(bins = 30, fill = "#86a293") +
+  geom_vline(xintercept = c(174 - 34.7, 174 + 34.7), lty = 2) +
+  geom_textvline(xintercept = 174, 
+                 lwd = 4, 
+                 linewidth = 2, 
+                 label = "mean \u00B1 sd = 174 \u00B1 34.7",
+                 hjust = 0.25) 
+```
+
+## One continuous variable
+
+::: {.question}
+Why do we calculate a mean?
+:::
+
+. . .
+
+> * Reduces the dimensionality of the data (from `n` to `1`)
+> * To get a sense of a "typical" observation
+>     * When is this an accurate representation?
+
+## Meaningful means
+
+::: {layout-ncol=3}
+
+### Symmetric
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-height: 3
+#| fig-width: 3
+set.seed(1)
+
+d1 <- tibble(x = rnorm(1000, mean = 10))
+ggplot(d1, aes(x = x)) + 
+  geom_histogram(bins = 30, fill = "#86a293")
+```
+
+### Bimodal
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+d2 <- tibble(x = c(rnorm(500, mean = 10),
+                   rnorm(500, mean = 20)))
+ggplot(d2, aes(x = x)) + 
+  geom_histogram(bins = 30, fill = "#86a293")
+```
+
+### Skewed
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+d3 <- tibble(x = rbeta(1000, 2, 5))
+ggplot(d3, aes(x = x)) + 
+  geom_histogram(bins = 30, fill = "#86a293")
+```
+
+:::
+
+. . .
+
+::: {.question .smaller}
+Guess the mean for each of these variables.
+:::
+
+## Meaningful means
+
+::: {layout-ncol=3}
+
+### Symmetric
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-height: 3
+#| fig-width: 3
+ggplot(d1, aes(x = x)) + 
+  geom_histogram(bins = 30, fill = "#86a293") + 
+  geom_vline(xintercept = mean(d1$x), lwd = 2)
+```
+
+### Bimodal
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+ggplot(d2, aes(x = x)) + 
+  geom_histogram(bins = 30, fill = "#86a293") + 
+  geom_vline(xintercept = mean(d2$x), lwd = 2)
+```
+
+### Skewed
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+ggplot(d3, aes(x = x)) + 
+  geom_histogram(bins = 30, fill = "#86a293") + 
+  geom_vline(xintercept = mean(d3$x), lwd = 2)
+```
+
+:::
+
+. . .
+
+::: {.question .smaller}
+Does this value represent a "typical" observation?
+:::
+
+
+```{r}
+#| results: "asis"
+iterative_latex("Math speak", 
+                "\\Large\\bar{x} =\\sum_{i=1}^n \\frac{x_i}{n}", 
+                list("\\\\bar\\{x\\}", "\\\\sum", "i=1", "n", "x_i", "\\{n\\}"),
+                list(
+                  "the mean of the variable $x$",
+                  "add up the observations", 
+                  "from the first",
+                  "total number of observations",
+                  "continuous variable for observation i",
+                  "divide by the total number of observations"),
+                color = "#86a293")
+```
+
+## {{< fa pencil >}} `Application Exercise`
+
+::: {layout-ncol=2}
+
+data  |
+------|----
+$x_1$ | 3
+$x_2$ | 5
+$x_3$ | 1
+$x_4$ | 7
+$x_5$ | 8
+
+##
+
+1. Using the data to the left, what is $n$?
+2. What is $\bar{x}$?
+
+:::
+
+```{r}
+countdown::countdown(3)
+```
+
+# Data = model + error
+
+## Data
+
+```{r}
+#| echo: true
+#| code-fold: true
+d <- tibble(
+  i = 1:5,
+  x = c(3, 5, 1, 7, 8),
+  model = mean(x),
+  error = x - model
+) 
+
+knitr::kable(d)
+```
+
+## Data
+
+```{r}
+#| echo: true
+#| code-fold: true
+ggplot(d, aes(x = i, y = x)) + 
+  geom_point() + 
+  geom_texthline(yintercept = mean(d$x), label = "mean = 4.8")
+```
+
+## Data
+
+```{r}
+#| echo: true
+#| code-fold: true
+ggplot(d, aes(x = i, y = x)) + 
+  geom_point() + 
+  geom_texthline(yintercept = mean(d$x), label = "mean = 4.8") + 
+  geom_segment(aes(y = x, yend = mean(x), x = i, xend = i))
+```
+
+```{r}
+#| results: "asis"
+iterative_latex("Math Speak",
+                "\\Large\\mathbf{x} = \\beta_0 + \\varepsilon",
+                list(
+                  "\\\\mathbf\\{x\\}",
+                  "\\\\beta_0",
+                  "\\\\varepsilon"
+                ),
+                list(
+                  "bold letters are vectors. This is the vector $\\mathbf{x}=\\{x_1,\\dots,x_n\\}$",
+                  "we call this the \"intercept\", when there are no other variables, it is just the mean, $\\bar{x}$",
+                  "the error"
+                ))
+```
+
+## Data
+
+```{r}
+#| echo: true
+#| code-fold: true
+ggplot(d, aes(x = i, y = x)) + 
+  geom_point() + 
+  geom_texthline(yintercept = mean(d$x), lwd = 5, hjust = 0.1,
+                 label = as.character(expression(beta[0])), parse = TRUE) + 
+  geom_segment(aes(y = x, yend = mean(x), x = i, xend = i))
+```
+
+
+## Data
+
+::: {layout-ncol=2}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 2
+ggplot(d, aes(x = 1, y = x)) + 
+  geom_point() + 
+  geom_texthline(yintercept = mean(d$x), lwd = 5, hjust = 0.1,
+                 label = as.character(expression(beta[0])), parse = TRUE) + 
+  geom_segment(aes(y = x, yend = mean(x), x = 1, xend = 1)) + 
+  scale_x_continuous(breaks = c(0.95, 1, 1.05), labels = c("", "1", ""))
+```
+
+:::
+
+## Data
+
+::: {layout-ncol=2}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 2
+ggplot(d, aes(x = 1, y = x)) + 
+  geom_point() + 
+  geom_texthline(yintercept = mean(d$x), lwd = 5, hjust = 0.1,
+                 label = as.character(expression(beta[0])), parse = TRUE) + 
+  geom_segment(aes(y = x, yend = mean(x), x = 1, xend = 1)) + 
+  scale_x_continuous(breaks = c(0.95, 1, 1.05), labels = c("", "1", ""))
+```
+
+
+```{r}
+#| echo: true
+#| code-fold: true
+
+d2 <- d[2:4]
+names(d2) <- c("$\\mathbf{x}$", "$\\beta_0$", "$\\varepsilon$")
+
+knitr::kable(d2)
+```
+
+:::
+
+
+## Calculating the mean in R
+
+:::: {.columns}
+
+::: {.column width="50%" .fragment fragment-index=1}
+
+```{r}
+#| echo: true
+
+summarise(d, mean_x = mean(x))
+```
+
+:::
+
+::: {.column width="50%" .fragment fragment-index=2}
+
+```{r}
+#| echo: true
+lm(x ~ 1, data = d)
+```
+:::
+
+::::
+
+. . .
+
+<br>
+
+> * "intercept only model"
+> * `lm`: linear model
+
+
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+Open your `04-appex.qmd` file. Load the packages by running the top R chunk of code. 
+
+1. Copy the code below into an R chunk at the bottom of the file:
+
+```{r}
+#| echo: true
+d <- tibble(
+  x = c(3, 5, 1, 7, 8)
+)
+```
+
+What do you think this code does? Try typing `?tibble` in the Console - what does this function do?
+
+2. Calculate the `mean` of `x`. Do this two ways, using the `summary` function and using the `lm` function.
+3. Add a new variable called `error` to the data set `d` that is equal to `x` minus the mean of x.
+
+```{r}
+countdown::countdown(5)
+```
