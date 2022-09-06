@@ -1011,7 +1011,7 @@ starwars %>%
 
 Create a new R chunk in your .qmd file. Use `filter()` and `summarize()` to calculate
 
-1. The number of unique homeworlds and
+1. The number of unique homeworlds among humans
 2. The median height for characters from Tatooine born before the year 100
 
 ```{r}
