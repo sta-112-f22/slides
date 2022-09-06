@@ -478,7 +478,7 @@ filter(starwars, species == "Droid", mass > 70)
 ```{r}
 #| eval: false
 #| echo: true
-filter(starwars, birth_year > 56, 
+filter(starwars, birth_year < 56, 
        eye_color == "blue")
 ```
 :::
@@ -491,7 +491,7 @@ filter(starwars, birth_year > 56,
 ```{r}
 #| eval: false
 #| echo: true
-filter(starwars, birth_year > 56, 
+filter(starwars, birth_year < 56, 
        eye_color == "blue", !species == "Human")
 ```
 :::
@@ -872,7 +872,7 @@ me %>%
 #| echo: true
 #| eval: false
 starwars %>%
-  summarise(mean_height = mean(height, na.rm = TRUE))
+  summarize(mean_height = mean(height, na.rm = TRUE))
 ```
 
 :::: {.columns}
@@ -900,7 +900,7 @@ starwars %>%
 #| echo: true
 #| eval: false
 starwars %>%
-  summarise(mean_height = mean(height, na.rm = TRUE))
+  summarize(mean_height = mean(height, na.rm = TRUE))
 ```
 
 :::: {.columns}
@@ -946,7 +946,7 @@ countdown::countdown(0, 30)
 #| echo: true
 #| eval: false
 starwars %>%
-  summarise(mean_height = mean(height, na.rm = TRUE),
+  summarize(mean_height = mean(height, na.rm = TRUE),
             max_height = max(height, na.rm = TRUE))
 ```
 
@@ -998,7 +998,7 @@ countdown::countdown(6)
 #| echo: true
 #| eval: false
 starwars %>%
-  summarise(first = min(birth_year, na.rm = TRUE),
+  summarize(first = min(birth_year, na.rm = TRUE),
             last = max(birth_year, na.rm = TRUE),
             num_rows = n(),
             num_unique = n_distinct(homeworld))
