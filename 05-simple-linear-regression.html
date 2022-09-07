@@ -408,7 +408,7 @@
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>starwars_nojabba <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">drop_na</span>(height, mass) <span class="sc">%&gt;%</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">1000</span>)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span> </span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
 <span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
@@ -425,7 +425,7 @@
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span> </span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
@@ -469,11 +469,16 @@
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span> </span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span> </span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">color =</span> <span class="st">"#86a293"</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img data-src="05-simple-linear-regression_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
@@ -494,13 +499,15 @@
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">drop_na</span>(height, mass) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span> </span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span> </span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="at">color =</span> <span class="st">"#86a293"</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -511,13 +518,15 @@
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">drop_na</span>(height, mass) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span> </span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span> </span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">color =</span> <span class="st">"#86a293"</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -528,13 +537,15 @@
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">drop_na</span>(height, mass) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span> </span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span> </span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">color =</span> <span class="st">"#86a293"</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -547,13 +558,15 @@
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">drop_na</span>(height, mass) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span> </span>
-<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span> </span>
-<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="at">color =</span> <span class="st">"#86a293"</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -567,31 +580,27 @@
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">library</span>(geomtextpath)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>starwars_nojabba <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">drop_na</span>(height, mass) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">1000</span>)</span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a>new_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="at">height =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">35</span>, <span class="at">by =</span> <span class="dv">1</span>),</span>
-<span id="cb8-8"><a href="#cb8-8"></a>) </span>
-<span id="cb8-9"><a href="#cb8-9"></a></span>
-<span id="cb8-10"><a href="#cb8-10"></a>new_data<span class="sc">$</span>mass <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass <span class="sc">~</span> height, <span class="at">data =</span> starwars_nojabba) <span class="sc">%&gt;%</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a>  <span class="fu">predict</span>(<span class="at">newdata =</span> new_data)</span>
-<span id="cb8-12"><a href="#cb8-12"></a></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="fu">ggplot</span>(new_data, <span class="fu">aes</span>(height, mass)) <span class="sc">+</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a>  <span class="fu">geom_texthline</span>(</span>
-<span id="cb8-17"><a href="#cb8-17"></a>    <span class="at">yintercept =</span> <span class="sc">-</span><span class="fl">32.54</span>,</span>
-<span id="cb8-18"><a href="#cb8-18"></a>    <span class="at">lty =</span> <span class="dv">2</span>,</span>
-<span id="cb8-19"><a href="#cb8-19"></a>    <span class="at">lwd =</span> <span class="dv">6</span>,</span>
-<span id="cb8-20"><a href="#cb8-20"></a>    <span class="at">label =</span> <span class="fu">as.character</span>(<span class="fu">expression</span>(beta[<span class="dv">0</span>])),</span>
-<span id="cb8-21"><a href="#cb8-21"></a>    <span class="at">parse =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-22"><a href="#cb8-22"></a>    <span class="at">hjust =</span> <span class="fl">0.1</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a>  ) <span class="sc">+</span></span>
-<span id="cb8-24"><a href="#cb8-24"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">32.54</span>, <span class="at">x =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb8-25"><a href="#cb8-25"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb8-26"><a href="#cb8-26"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(height, mass)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">geom_abline</span>(</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="at">intercept =</span> <span class="sc">-</span><span class="fl">32.54</span>,</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="at">slope =</span> <span class="fl">0.62</span>,</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="at">color =</span> <span class="st">"#86a293"</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="fu">geom_texthline</span>(</span>
+<span id="cb8-11"><a href="#cb8-11"></a>    <span class="at">yintercept =</span> <span class="sc">-</span><span class="fl">32.54</span>,</span>
+<span id="cb8-12"><a href="#cb8-12"></a>    <span class="at">lty =</span> <span class="dv">2</span>,</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="at">lwd =</span> <span class="dv">6</span>,</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="at">label =</span> <span class="fu">as.character</span>(<span class="fu">expression</span>(beta[<span class="dv">0</span>])),</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="at">parse =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-16"><a href="#cb8-16"></a>    <span class="at">hjust =</span> <span class="fl">0.1</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">40</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">32.54</span>, <span class="at">x =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
+<span id="cb8-22"><a href="#cb8-22"></a>       <span class="at">caption =</span>  <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -604,20 +613,26 @@
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(new_data, <span class="fu">aes</span>(height, mass)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_texthline</span>(</span>
-<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">yintercept =</span> <span class="sc">-</span><span class="fl">32.54</span>,</span>
-<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">lty =</span> <span class="dv">2</span>,</span>
-<span id="cb9-7"><a href="#cb9-7"></a>    <span class="at">lwd =</span> <span class="dv">6</span>,</span>
-<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">label =</span> <span class="fu">as.character</span>(<span class="fu">expression</span>(beta[<span class="dv">0</span>])),</span>
-<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">parse =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">hjust =</span> <span class="fl">0.1</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">32.54</span>, <span class="at">x =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb9-14"><a href="#cb9-14"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(height, mass)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_abline</span>(</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="at">intercept =</span> <span class="sc">-</span><span class="fl">32.54</span>,</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">slope =</span> <span class="fl">0.62</span>,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">color =</span> <span class="st">"#86a293"</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">geom_texthline</span>(</span>
+<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">yintercept =</span> <span class="sc">-</span><span class="fl">32.54</span>,</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">lty =</span> <span class="dv">2</span>,</span>
+<span id="cb9-11"><a href="#cb9-11"></a>    <span class="at">lwd =</span> <span class="dv">6</span>,</span>
+<span id="cb9-12"><a href="#cb9-12"></a>    <span class="at">label =</span> <span class="fu">as.character</span>(<span class="fu">expression</span>(beta[<span class="dv">0</span>])),</span>
+<span id="cb9-13"><a href="#cb9-13"></a>    <span class="at">parse =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-14"><a href="#cb9-14"></a>    <span class="at">hjust =</span> <span class="fl">0.1</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">40</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">32.54</span>, <span class="at">x =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20"></a>       <span class="at">caption =</span>  <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -630,13 +645,27 @@
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span> </span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span> </span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_textsegment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">125</span>, <span class="at">y =</span> <span class="dv">85</span>, <span class="at">xend =</span> <span class="dv">158</span>, <span class="at">yend =</span> <span class="dv">75</span>), </span>
-<span id="cb10-4"><a href="#cb10-4"></a>                   <span class="at">label =</span> <span class="fu">as.character</span>(<span class="fu">expression</span>(beta[<span class="dv">1</span>])), <span class="at">parse =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb10-5"><a href="#cb10-5"></a>                   <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">"cm"</span>))) <span class="sc">+</span> </span>
-<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb10-7"><a href="#cb10-7"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_abline</span>(</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="at">intercept =</span> <span class="sc">-</span><span class="fl">32.54</span>,</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="at">slope =</span> <span class="fl">0.62</span>,</span>
+<span id="cb10-5"><a href="#cb10-5"></a>    <span class="at">color =</span> <span class="st">"#86a293"</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  )  <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="dv">1</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">32.54</span>, <span class="at">yend =</span> <span class="sc">-</span><span class="fl">32.54</span>), <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>), <span class="at">breaks =</span> <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">35</span>, <span class="sc">-</span><span class="dv">30</span>)) <span class="sc">+</span> </span>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb10-11"><a href="#cb10-11"></a>    <span class="st">"textsegment"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="at">x =</span> <span class="dv">1</span>, </span>
+<span id="cb10-13"><a href="#cb10-13"></a>    <span class="at">xend =</span> <span class="dv">1</span>,</span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="at">y =</span> <span class="sc">-</span><span class="fl">32.54</span>,</span>
+<span id="cb10-15"><a href="#cb10-15"></a>    <span class="at">yend =</span> <span class="sc">-</span><span class="fl">32.54</span> <span class="sc">+</span> <span class="fl">0.62</span>,</span>
+<span id="cb10-16"><a href="#cb10-16"></a>    <span class="at">label =</span> <span class="fu">as.character</span>(<span class="fu">expression</span>(beta[<span class="dv">1</span>])),</span>
+<span id="cb10-17"><a href="#cb10-17"></a>    <span class="at">parse =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-18"><a href="#cb10-18"></a>    <span class="at">angle =</span> <span class="dv">0</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
+<span id="cb10-21"><a href="#cb10-21"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -659,9 +688,14 @@
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span> </span>
-<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb11-5"><a href="#cb11-5"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="at">color =</span> <span class="st">"#86a293"</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -677,11 +711,21 @@
 <span id="cb12-3"><a href="#cb12-3"></a></span>
 <span id="cb12-4"><a href="#cb12-4"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
 <span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass, <span class="at">xend =</span> height, <span class="at">yend =</span> fitted),</span>
-<span id="cb12-7"><a href="#cb12-7"></a>               <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span> </span>
-<span id="cb12-9"><a href="#cb12-9"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb12-10"><a href="#cb12-10"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb12-7"><a href="#cb12-7"></a>    <span class="at">x =</span> height,</span>
+<span id="cb12-8"><a href="#cb12-8"></a>    <span class="at">y =</span> mass,</span>
+<span id="cb12-9"><a href="#cb12-9"></a>    <span class="at">xend =</span> height,</span>
+<span id="cb12-10"><a href="#cb12-10"></a>    <span class="at">yend =</span> fitted</span>
+<span id="cb12-11"><a href="#cb12-11"></a>  ),</span>
+<span id="cb12-12"><a href="#cb12-12"></a>  <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb12-14"><a href="#cb12-14"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb12-15"><a href="#cb12-15"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb12-16"><a href="#cb12-16"></a>    <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17"></a>    <span class="at">color =</span> <span class="st">"#86a293"</span></span>
+<span id="cb12-18"><a href="#cb12-18"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-19"><a href="#cb12-19"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
+<span id="cb12-20"><a href="#cb12-20"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -830,46 +874,15 @@ Coefficients:
 <p>What is <span class="math inline">\(\hat\beta_1\)</span>?</p>
 </div>
 </section>
-<section id="simple-linear-regression-17" class="slide level2">
-<h2>Simple linear regression</h2>
+<section id="interpretation" class="slide level2">
+<h2>Interpretation</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass <span class="sc">~</span> height, <span class="at">data =</span> starwars_nojabba)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>starwars_nojabba <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">mutate</span>(<span class="at">y_hat =</span> <span class="fu">fitted</span>(mod)) <span class="sc">%&gt;%</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">select</span>(y_hat, mass, height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 58 × 3
-   y_hat  mass height
-   &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt;
- 1  74.3    77    172
- 2  71.2    75    167
- 3  27.1    32     96
- 4  93.0   136    202
- 5  60.7    49    150
- 6  78.1   120    178
- 7  70.0    75    165
- 8  27.7    32     97
- 9  81.2    84    183
-10  80.5    77    182
-# … with 48 more rows</code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="where-did-these-haty-values-come-from" class="title-slide slide level1 center">
-<h1>Where did these <span class="math inline">\(\hat{y}\)</span> values come from?</h1>
-
-</section>
-<section id="fitted-values" class="slide level2">
-<h2>Fitted values</h2>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">lm</span>(mass <span class="sc">~</span> height, </span>
-<span id="cb22-2"><a href="#cb22-2"></a>   <span class="at">data =</span> starwars_nojabba)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a>starwars_nojabba <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">1000</span>)</span>
+<span id="cb19-5"><a href="#cb19-5"></a></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="fu">lm</span>(mass <span class="sc">~</span> height, <span class="at">data =</span> starwars_nojabba)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -880,74 +893,174 @@ Coefficients:
    -32.5408       0.6214  </code></pre>
 </div>
 </div>
-<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>starwars_nojabba <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">mutate</span>(<span class="at">y_hat =</span> <span class="fu">fitted</span>(mod)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">select</span>(y_hat, mass, height) <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  y_hat  mass height
-  &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt;
-1  74.3    77    172
-2  71.2    75    167
-3  27.1    32     96</code></pre>
+<p>For every <strong>one centimeter</strong> increase in height, a Star Wars characters weight <strong>on average</strong> increases by 0.62.</p>
+</section></section>
+<section>
+<section id="for-every-one-unit-increase-in-x-the-expected-change-in-y-is-hatbeta_1" class="title-slide slide level1 small center">
+<h1>For every <strong>one unit</strong> increase in <span class="math inline">\(x\)</span> the <strong>expected change</strong> in <span class="math inline">\(y\)</span> is <span class="math inline">\(\hat\beta_1\)</span></h1>
+
+</section>
+<section id="two-continuous-variables" class="slide level2">
+<h2>Two continuous variables</h2>
+<div class="question">
+<p>Why do we fit a linear model?</p>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">Reduces the dimensionality of the data (from <code>n x 2</code> to <code>2</code>)</li>
+<li class="fragment">To get a sense of the relationship between <code>x</code> and <code>y</code> for a “typical” observation
+<ul>
+<li class="fragment">When is this an accurate representation?</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="meaningful-linear-models" class="slide level2">
+<h2>Meaningful linear models</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><strong></strong></p>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb21-2"><a href="#cb21-2"></a></span>
+<span id="cb21-3"><a href="#cb21-3"></a>d1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb21-4"><a href="#cb21-4"></a>             <span class="at">y =</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>))</span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="fu">ggplot</span>(d1, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb21-9"><a href="#cb21-9"></a>              <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb21-10"><a href="#cb21-10"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-11"><a href="#cb21-11"></a>              <span class="at">color =</span> <span class="st">"#86a293"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="05-simple-linear-regression_files/figure-revealjs/unnamed-chunk-38-1.png" width="288"></p>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><strong></strong></p>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb22-2"><a href="#cb22-2"></a>             <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>))</span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="fu">ggplot</span>(d2, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>,</span>
+<span id="cb22-5"><a href="#cb22-5"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7"></a>              <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb22-9"><a href="#cb22-9"></a>              <span class="at">color =</span> <span class="st">"#86a293"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="05-simple-linear-regression_files/figure-revealjs/unnamed-chunk-40-1.png" width="288"></p>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><strong></strong></p>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>d3 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb23-2"><a href="#cb23-2"></a>             <span class="at">y =</span> <span class="dv">3</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>))</span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="fu">ggplot</span>(d3, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7"></a>              <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb23-8"><a href="#cb23-8"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb23-9"><a href="#cb23-9"></a>              <span class="at">color =</span> <span class="st">"#86a293"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="05-simple-linear-regression_files/figure-revealjs/unnamed-chunk-42-1.png" width="288"></p>
 </div>
 </div>
 </div>
 </div>
 <div class="fragment">
-<h3 id="haty_1--32.5-0.62-times-172"><span class="math inline">\(\hat{y}_1 = -32.5 + 0.62 \times 172\)</span></h3>
-<h3 id="haty_2--32.5-0.62-times-167"><span class="math inline">\(\hat{y}_2 = -32.5 + 0.62 \times 167\)</span></h3>
-<h3 id="haty_3--32.5-0.62-times-96"><span class="math inline">\(\hat{y}_3 = -32.5 + 0.62 \times 96\)</span></h3>
+<div class="question smaller">
+<p>Which lines represent “typical” observations?</p>
+</div>
 </div>
 </section>
-<section id="simple-linear-regression-18" class="slide level2">
-<h2>Simple linear regression</h2>
-<div class="question">
-<p>How did we decide on <strong>this</strong> line?</p>
-</div>
-<div class="cell">
+<section id="meaningful-linear-models-1" class="slide level2">
+<h2>Meaningful linear models</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><strong></strong></p>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>starwars_nojabba <span class="ot">&lt;-</span> starwars_nojabba <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">mutate</span>(<span class="at">fitted =</span> <span class="fu">fitted</span>(<span class="fu">lm</span>(mass <span class="sc">~</span> height, <span class="at">data =</span> starwars_nojabba)))</span>
-<span id="cb26-3"><a href="#cb26-3"></a></span>
-<span id="cb26-4"><a href="#cb26-4"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
-<span id="cb26-5"><a href="#cb26-5"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span></span>
-<span id="cb26-6"><a href="#cb26-6"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass, <span class="at">xend =</span> height, <span class="at">yend =</span> fitted),</span>
-<span id="cb26-7"><a href="#cb26-7"></a>               <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb26-8"><a href="#cb26-8"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span> </span>
-<span id="cb26-9"><a href="#cb26-9"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb26-10"><a href="#cb26-10"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="05-simple-linear-regression_files/figure-revealjs/unnamed-chunk-44-1.png" width="960" class="r-stretch"></section>
-<section id="minimize-least-squares" class="slide level2">
-<h2>Minimize Least Squares</h2>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>starwars_nojabba <span class="ot">&lt;-</span> starwars_nojabba <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">mutate</span>(<span class="at">fitted =</span> <span class="fu">fitted</span>(<span class="fu">lm</span>(mass <span class="sc">~</span> height, <span class="at">data =</span> starwars_nojabba)))</span>
-<span id="cb27-3"><a href="#cb27-3"></a></span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="fu">ggplot</span>(starwars_nojabba, <span class="fu">aes</span>(<span class="at">x =</span> height, mass)) <span class="sc">+</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>  <span class="fu">geom_rect</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> height, <span class="at">xmax =</span> height <span class="sc">+</span> mass <span class="sc">-</span> fitted,</span>
-<span id="cb27-6"><a href="#cb27-6"></a>                <span class="at">ymin =</span> mass, <span class="at">ymax =</span> fitted), <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb27-7"><a href="#cb27-7"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span> </span>
-<span id="cb27-8"><a href="#cb27-8"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>) <span class="sc">+</span></span>
-<span id="cb27-9"><a href="#cb27-9"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb27-10"><a href="#cb27-10"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The relationship between mass and height for Star Wars characters"</span>,</span>
-<span id="cb27-11"><a href="#cb27-11"></a>       <span class="at">caption =</span> <span class="st">"Data from SWAPI (swapi.dev)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>d4 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb24-2"><a href="#cb24-2"></a>             <span class="at">y =</span> x <span class="sc">+</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">3</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>))</span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">ggplot</span>(d4, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb24-7"><a href="#cb24-7"></a>              <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb24-8"><a href="#cb24-8"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb24-9"><a href="#cb24-9"></a>              <span class="at">color =</span> <span class="st">"#86a293"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="05-simple-linear-regression_files/figure-revealjs/unnamed-chunk-46-1.png" width="960"></p>
+<p><img data-src="05-simple-linear-regression_files/figure-revealjs/unnamed-chunk-44-1.png" width="288"></p>
 </div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><strong></strong></p>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>d5 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb25-2"><a href="#cb25-2"></a>             <span class="at">c =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">2</span>)),</span>
+<span id="cb25-3"><a href="#cb25-3"></a>             <span class="at">y =</span> x <span class="sc">+</span> <span class="dv">100</span> <span class="sc">*</span> c <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>))</span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="fu">ggplot</span>(d5, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8"></a>              <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb25-9"><a href="#cb25-9"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb25-10"><a href="#cb25-10"></a>              <span class="at">color =</span> <span class="st">"#86a293"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="05-simple-linear-regression_files/figure-revealjs/unnamed-chunk-46-1.png" width="288"></p>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><strong></strong></p>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>d6 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb26-2"><a href="#cb26-2"></a>             <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)))</span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="fu">ggplot</span>(d6, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#86a293"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7"></a>              <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb26-9"><a href="#cb26-9"></a>              <span class="at">color =</span> <span class="st">"#86a293"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="05-simple-linear-regression_files/figure-revealjs/unnamed-chunk-48-1.png" width="288"></p>
+</div>
+</div>
+</div>
+</div>
+<div class="question smaller">
+<p>Which lines represent “typical” observations?</p>
+</div>
+</section>
+<section id="recap" class="slide level2">
+<h2>Recap</h2>
+<div class="question">
+<p>When is a <code>simple linear model</code> an appropriate summary measure to calculate?</p>
+</div>
+<div class="fragment">
+<div class="question">
+<p>What <strong>assumptions</strong> need to be true in order to use a simple linear model to represent your two continuous variables?</p>
 </div>
 <p><img src="img/favicon.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://lucymcgowan.com">Dr.&nbsp;Lucy D’Agostino McGowan</a></p>
+</div>
 </div>
 </section></section>
     </div>

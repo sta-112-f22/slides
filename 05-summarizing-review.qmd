@@ -11,6 +11,12 @@ format:
     chalkboard: true
 ---
 
+## Learning objectives
+
+* Recall how to summarize one continuous variable
+* Identify variables where a mean is a good summary measure (or not)
+* Explain why we summarize data (what is the big picture?)
+
 ## {{< fa laptop >}} `Application Exercise`
 
 ### [bit.ly/sta-112-f22-appex-05](https://bit.ly/sta-112-f22-appex-05)
@@ -89,8 +95,7 @@ How can we numerically summarize a single continuous variable?
 ```{r}
 #| echo: true
 starwars %>%
-  summarise(mean = mean(height, na.rm = TRUE),
-            sd = sd(height, na.rm = TRUE))
+  summarise(mean = mean(height, na.rm = TRUE))
 ```
 
 ## One continuous variable
@@ -109,25 +114,6 @@ starwars %>%
                  linewidth = 2, 
                  label = "mean = 174",
                  hjust = 0.25)
-```
-
-## One continuous variable
-
-
-```{r}
-#| code-fold: true
-#| echo: true
-#| fig-height: 4
-starwars %>%
-  drop_na(height) %>%
-  ggplot(aes(x = height)) +
-  geom_histogram(bins = 30, fill = "#86a293") +
-  geom_vline(xintercept = c(174 - 34.7, 174 + 34.7), lty = 2) +
-  geom_textvline(xintercept = 174, 
-                 lwd = 4, 
-                 linewidth = 2, 
-                 label = "mean \u00B1 sd = 174 \u00B1 34.7",
-                 hjust = 0.25) 
 ```
 
 ## One continuous variable
@@ -302,9 +288,14 @@ knitr::kable(d)
 ```{r}
 #| echo: true
 #| code-fold: true
-ggplot(d, aes(x = i, y = x)) + 
+ggplot(d, aes(x = 1, y = x)) + 
   geom_point() + 
-  geom_texthline(yintercept = mean(d$x), label = "mean = 4.8")
+  geom_texthline(yintercept = mean(d$x), label = "mean = 4.8") + 
+  theme(axis.ticks.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor.x = element_blank())
 ```
 
 ## Data
@@ -315,20 +306,26 @@ ggplot(d, aes(x = i, y = x)) +
 ggplot(d, aes(x = i, y = x)) + 
   geom_point() + 
   geom_texthline(yintercept = mean(d$x), label = "mean = 4.8") + 
-  geom_segment(aes(y = x, yend = mean(x), x = i, xend = i))
+  geom_segment(aes(y = x, yend = mean(x), x = i, xend = i), color = "blue") + 
+  theme(axis.ticks.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor.x = element_blank())
+
 ```
 
 ```{r}
 #| results: "asis"
 iterative_latex("Math Speak",
-                "\\Large\\mathbf{x} = \\beta_0 + \\varepsilon",
+                "\\Large x = \\beta_0 + \\varepsilon",
                 list(
-                  "\\\\mathbf\\{x\\}",
+                  "x",
                   "\\\\beta_0",
                   "\\\\varepsilon"
                 ),
                 list(
-                  "bold letters are vectors. This is the vector $\\mathbf{x}=\\{x_1,\\dots,x_n\\}$",
+                  "This is the vector $x=\\{x_1,\\dots,x_n\\}$",
                   "we call this the \"intercept\", when there are no other variables, it is just the mean, $\\bar{x}$",
                   "the error"
                 ))
@@ -343,7 +340,32 @@ ggplot(d, aes(x = i, y = x)) +
   geom_point() + 
   geom_texthline(yintercept = mean(d$x), lwd = 5, hjust = 0.1,
                  label = as.character(expression(beta[0])), parse = TRUE) + 
-  geom_segment(aes(y = x, yend = mean(x), x = i, xend = i))
+  geom_segment(aes(y = x, yend = mean(x), x = i, xend = i), color = "blue") +
+  theme(axis.ticks.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor.x = element_blank()) 
+```
+
+## Data
+
+
+```{r}
+#| echo: true
+#| code-fold: true
+ggplot(d, aes(x = i, y = x)) + 
+  geom_point() + 
+  geom_texthline(yintercept = mean(d$x), lwd = 5, hjust = 0.1,
+                 label = as.character(expression(beta[0])), parse = TRUE) + 
+  geom_textsegment(aes(y = x, yend = mean(x), x = i, xend = i), color = "blue",
+                   label = as.character(expression(epsilon)), parse = TRUE,
+                   lwd = 5) +
+  theme(axis.ticks.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor.x = element_blank())
 ```
 
 
@@ -359,8 +381,12 @@ ggplot(d, aes(x = 1, y = x)) +
   geom_point() + 
   geom_texthline(yintercept = mean(d$x), lwd = 5, hjust = 0.1,
                  label = as.character(expression(beta[0])), parse = TRUE) + 
-  geom_segment(aes(y = x, yend = mean(x), x = 1, xend = 1)) + 
-  scale_x_continuous(breaks = c(0.95, 1, 1.05), labels = c("", "1", ""))
+  geom_segment(aes(y = x, yend = mean(x), x = 1, xend = 1), color = "blue") + 
+  theme(axis.ticks.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor.x = element_blank())  
 ```
 
 :::
@@ -377,8 +403,10 @@ ggplot(d, aes(x = 1, y = x)) +
   geom_point() + 
   geom_texthline(yintercept = mean(d$x), lwd = 5, hjust = 0.1,
                  label = as.character(expression(beta[0])), parse = TRUE) + 
-  geom_segment(aes(y = x, yend = mean(x), x = 1, xend = 1)) + 
-  scale_x_continuous(breaks = c(0.95, 1, 1.05), labels = c("", "1", ""))
+  geom_segment(aes(y = x, yend = mean(x), x = 1, xend = 1), color = "blue") + 
+  theme(axis.ticks.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank()) 
 ```
 
 
@@ -448,3 +476,16 @@ What do you think this code does? Try typing `?tibble` in the Console - what doe
 ```{r}
 countdown::countdown(5)
 ```
+
+## Recap
+
+::: {.question}
+When is the `mean` an appropriate summary measure to calculate?
+:::
+
+. . .
+
+::: {.question}
+What **assumptions** need to be true in order to use a mean to represent your single continuous variable?
+:::
+
