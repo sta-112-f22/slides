@@ -59,6 +59,12 @@ strong {
   margin-top: 10px;
 }
 
+.question::after {
+    content: '';
+    position: absolute;
+    bottom: 100px;
+}
+
 details>summary {
   font-size: 0.5em;
 }

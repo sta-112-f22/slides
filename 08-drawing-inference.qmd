@@ -1,0 +1,292 @@
+---
+title: "Drawing Inference"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+```{r, child = "setup.rmd"}
+```
+
+## Data
+
+```{r}
+#| echo: false
+load("magnolia_data.rds")
+load("full_magnolia_data.rds")
+
+```
+
+```{r}
+#| code-fold: false
+magnolia_data 
+```
+
+## When is a simple linear regression model a useful descriptive summary?
+
+> * Linearity holds
+> * The residuals have "zero mean" (this is always true!)
+> * The datapoints are independent
+
+# What if we want to draw inference on another sample?
+
+## Inference
+
+> * So far we've only been able to describe our sample
+> * For example, we've just been describing $\hat{\beta}_1$ the estimated slope of the relationship between $x$ and $y$
+> * What if we want to extend these claims to the **population**?
+
+## Magnolia data {.small}
+
+::: {.question}
+How can I visualize a single continuous variable?
+:::
+
+. . .
+
+```{r}
+ggplot(magnolia_data, aes(x = leaf_length)) +
+  geom_histogram(bins = 7) + 
+  labs(x = "Leaf length (cm)")
+```
+
+## Magnolia data {.small}
+
+```{r}
+set.seed(1)
+ggplot(full_magnolia_data, 
+       aes(x = leaf_length, y = 1)) + 
+  geom_boxplot() + 
+  geom_jitter() + 
+  labs(x = "Leaf length (cm)") +
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+## Magnolia data {.small}
+
+```{r}
+set.seed(1)
+
+ggplot(full_magnolia_data, 
+       aes(x = leaf_length, y = 1)) + 
+  geom_boxplot() + 
+  geom_jitter() + 
+  geom_jitter(data = magnolia_data, color = "cornflower blue", size = 3) + 
+  labs(x = "Leaf length (cm)") +
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+## Magnolia data {.small}
+
+```{r}
+set.seed(1)
+
+ggplot(full_magnolia_data,
+       aes(x = leaf_length, 
+           y = in_sample,
+           color = in_sample)) + 
+  geom_boxplot() + 
+  geom_jitter() + 
+  scale_color_manual(values = c("black", "cornflower blue")) + 
+  theme(legend.position = "none") + 
+  labs(x = "Leaf length (cm)",
+       y = "in sample")
+```
+
+
+## Magnolia data {.small}
+
+::: {.question}
+How can I calculate the average leaf length of the magnolias in my sample in R?
+:::
+
+. . .
+
+::: {layout-ncol=2}
+
+```{r}
+#| code-fold: false
+magnolia_data %>%
+  summarize(mean_length = mean(leaf_length))
+```
+
+```{r}
+#| code-fold: false
+lm(leaf_length ~ 1, data = magnolia_data)
+```
+
+:::
+
+## Magnolia data {.small}
+
+::: {.question .small}
+What if I want to know the average leaf length of the magnolias **on the Mag Quad**?
+:::
+
+. . .
+
+<br>
+
+::: {.question .small}
+How can we quantify how much we'd expect the mean to differ from one random sample to another?
+:::
+
+> * We need a measure of **uncertainty**
+> * How about the **standard error** of the mean?
+> * The **standard error** is how much we expect the sample mean to vary from one random sample to another.
+
+## Magnolia data {.small}
+
+::: {.question .small}
+How can we quantify how much we'd expect the mean to differ from one random sample to another?
+:::
+
+```{r}
+#| code-fold: false
+mod <- lm(leaf_length ~ 1, data = magnolia_data)
+summary(mod)
+```
+
+
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+1. Create a new project from this template in RStudio Pro:
+```bash
+https://github.com/sta-112-f22/appex-08.git
+```
+2. Replace the text in the top code chunk that says `INSERT YOUR GOOGLE SPREADSHEET URL HERE` with the Google Spreadsheet URL with your magnolia data.
+3. Fit an intercept only model to calculate the average leaf length in your sample
+4. Use the `summary` function on the linear model you fit
+5. What is the standard error for the mean length? Interpret this value.
+
+```{r}
+#| echo: false
+countdown::countdown(5)
+```
+
+
+## confidence intervals
+
+If we use the same sampling method to select different samples and computed an interval estimate for each sample, we would expect the true population parameter (the average leaf length on the Mag Quad) to fall within the interval estimates 95% of the time.
+
+
+## Confidence interval {.small}
+
+
+$$\bar{x} \pm t^∗ \times SE_{\bar{x}}$$
+
+
+> * $t^*$ is the critical value for the $t_{n−1}$ density curve to obtain the desired confidence level
+> * Often we want a **95% confidence level**.  
+
+
+## Let's do it in R! {.small}
+
+
+```{r}
+#| code-fold: false
+mod <- lm(leaf_length ~ 1, data = magnolia_data)
+summary(mod) 
+```
+
+
+```{r}
+#| code-fold: false
+
+qt(0.025, df = nrow(magnolia_data) - 1, lower.tail = FALSE)
+```
+
+
+## Let's do it in R! {.small}
+
+::: {.question}
+Why 0.025?
+:::
+
+```{r}
+#| code-fold: false
+mod <- lm(leaf_length ~ 1, data = magnolia_data)
+summary(mod) 
+```
+
+
+```{r}
+#| code-fold: false
+qt(0.025, df = nrow(magnolia_data) - 1, lower.tail = FALSE)
+```
+
+
+## Let's do it in R! {.small}
+
+::: {.question}
+Why `lower.tail = FALSE`?
+:::
+
+```{r}
+#| code-fold: false
+mod <- lm(leaf_length ~ 1, data = magnolia_data)
+summary(mod) 
+```
+
+
+```{r}
+#| code-fold: false
+qt(0.025, df = nrow(magnolia_data) - 1, lower.tail = FALSE)
+```
+---
+
+## Let's do it in R! {.small}
+
+
+```{r}
+#| code-fold: false
+mod <- lm(leaf_length ~ 1, data = magnolia_data)
+summary(mod) 
+```
+
+
+```{r}
+#| echo: false
+options(digits = 3)
+```
+
+```{r}
+#| code-fold: false
+t_star <- qt(0.025, df = nrow(magnolia_data) - 1, lower.tail = FALSE)
+13.21 + t_star * 0.6456
+13.21 - t_star * 0.6456
+```
+
+. . .
+
+```{r}
+#| code-fold: false
+confint(mod) 
+```
+
+## confidence intervals
+
+If we use the same sampling method to select different samples and computed an interval estimate for each sample, we would expect the true population parameter (the mean) to fall within the interval estimates 95% of the time.
+
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+1. Open `appex-08.qmd`
+2. Calculate the $t^*$ value for your confidence interval 
+3. Calculate the confidence interval "by hand" using the $t^*$ value from exercise 2 and the mean and standard error from the previous application exercise
+4. Calculate the confidence interval using the `confint` function
+5. Interpret this value
+
+
