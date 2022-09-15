@@ -268,8 +268,8 @@ options(digits = 3)
 ```{r}
 #| code-fold: false
 t_star <- qt(0.025, df = nrow(magnolia_data) - 1, lower.tail = FALSE)
-13.21 + t_star * 0.6456
-13.21 - t_star * 0.6456
+14.827 + t_star * 0.912
+14.827 - t_star * 0.912
 ```
 
 . . .
