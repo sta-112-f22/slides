@@ -1,0 +1,409 @@
+---
+title: "Unusual Observations"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+```{r, child = "setup.rmd"}
+```
+
+## Outlier {.center}
+
+Points for which the magnitude of the **residual** is unusually large. These are points taht are unusually far away from the overall pattern.
+
+
+
+## Influential point {.center}
+
+**Influential points** exert considerable impact on the estimated regression line
+
+## Leverage {.center}
+
+The **leverage** of a point dictates how much a point influences the slope of a fitted regression line. Points with **high leverage** pull the regression line in their direction.
+
+## Example
+
+```{r}
+ggplot(starwars, aes(height, mass)) + 
+  geom_point()
+```
+
+
+## Example
+
+```{r}
+#| code-fold: false
+lm(mass ~ height, data = starwars)
+```
+
+
+## Example
+
+```{r}
+#| output-location: column
+#| code-fold: false
+mod <- lm(mass ~ height, 
+          data = starwars)
+
+starwars %>%
+  drop_na(height, mass) %>%
+  mutate(y_hat = fitted(mod),
+         e = residuals(mod)) %>%
+  ggplot(aes(y_hat, e)) +
+  geom_point() +
+  geom_hline(yintercept = 0)
+```
+
+
+## Example
+
+::: {.question}
+What does this line of code do?
+:::
+
+```{r}
+#| output-location: column
+#| code-fold: false
+#| code-line-numbers: "4"
+mod <- lm(mass ~ height, 
+          data = starwars)
+
+starwars %>%
+  drop_na(height, mass) %>%
+  mutate(y_hat = fitted(mod),
+         e = residuals(mod)) %>%
+  ggplot(aes(y_hat, e)) +
+  geom_point() +
+  geom_hline(yintercept = 0)
+```
+
+
+## Example
+
+::: {.question}
+What does this line of code do?
+:::
+
+
+```{r}
+#| output-location: column
+#| code-fold: false
+#| code-line-numbers: "9"
+mod <- lm(mass ~ height, 
+          data = starwars)
+
+starwars %>%
+  drop_na(height, mass) %>%
+  mutate(y_hat = fitted(mod),
+         e = residuals(mod)) %>%
+  ggplot(aes(y_hat, e)) +
+  geom_point() +
+  geom_hline(yintercept = 0)
+```
+
+
+## Example
+
+::: {.question}
+Is this an outlier?
+:::
+
+
+```{r}
+#| output-location: column
+#| code-fold: false
+mod <- lm(mass ~ height,
+          data = starwars)
+
+starwars %>%
+  drop_na(height, mass) %>%
+  mutate(y_hat = fitted(mod),
+         e = residuals(mod)) %>%
+  ggplot(aes(y_hat, e)) +
+  geom_point() +
+  geom_hline(yintercept = 0)
+```
+
+
+
+## Example
+
+Gold-medal-winning distances (m) for the men's Olympic long jump, 1900–2008
+
+```{r}
+#| output-location: column
+#| code-fold: false
+library(Stat2Data)
+data("LongJumpOlympics")
+
+ggplot(LongJumpOlympics, 
+       aes(Year, Gold)) + 
+  geom_point()
+```
+
+
+## Example
+
+Gold-medal-winning distances (m) for the men's Olympic long jump, 1900–2008
+
+```{r}
+mod <- lm(Gold ~ Year, data = LongJumpOlympics)
+LongJumpOlympics %>%
+  mutate(y_hat = fitted(mod),
+         e = residuals(mod)) %>%
+  ggplot(aes(y_hat, e)) +
+  geom_point() + 
+  geom_hline(yintercept = 0) + 
+  labs(x = "fitted")
+```
+
+
+## Example
+
+Gold-medal-winning distances (m) for the men's Olympic long jump, 1900–2008
+
+```{r}
+LongJumpOlympics %>%
+  mutate(y_hat = fitted(mod),
+         e = residuals(mod)) %>%
+  ggplot(aes(y_hat, e, color = e > 0.6)) +
+  geom_point() + 
+  geom_hline(yintercept = 0) + 
+  scale_color_manual(values = c("black", "red")) +
+  labs(x = "fitted") + 
+  theme(legend.position = "none")
+```
+
+
+
+
+## Example
+
+::: {.question}
+What is `mod`?
+:::
+
+```{r}
+#| code-fold: false
+mod <- lm(Gold ~ Year, data = LongJumpOlympics) 
+```
+
+
+
+# How can we tell if a residual is "unusually" large?
+
+
+
+# Do we have a "typical" error we can standardize by?
+
+
+## Standardized residuals
+
+:::: {.columns}
+
+::: {.column}
+> * $\hat{\sigma}_\varepsilon$: reflects the typical error
+> * $\Large\frac{\textrm{residual}}{\hat{\sigma}_\varepsilon}$
+> * $\Large{\frac{y - \hat{y}}{\hat{\sigma}_\varepsilon}}$
+
+
+:::
+
+::::
+## Standardized residuals
+
+:::: {.columns}
+
+::: {.column}
+
+* $\hat{\sigma}_\varepsilon$: reflects the typical error
+* $\Large\frac{\textrm{residual}}{\hat{\sigma}_\varepsilon}$
+* $\Large{\frac{y - \hat{y}}{\hat{\sigma}_\varepsilon}}$
+
+:::
+
+::: {.column}
+
+```{r}
+#| code-fold: false
+LongJumpOlympics %>%
+  mutate(e = residuals(mod)) %>%
+  summarise(
+    sse = sqrt(
+      sum(e^2) / (n() - 2)
+      )
+    )
+```
+
+:::
+
+::::
+
+
+## Standardized residuals
+
+:::: {.columns}
+
+::: {.column}
+
+* $\hat{\sigma}_\varepsilon$: reflects the typical error
+* $\Large\frac{\textrm{residual}}{\hat{\sigma}_\varepsilon}$
+* $\Large{\frac{y - \hat{y}}{\hat{\sigma}_\varepsilon}}$
+
+:::
+
+::: {.column}
+
+```{r}
+#| code-fold: false
+LongJumpOlympics %>%
+  mutate(e = residuals(mod)) %>%
+  summarise(
+    sse = sqrt(
+      sum(e^2) / (n() - 2)
+      )
+    )
+sigma(mod)
+```
+
+:::
+
+::::
+
+## Standardized residuals
+
+:::: {.columns}
+
+::: {.column}
+
+* $\hat{\sigma}_\varepsilon$: reflects the typical error
+* $\Large\frac{\textrm{residual}}{\hat{\sigma}_\varepsilon}$
+* $\Large{\frac{y - \hat{y}}{\hat{\sigma}_\varepsilon}}$
+
+:::
+
+::: {.column}
+```{r}
+#| code-fold: false
+
+LongJumpOlympics %>%
+  mutate(
+    stand_resid = 
+      residuals(mod) / sigma(mod)) 
+```
+
+:::
+
+::::
+## Studentized residuals
+
+> * Another option is to estimate the standard deviation of the regression error using a model that is fit **after omitting the point in question**
+> * In R: `rstudent()`
+
+
+
+## Example
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "2"
+LongJumpOlympics %>%
+  mutate(stud_resid = rstudent(mod)) 
+```
+
+
+
+## Example {.small}
+
+
+```{r}
+#| code-fold: false
+#| output-location: column
+LongJumpOlympics %>%
+  mutate(stud_resid = rstudent(mod)) %>%
+  ggplot(aes(Year, stud_resid)) + 
+  geom_point() + 
+  geom_hline(
+    yintercept = c(2, 4, -2, -4), 
+    lty = 2) + 
+  labs(y = "studentized residual")
+```
+
+
+## Recap
+
+> * **Outliers** are points that are unusually far from the overall pattern of the other data
+> * You can check for outliers by examining the residuals
+> * One common rule of thumb is to "studentize" the residuals and look for ones that are smaller than -2 or larger than 2 and identify these as outliers
+
+## Influential points
+
+::: {.question}
+Would removing the observation from the dataset change the regression equation by much?
+:::
+
+
+
+## Example
+
+::: {layout-ncol=2}
+```{r}
+#| code-fold: false
+lm(mass ~ height, data = starwars)
+```
+
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "2"
+starwars %>%
+  filter(name != "Jabba Desilijic Tiure") %>% 
+  lm(mass ~ height, data = .)
+```
+
+:::
+
+
+## Example
+
+```{r}
+ggplot(starwars, aes(height, mass)) + 
+  geom_point() +
+  geom_line(aes(height, -13.8103 + 0.6386 * height)) + 
+  geom_line(aes(height, -32.5408 + 0.6214 * height), lty = 2)
+```
+## Recap
+
+> * **Influential points** change the overall regression line fit
+> * To see if a point is **influential** fit the model with and without that point to see if the coefficients change
+> * In general, points that are farther from the average value of the predictor value have a greater potential to influence the regression line
+
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+1. Create a new project from this template in RStudio Pro:
+```bash
+https://github.com/sta-112-f22/appex-10.git
+```
+2. Load the packages and data by running the top chunk of R code
+3. Learn about the `USstamps` data by running `?USstamps` in your Console 
+4. Use the `filter` function to remove observations with Year less than 1958
+5. Fit a linear model predicting the stamp price from year
+6. Calculate the studentized residuals and plot them -- are there any outliers?
+7. If you found an outlier, refit the model without it -- is this point "influential"? 
+
+```{r}
+#| echo: false
+countdown::countdown(6)
+```
+
