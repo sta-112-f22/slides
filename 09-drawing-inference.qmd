@@ -1,0 +1,271 @@
+---
+title: "Drawing Inference"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+```{r, child = "setup.rmd"}
+```
+
+## Data
+
+```{r}
+#| echo: false
+load("full_magnolia_data.rds")
+magnolia_data <- full_magnolia_data %>%
+  filter(id == 3) %>%
+  select(observation, leaf_length, leaf_width)
+```
+
+```{r}
+#| code-fold: false
+magnolia_data 
+```
+
+## Magnolia data {.small}
+
+```{r}
+ggplot(magnolia_data, aes(x = leaf_width, y = leaf_length)) +
+  geom_point() + 
+  labs(x = "Leaf length (cm)",
+       y = "Leaf width (cm)")
+```
+## Full Magnolia data {.small}
+
+```{r}
+#| code-fold: false
+full_magnolia_data <- full_magnolia_data %>%
+  group_by(id) %>%
+  summarise(max_length = max(leaf_length),
+            min_length = min(leaf_length),
+            mean_length = mean(leaf_length),
+            mean_width = mean(leaf_width)) %>%
+  mutate(inches = ifelse(max_length < 10, 1, 0),
+         inches = ifelse(min_length < 2, 1, 0),
+         flipped = ifelse(mean_length < mean_width, 1, 0)) %>%
+  left_join(full_magnolia_data, by = "id") %>%
+  select(-max_length, -mean_length, - mean_width) %>%
+  mutate(leaf_length2 = ifelse(flipped, leaf_width, leaf_length),
+         leaf_width = ifelse(flipped, leaf_length, leaf_width),
+         leaf_length = leaf_length2)
+```
+
+## Magnolia data {.small}
+
+```{r}
+ggplot(full_magnolia_data, aes(x = leaf_width, y = leaf_length)) +
+  geom_point() + 
+  geom_point(data = magnolia_data, color = "cornflower blue") + 
+  labs(x = "Leaf length (cm)",
+       y = "Leaf width (cm)")
+```
+
+## Magnolia data {.small}
+
+::: {.question .small}
+What if I want to know the relationship between leaf length and leaf width of the magnolias **on the Mag Quad**?
+:::
+
+. . .
+
+<br>
+
+::: {.question .small}
+How can we quantify how much we'd expect the slope to differ from one random sample to another?
+:::
+
+> * We need a measure of **uncertainty**
+> * How about the **standard error** of the slope?
+> * The **standard error** is how much we expect $\hat{\beta}_1$ to vary from one random sample to another.
+
+## Magnolia data {.small}
+
+::: {.question .small}
+How can we quantify how much we'd expect the slope to differ from one random sample to another?
+:::
+
+```{r}
+#| code-fold: false
+mod <- lm(leaf_length ~ leaf_width, data = magnolia_data)
+summary(mod)
+```
+
+## Magnolia data {.small}
+
+We need a **test statistic** that incorporates $\hat{\beta}_1$ and the standard error
+
+
+```{r}
+#| code-fold: false
+mod <- lm(leaf_length ~ leaf_width, data = magnolia_data)
+summary(mod)
+```
+
+
+> * $t = \frac{\hat{\beta}_1}{SE_{\hat{\beta}_1}}$
+
+
+
+## Magnolia data {.small}
+
+::: {.question .small}
+How do we interpret this?
+:::
+
+```{r}
+#| code-fold: false
+mod <- lm(leaf_length ~ leaf_width, data = magnolia_data)
+summary(mod)
+```
+
+> * "$\hat{\beta}_1$ is more than `r summary(mod) %>% .$coefficients %>% .[2,3] %>% round(2)` standard errors above a slope of zero"
+
+
+## Magnolia data {.small}
+
+::: {.question .small}
+How do we know what values of this statistic are worth paying attention to?
+:::
+
+```{r}
+#| code-fold: false
+mod <- lm(leaf_length ~ leaf_width, data = magnolia_data)
+summary(mod)
+```
+
+
+> * confidence intervals
+> * p-values
+> * Hypothesis testing: $H_0: \beta_1 = 0$ $H_A: \beta_1 \neq 0$
+
+## Magnolia data {.small}
+
+::: {.question .small}
+How do get a confidence interval for $\hat{\beta}_1$? What function can we use in R?
+:::
+
+. . .
+
+<br>
+
+```{r}
+#| code-fold: false
+confint(mod)
+```
+
+. . .
+
+::: {.question .small}
+How do we interpret this value?
+:::
+
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+1. Open `appex-08.qmd`
+2. Fit the model of `leaf_length` and `leaf_width` in your data
+3. Calculate a confidence interval for the estimate $\hat\beta_1$
+4. Interpret this value
+
+```{r}
+#| echo: false
+countdown::countdown(5)
+```
+
+## Hypothesis testing 
+
+> * So far, we have estimated the relationship between the length of magnolia leaves and the width.
+> * This could be useful if we wanted to understand, on average, how these variables are related (**estimation**)
+> * This could also be useful if we wanted to guess how long a leaf was based on how wide it is (**prediction**)
+> * What if we just want to know whether there *is some* relationship bewteen the two? (**hypothesis testing**)
+
+## Hypothesis testing
+
+> * **Null hypothesis**: There is no relationship between leaf length and leaf width
+>     * $H_0: \beta_1 = 0$
+> * **Alternative hypothesis**: There **is** a relationship between leaf length and leaf width
+>     * $H_A: \beta_1 \neq 0$
+
+## Hypothesis testing
+
+```{r}
+#| code-fold: false
+summary(mod)
+```
+
+. . .
+
+::: {.question}
+Is $\hat\beta_1$ different from 0?
+:::
+
+## Hypothesis testing
+
+```{r}
+#| code-fold: false
+summary(mod)
+```
+
+::: {.question}
+Is $\beta_1$ different from 0? (notice the lack of the hat!)
+:::
+  
+## p-value
+
+The probability of observing a statistic as extreme or more extreme than the observed test statistic **given the null hypothesis is true**
+
+## p-value
+
+```{r}
+#| code-fold: false
+summary(mod)
+```
+
+
+::: {.question}
+What is the p-value? What is the interpretation?
+:::
+
+## Hypothesis testing {.small}
+
+> * **Null hypothesis**: $\beta_1 = 0$ (there is no relationship between the width and length of a magnolia leaf)
+> * **Alternative hypothesis**:  $\beta_1 \neq 0$ (there is a relationship between the width and length of a magnolia leaf)
+> * Often we have an $\alpha$ level cutoff to compare the **p-value** to, for example **0.05**.
+> * If **p-value** < 0.05, we **reject the null hypothesis**
+> * If **p-value** > 0.05, we **fail to reject the null hypothesis**
+> * Why don't we **ever** "accept" the null hypothesis?
+> * **absense of evidence is not evidence of absense**
+
+## p-value
+
+```{r}
+#| code-fold: false
+summary(mod)
+```
+
+::: {.question}
+Do we reject the null hypothesis?
+:::
+
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+1. Open `appex-08.qmd`
+2. Examine the summary of the model of `leaf_length` and `leaf_width` with your data
+3. Test the null hypothesis that there is no relationship between the length and width of magnolia leaves
+4. What is the p-value? What is the result of your hypothesis test? 
+
+```{r}
+#| echo: false
+countdown::countdown(2)
+```
+

@@ -1,0 +1,955 @@
+---
+title: "Assumptions of Simple Linear Regression"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+```{r, child = "setup.rmd"}
+```
+
+# Linearity
+
+## Linearity {.small}
+
+::: {.question .small}
+What goes wrong if the relationship between $x$ and $y$ isn't linear?
+:::
+
+:::: {.columns}
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+set.seed(1)
+
+d1 <- tibble(x = rnorm(100),
+             y = 2 * x + rnorm(100))
+ggplot(d1, aes(x = x, y = y)) +
+  geom_point(color = "#86a293",
+             alpha = 0.5) +
+  geom_smooth(method = "lm",
+              formula = "y ~ x",
+              se = FALSE,
+              color = "#86a293")
+m1 <- lm(y ~ x, data = d1)
+```
+
+$\hat\beta_1$ = `r m1 %>% coef %>% .[2] %>% round(2)` 
+(95% CI: `r confint(m1)[2,1] %>% round(2)`, `r confint(m1)[2,2] %>% round(2)`)
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+d2 <- tibble(x = rnorm(100),
+             y = rnorm(100))
+ggplot(d2, aes(x = x, y = y)) +
+  geom_point(color = "#86a293",
+             alpha = 0.5) +
+  geom_smooth(method = "lm",
+              formula = "y ~ x",
+              se = FALSE,
+              color = "#86a293")
+m2 <- lm(y ~ x, data = d2)
+```
+
+$\hat\beta_1$ = `r m2 %>% coef %>% .[2] %>% round(2)` 
+(95% CI: `r confint(m2)[2,1] %>% round(2)`, `r confint(m2)[2,2] %>% round(2)`)
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+d3 <- tibble(x = rnorm(100),
+             y = 3 * x^2 + rnorm(100))
+ggplot(d3, aes(x = x, y = y)) +
+  geom_point(color = "#86a293",
+             alpha = 0.5) +
+  geom_smooth(method = "lm",
+              formula = "y ~ x",
+              se = FALSE,
+              color = "#86a293")
+m3 <- lm(y ~ x, data = d3)
+```
+
+$\hat\beta_1$ = `r m3 %>% coef %>% .[2] %>% round(2)` 
+(95% CI: `r confint(m3)[2,1] %>% round(2)`, `r confint(m3)[2,2] %>% round(2)`)
+
+:::
+
+::::
+
+## Linearity
+
+> * Why is it important?
+> * How do you check it?
+>     * Visualize your data
+>     * Scatterplot of $x$ and $y$
+>     * Residuals vs fits plot
+
+## Residuals vs fits plot
+
+::: {.question}
+How can I add the fitted values $(\hat{y})$ to my data frame?
+:::
+
+. . .
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "3"
+mod <- lm(y ~ x, data = d1)
+d1 <- d1 %>%
+  mutate(y_hat = fitted(mod))
+```
+
+## Residuals vs fits plot
+
+::: {.question}
+How can I add the residual values $(e)$ to my data frame?
+:::
+
+. . .
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "4"
+mod <- lm(y ~ x, data = d1)
+d1 <- d1 %>%
+  mutate(y_hat = fitted(mod),
+         e = y - y_hat)
+```
+
+## Residuals vs fits plot
+
+::: {.question}
+How can I add the residual values $(e)$ to my data frame?
+:::
+
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "4"
+mod <- lm(y ~ x, data = d1)
+d1 <- d1 %>%
+  mutate(y_hat = fitted(mod),
+         e = residuals(mod))
+```
+
+## Residuals vs fits plot
+
+::: {.question}
+How can I create a scatterplot of the residuals vs the fitted values?
+:::
+
+. . .
+
+```{r}
+#| code-fold: false
+#| eval: false
+ggplot(d1, aes(x = ----, y = ----)) +
+  geom_---() + 
+  geom_hline(yintercept = 0) +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+## Residuals vs fits plot
+
+::: {.question}
+How can I create a scatterplot of the residuals vs the fitted values?
+:::
+
+
+```{r}
+#| code-fold: false
+#| eval: false
+ggplot(d1, aes(x = y_hat, y = e)) +
+  geom_point() + 
+  geom_hline(yintercept = 0) +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+## Residuals vs fits plot
+
+:::: {.columns}
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+ggplot(d1, aes(x = y_hat, y = e)) +
+  geom_point(color = "#86a293") + 
+  geom_hline(yintercept = 0, color = "#86a293") +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+d2 <- d2 %>%
+  mutate(y_hat = fitted(m2),
+         e = residuals(m2))
+ggplot(d2, aes(x = y_hat, y = e)) +
+  geom_point(color = "#86a293") + 
+  geom_hline(yintercept = 0, color = "#86a293") +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+d3 <- d3 %>%
+  mutate(y_hat = fitted(m3),
+         e = residuals(m3))
+ggplot(d3, aes(x = y_hat, y = e)) +
+  geom_point(color = "#86a293") + 
+  geom_hline(yintercept = 0, color = "#86a293") +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+
+:::
+
+::::
+
+# The residuals have a mean of zero
+
+## Zero mean
+
+:::: {.columns}
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+ggplot(d1, aes(x = x, y = y)) +
+  geom_point(color = "#86a293",
+             alpha = 0.5) +
+  geom_segment(aes(
+    x = x,
+    y = y,
+    xend = x,
+    yend = fitted(m1)
+  ),
+  color = "blue") +
+  geom_smooth(
+    method = "lm",
+    formula = "y ~ x",
+    se = FALSE,
+    color = "#86a293"
+  )
+```
+
+$\sum e_i$ = 0
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+ggplot(d2, aes(x = x, y = y)) +
+  geom_point(color = "#86a293",
+             alpha = 0.5) +
+    geom_segment(aes(
+    x = x,
+    y = y,
+    xend = x,
+    yend = fitted(m2)
+  ),
+  color = "blue") +
+  geom_smooth(method = "lm",
+              formula = "y ~ x",
+              se = FALSE,
+              color = "#86a293")
+```
+
+$\sum e_i$ = 0
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+ggplot(d3, aes(x = x, y = y)) +
+  geom_point(color = "#86a293",
+             alpha = 0.5) +
+  geom_segment(aes(
+    x = x,
+    y = y,
+    xend = x,
+    yend = fitted(m3)
+  ),
+  color = "blue") +
+  geom_smooth(method = "lm",
+              formula = "y ~ x",
+              se = FALSE,
+              color = "#86a293")
+```
+
+$\sum e_i = 0$
+
+:::
+
+::::
+
+## Zero mean
+
+> * Why is it important?
+> * How do you check it?
+>     * It will **always** be true for simple linear regression fit with least squares (`lm` in R)
+>     * If you would like to check anyways, here is some R code:
+
+. . .
+
+```{r}
+#| code-fold: false
+
+mod <- lm(y ~ x, data = d1)
+d1 %>%
+  mutate(e = residuals(mod)) %>%
+  summarize(e = sum(e))
+```
+
+# Constant variance
+
+## Constant variance
+
+> * The variance of the outcome $(y)$ does not change as the predictor $(x)$ changes
+> * How spread out the data points are is "constant"
+> * Can be assessed with the "Residual vs fits" plot
+
+## Residuals vs fits plot
+
+::: {.question}
+How can I create a scatterplot of the residuals vs the fitted values?
+:::
+
+
+```{r}
+#| code-fold: false
+#| eval: false
+ggplot(d1, aes(x = y_hat, y = e)) +
+  geom_point() + 
+  geom_hline(yintercept = 0) +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+## Residuals vs fits plot
+
+:::: {.columns}
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+ggplot(d1, aes(x = y_hat, y = e)) +
+  geom_point(color = "#86a293") + 
+  geom_hline(yintercept = 0, color = "#86a293") +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+ggplot(d2, aes(x = y_hat, y = e)) +
+  geom_point(color = "#86a293") + 
+  geom_hline(yintercept = 0, color = "#86a293") +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+ggplot(d3, aes(x = y_hat, y = e)) +
+  geom_point(color = "#86a293") + 
+  geom_hline(yintercept = 0, color = "#86a293") +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+
+:::
+
+::::
+
+## Residuals vs fits plot
+
+:::: {.columns}
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+ggplot(d1, aes(x = y_hat, y = e)) +
+  geom_point(color = "#86a293") + 
+  geom_hline(yintercept = 0, color = "#86a293") +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+d4 <- tibble(x = rnorm(100),
+             y = 2 * x + x / 2 * rnorm(100, sd = 10))
+m4 <- lm(y ~ x, data = d4)
+d4 <- d4 %>%
+  mutate(y_hat = fitted(m4),
+         e = residuals(m4))
+ggplot(d4, aes(x = y_hat, y = e)) +
+  geom_point(color = "#86a293") + 
+  geom_hline(yintercept = 0, color = "#86a293") +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+d5 <- tibble(x = runif(100, max = 10),
+             y = x * rnorm(100, sd = 10))
+m5 <- lm(y ~ x, data = d5)
+d5 <- d5 %>%
+  mutate(y_hat = fitted(m5),
+         e = residuals(m5))
+ggplot(d5, aes(x = y_hat, y = e)) +
+  geom_point(color = "#86a293") + 
+  geom_hline(yintercept = 0, color = "#86a293") +
+  labs(x = "Fitted value",
+       y = "Residual")
+```
+
+
+:::
+
+::::
+
+## Constant variance {.small}
+
+> * Why is it important?
+>    * It turns out the simple linear regression estimator fit via least squares for the relationship between $x$ and $y$ has the **narrowest standard errors** of all estimation procedures that give sampling distributions centered at the true $\beta$. If this assumption is violated, this is no longer true.
+>    * When calculating **prediction intervals** for a single observations, we need this assumption to make sure we are using the right variance 
+>    * If you take **STA 312**, you will prove this and you will need this assumption to do so
+> * How do you check it?
+>    * Residuals vs fits plot
+
+
+# Normally distributed errors
+
+## Normally distributed errors
+
+> * We assume the **errors** $(\varepsilon)$ follow a normal distribution
+> * This allows us to use short cuts when calculating the confidence intervals / doing hypothesis testing
+> * We can check this assumption by examining the distribution of the **residuals**
+
+. . .
+
+::: {.question}
+What kind of plot could help us assess whether a variable's distribution is **Normal**?
+:::
+
+## Histogram
+
+
+```{r}
+#| code-fold: false
+#| eval: false
+mod <- lm(y ~ x, data = d1)
+d1 <- d1 %>%
+  mutate(e = ---(mod))
+
+ggplot(d1, aes(x = ---)) + 
+  geom_----
+```
+
+## Histogram
+
+
+```{r}
+#| code-fold: false
+#| eval: false
+mod <- lm(y ~ x, data = d1)
+d1 <- d1 %>%
+  mutate(e = residuals(mod))
+
+ggplot(d1, aes(x = e)) + 
+  geom_histogram(bins = 8)
+```
+
+
+## Histogram
+
+
+:::: {.columns}
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+ggplot(d1, aes(x = e)) +
+  geom_histogram(fill = "#86a293", bins = 20)
+```
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+ggplot(d2, aes(x = e)) +
+  geom_histogram(fill = "#86a293", bins = 20)
+```
+
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+ggplot(d3, aes(x = e)) +
+  geom_histogram(fill = "#86a293", bins = 20)
+```
+
+
+:::
+
+::::
+
+## Normal Quantile (Q-Q) plot
+
+> * Scatterplot of the ordered observed residuals versus values (the theortical quantiles) that we would expect from a "perfect" normal sample of the same sample size
+
+. . .
+
+```{r}
+#| code-fold: false
+#| output-location: column
+ggplot(d1, aes(sample = e)) +
+  geom_qq()  + 
+  geom_qq_line()
+```
+
+## Normal Quantile (Q-Q) plot
+
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1"
+ggplot(d1, aes(sample = e)) +
+  geom_qq()  + 
+  geom_qq_line()
+```
+
+
+## Normal Quantile (Q-Q) plot
+
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "2"
+ggplot(d1, aes(sample = e)) +
+  geom_qq()  + 
+  geom_qq_line()
+```
+
+
+## Normal Quantile (Q-Q) plot
+
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "3"
+ggplot(d1, aes(sample = e)) +
+  geom_qq()  + 
+  geom_qq_line()
+```
+
+
+## Q-Q plots
+
+
+:::: {.columns}
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+ggplot(d1, aes(sample = e)) +
+  geom_qq(color = "#86a293") + 
+  geom_qq_line(color = "#86a293")
+```
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+ggplot(d2, aes(sample = e)) +
+  geom_qq(color = "#86a293") + 
+  geom_qq_line(color = "#86a293")
+```
+
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| fig-width: 3
+#| fig-height: 3
+
+ggplot(d3, aes(sample = e)) +
+  geom_qq(color = "#86a293") + 
+  geom_qq_line(color = "#86a293")
+```
+
+
+:::
+
+::::
+
+## Normally distributed errors
+
+> * Why is it important?
+>    * In **very** small samples, this is important for our 95% confidence intervals to actually have **95% coverage**
+>    * It is also important for **prediction intervals** (when making an interval for a single observation)
+>    * In medium / large samples, it is often ok regardless
+> * How do you check it?
+>    * Visualize the residuals (histogram, Q-Q plot)
+
+
+
+# Independence & Randomness
+
+
+## Magnolia data
+
+
+```{r}
+#| echo: false
+load("full_magnolia_data.rds")
+magnolia_data <- full_magnolia_data %>%
+  filter(id == 3) %>%
+  dplyr::select(observation, leaf_length, leaf_width)
+full_magnolia_data <- full_magnolia_data %>%
+  group_by(id) %>%
+  summarise(max_length = max(leaf_length),
+            min_length = min(leaf_length),
+            mean_length = mean(leaf_length),
+            mean_width = mean(leaf_width)) %>%
+  mutate(inches = ifelse(max_length < 10, 1, 0),
+         inches = ifelse(min_length < 2, 1, 0),
+         flipped = ifelse(mean_length < mean_width, 1, 0)) %>%
+  left_join(full_magnolia_data, by = "id") %>%
+  dplyr::select(-max_length, -mean_length, - mean_width) %>%
+  mutate(leaf_length2 = ifelse(flipped, leaf_width, leaf_length),
+         leaf_width = ifelse(flipped, leaf_length, leaf_width),
+         leaf_length = leaf_length2)
+```
+
+```{r}
+full_magnolia_data %>%
+  nest_by(id) %>%
+  mutate(mod = list(lm(leaf_length ~ leaf_width, data = data))) %>%
+  summarise(broom::tidy(mod, conf.int = TRUE)) %>%
+  filter(term == "leaf_width") %>%
+  ggplot() +
+  geom_segment(aes(
+    x = conf.low,
+    xend = conf.high,
+    y = id,
+    yend = id,
+    color = id == 3
+  )) +
+  geom_vline(xintercept = coef(lm(leaf_length ~ leaf_width, full_magnolia_data))[2], lty = 2) +
+  scale_x_continuous(limits = c(-2, 4)) + 
+  scale_color_manual(values = c("black", "cornflower blue")) +
+  labs(x = "Relationship between leaf length and leaf width (Slope)",
+       y = "Student") +
+  theme(legend.position = "none")
+```
+## Magnolia data {.small}
+
+```{r}
+#| fig-height: 4
+full_magnolia_data %>%
+  nest_by(id) %>%
+  mutate(mod = list(lm(leaf_length ~ leaf_width, data = data))) %>%
+  summarise(broom::tidy(mod, conf.int = TRUE)) %>%
+  filter(term == "leaf_width") %>%
+  ggplot() +
+  geom_segment(aes(
+    x = conf.low,
+    xend = conf.high,
+    y = id,
+    yend = id,
+    color = id == 3
+  )) +
+  geom_vline(xintercept = coef(lm(leaf_length ~ leaf_width, full_magnolia_data))[2], lty = 2) +
+  scale_x_continuous(limits = c(-2, 4)) + 
+  scale_color_manual(values = c("black", "cornflower blue")) +
+  labs(x = "Relationship between leaf length and leaf width (Slope)",
+       y = "Student") +
+  theme(legend.position = "none")
+```
+
+> * If these were truly sampled randomly and observations were independent, we'd expect that 95% of these confidence intervals would contain the "true" $\beta_1$
+
+## Magnolia data {.small}
+
+```{r}
+#| fig-height: 4
+full_magnolia_data %>%
+  nest_by(id) %>%
+  mutate(mod = list(lm(leaf_length ~ leaf_width, data = data))) %>%
+  summarise(broom::tidy(mod, conf.int = TRUE)) %>%
+  filter(term == "leaf_width") %>%
+  ggplot() +
+  geom_segment(aes(
+    x = conf.low,
+    xend = conf.high,
+    y = id,
+    yend = id,
+    color = id == 3
+  )) +
+  geom_vline(xintercept = coef(lm(leaf_length ~ leaf_width, full_magnolia_data))[2], lty = 2) +
+  scale_x_continuous(limits = c(-2, 4)) + 
+  scale_color_manual(values = c("black", "cornflower blue")) +
+  labs(x = "Relationship between leaf length and leaf width (Slope)",
+       y = "Student") +
+  theme(legend.position = "none")
+```
+
+::: {.question}
+Are these independent?
+:::
+
+## Magnolia data {.small}
+
+```{r}
+#| fig-height: 4
+full_magnolia_data %>%
+  nest_by(id) %>%
+  mutate(mod = list(lm(leaf_length ~ leaf_width, data = data))) %>%
+  summarise(broom::tidy(mod, conf.int = TRUE)) %>%
+  filter(term == "leaf_width") %>%
+  ggplot() +
+  geom_segment(aes(
+    x = conf.low,
+    xend = conf.high,
+    y = id,
+    yend = id,
+    color = id == 3
+  )) +
+  scale_x_continuous(limits = c(-2, 4)) + 
+  geom_vline(xintercept = coef(lm(leaf_length ~ leaf_width, full_magnolia_data))[2], 
+             lty = 2) +
+  scale_color_manual(values = c("black", "cornflower blue")) +
+  labs(x = "Relationship between leaf length and leaf width (Slope)",
+       y = "Student") +
+  theme(legend.position = "none")
+```
+
+::: {.question}
+Was the sample random?
+:::
+
+## Coverage probability
+
+```{r}
+#| code-fold: true
+avg_slope <- coef(lm(leaf_length ~ leaf_width, data = full_magnolia_data))[2]
+full_magnolia_data %>%
+  nest_by(id) %>%
+  mutate(mod = list(lm(leaf_length ~ leaf_width, data = data))) %>%
+  summarise(broom::tidy(mod, conf.int = TRUE)) %>%
+  filter(term == "leaf_width") %>%
+  ungroup() %>%
+  summarise(coverage = mean(
+    conf.low < avg_slope &
+      conf.high > avg_slope
+  ))
+```
+
+
+## Magnolia data {.small}
+
+Let's actually randomly sample from your magnolia data
+
+```{r}
+#| code-fold: false
+set.seed(928)
+full_magnolia_data <- full_magnolia_data %>%
+  mutate(random_id = sample(1:44, size = n(), replace = TRUE))
+```
+
+## Magnolia data {.small}
+
+
+```{r}
+#| fig-height: 4
+full_magnolia_data %>%
+  nest_by(random_id) %>%
+  mutate(mod = list(lm(leaf_length ~ leaf_width, data = data))) %>%
+  summarise(broom::tidy(mod, conf.int = TRUE)) %>%
+  filter(term == "leaf_width") %>%
+  ggplot() +
+  geom_segment(aes(
+    x = conf.low,
+    xend = conf.high,
+    y = random_id,
+    yend = random_id,
+    color = random_id == 3
+  )) +
+  geom_vline(xintercept = coef(lm(leaf_length ~ leaf_width, full_magnolia_data))[2], lty = 2) +
+  scale_x_continuous(limits = c(-2, 4)) + 
+  scale_color_manual(values = c("black", "cornflower blue")) +
+  labs(x = "Relationship between leaf length and leaf width (Slope)",
+       y = "Student") +
+  theme(legend.position = "none")
+```
+
+## Coverage probability
+
+```{r}
+#| code-fold: true
+full_magnolia_data %>%
+  nest_by(random_id) %>%
+  mutate(mod = list(lm(leaf_length ~ leaf_width, data = data))) %>%
+  summarise(broom::tidy(mod, conf.int = TRUE)) %>%
+  filter(term == "leaf_width") %>%
+  ungroup() %>%
+  summarise(coverage = mean(
+    conf.low < avg_slope &
+      conf.high > avg_slope
+  ))
+```
+
+
+## Independence
+
+> * Why is it important?
+> * How can we check it?
+>     * If you only have one data sample, there is not a check, you need to know about the data generation / sampling process.

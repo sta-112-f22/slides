@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="08-drawing-inference_files/libs/clipboard/clipboard.min.js"></script>
-<script src="08-drawing-inference_files/libs/quarto-html/tabby.min.js"></script>
-<script src="08-drawing-inference_files/libs/quarto-html/popper.min.js"></script>
-<script src="08-drawing-inference_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="08-drawing-inference_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="08-drawing-inference_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="08-drawing-inference_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<link href="08-drawing-inference_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="08-drawing-inference_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+<script src="09-drawing-inference_files/libs/clipboard/clipboard.min.js"></script>
+<script src="09-drawing-inference_files/libs/quarto-html/tabby.min.js"></script>
+<script src="09-drawing-inference_files/libs/quarto-html/popper.min.js"></script>
+<script src="09-drawing-inference_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="09-drawing-inference_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="09-drawing-inference_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="09-drawing-inference_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="09-drawing-inference_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="09-drawing-inference_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.0.38">
 
   <meta name="author" content="Lucy D’Agostino McGowan">
@@ -16,8 +16,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="08-drawing-inference_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="08-drawing-inference_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="09-drawing-inference_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="09-drawing-inference_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -90,13 +90,13 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="08-drawing-inference_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="08-drawing-inference_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="08-drawing-inference_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="08-drawing-inference_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="08-drawing-inference_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="08-drawing-inference_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="08-drawing-inference_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="09-drawing-inference_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="09-drawing-inference_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="09-drawing-inference_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="09-drawing-inference_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="09-drawing-inference_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="09-drawing-inference_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="09-drawing-inference_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -381,8 +381,8 @@
       margin-right: 0; 
     }
   </style>
-  <link href="08-drawing-inference_files/libs/countdown-0.4.0/countdown.css" rel="stylesheet">
-  <script src="08-drawing-inference_files/libs/countdown-0.4.0/countdown.js"></script>
+  <link href="09-drawing-inference_files/libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+  <script src="09-drawing-inference_files/libs/countdown-0.4.0/countdown.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -404,58 +404,50 @@
 <pre><code># A tibble: 30 × 3
    observation leaf_length leaf_width
          &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
- 1          21        10.4        4.4
- 2          19        21          9  
- 3          15        26         11  
- 4           4        17.8        6.4
- 5          23        15         10  
- 6          15        15          8  
- 7          26        18         13  
- 8          14        19          6  
- 9          22        29.3       14.6
-10           7        14.2        8.8
+ 1           1        12.4        4.2
+ 2           2         3.9        5.1
+ 3           3         6.7        2.8
+ 4           4         4.4        3.5
+ 5           5        10.3        6.2
+ 6           6        12.3        9.3
+ 7           7         4.8        3.9
+ 8           8         6.9        5.3
+ 9           9        10.4        6.2
+10          10         2.6        3.8
 # … with 20 more rows</code></pre>
 </div>
 </div>
 </section>
-<section id="when-is-a-simple-linear-regression-model-a-useful-descriptive-summary" class="slide level2">
-<h2>When is a simple linear regression model a useful descriptive summary?</h2>
-<ul>
-<li class="fragment">Linearity holds</li>
-<li class="fragment">The residuals have “zero mean” (this is always true!)</li>
-<li class="fragment">The datapoints are independent</li>
-</ul>
-</section>
-<section>
-<section id="what-if-we-want-to-draw-inference-on-another-sample" class="title-slide slide level1 center">
-<h1>What if we want to draw inference on another sample?</h1>
-
-</section>
-<section id="inference" class="slide level2">
-<h2>Inference</h2>
-<ul>
-<li class="fragment">So far we’ve only been able to describe our sample</li>
-<li class="fragment">For example, we’ve just been describing <span class="math inline">\(\hat{\beta}_1\)</span> the estimated slope of the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></li>
-<li class="fragment">What if we want to extend these claims to the <strong>population</strong>?</li>
-</ul>
-</section>
 <section id="magnolia-data" class="slide level2 small">
 <h2>Magnolia data</h2>
-<div class="question">
-<p>How can I visualize a single continuous variable?</p>
-</div>
-<div class="fragment">
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(magnolia_data, <span class="fu">aes</span>(<span class="at">x =</span> leaf_length)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>) <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Leaf length (cm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(magnolia_data, <span class="fu">aes</span>(<span class="at">x =</span> leaf_width, <span class="at">y =</span> leaf_length)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Leaf length (cm)"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>       <span class="at">y =</span> <span class="st">"Leaf width (cm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<p><img data-src="08-drawing-inference_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+
 </div>
-</div>
+<img data-src="09-drawing-inference_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<section id="full-magnolia-data" class="slide level2 small">
+<h2>Full Magnolia data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>full_magnolia_data <span class="ot">&lt;-</span> full_magnolia_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">group_by</span>(id) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">summarise</span>(<span class="at">max_length =</span> <span class="fu">max</span>(leaf_length),</span>
+<span id="cb4-4"><a href="#cb4-4"></a>            <span class="at">min_length =</span> <span class="fu">min</span>(leaf_length),</span>
+<span id="cb4-5"><a href="#cb4-5"></a>            <span class="at">mean_length =</span> <span class="fu">mean</span>(leaf_length),</span>
+<span id="cb4-6"><a href="#cb4-6"></a>            <span class="at">mean_width =</span> <span class="fu">mean</span>(leaf_width)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">mutate</span>(<span class="at">inches =</span> <span class="fu">ifelse</span>(max_length <span class="sc">&lt;</span> <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb4-8"><a href="#cb4-8"></a>         <span class="at">inches =</span> <span class="fu">ifelse</span>(min_length <span class="sc">&lt;</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb4-9"><a href="#cb4-9"></a>         <span class="at">flipped =</span> <span class="fu">ifelse</span>(mean_length <span class="sc">&lt;</span> mean_width, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="fu">left_join</span>(full_magnolia_data, <span class="at">by =</span> <span class="st">"id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>  <span class="fu">select</span>(<span class="sc">-</span>max_length, <span class="sc">-</span>mean_length, <span class="sc">-</span> mean_width) <span class="sc">%&gt;%</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="fu">mutate</span>(<span class="at">leaf_length2 =</span> <span class="fu">ifelse</span>(flipped, leaf_width, leaf_length),</span>
+<span id="cb4-13"><a href="#cb4-13"></a>         <span class="at">leaf_width =</span> <span class="fu">ifelse</span>(flipped, leaf_length, leaf_width),</span>
+<span id="cb4-14"><a href="#cb4-14"></a>         <span class="at">leaf_length =</span> leaf_length2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="magnolia-data-1" class="slide level2 small">
@@ -463,337 +455,369 @@
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">ggplot</span>(full_magnolia_data, </span>
-<span id="cb4-3"><a href="#cb4-3"></a>       <span class="fu">aes</span>(<span class="at">x =</span> leaf_length, <span class="at">y =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Leaf length (cm)"</span>) <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-8"><a href="#cb4-8"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-9"><a href="#cb4-9"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(full_magnolia_data, <span class="fu">aes</span>(<span class="at">x =</span> leaf_width, <span class="at">y =</span> leaf_length)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> magnolia_data, <span class="at">color =</span> <span class="st">"cornflower blue"</span>) <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Leaf length (cm)"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>       <span class="at">y =</span> <span class="st">"Leaf width (cm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="08-drawing-inference_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<img data-src="09-drawing-inference_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="magnolia-data-2" class="slide level2 small">
 <h2>Magnolia data</h2>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">ggplot</span>(full_magnolia_data, </span>
-<span id="cb5-4"><a href="#cb5-4"></a>       <span class="fu">aes</span>(<span class="at">x =</span> leaf_length, <span class="at">y =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
-<span id="cb5-7"><a href="#cb5-7"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> magnolia_data, <span class="at">color =</span> <span class="st">"cornflower blue"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Leaf length (cm)"</span>) <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb5-10"><a href="#cb5-10"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb5-11"><a href="#cb5-11"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="08-drawing-inference_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
-<section id="magnolia-data-3" class="slide level2 small">
-<h2>Magnolia data</h2>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">ggplot</span>(full_magnolia_data,</span>
-<span id="cb6-4"><a href="#cb6-4"></a>       <span class="fu">aes</span>(<span class="at">x =</span> leaf_length, </span>
-<span id="cb6-5"><a href="#cb6-5"></a>           <span class="at">y =</span> in_sample,</span>
-<span id="cb6-6"><a href="#cb6-6"></a>           <span class="at">color =</span> in_sample)) <span class="sc">+</span> </span>
-<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
-<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"cornflower blue"</span>)) <span class="sc">+</span> </span>
-<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> </span>
-<span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Leaf length (cm)"</span>,</span>
-<span id="cb6-12"><a href="#cb6-12"></a>       <span class="at">y =</span> <span class="st">"in sample"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="08-drawing-inference_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
-<section id="magnolia-data-4" class="slide level2 small">
-<h2>Magnolia data</h2>
-<div class="question">
-<p>How can I calculate the average leaf length of the magnolias in my sample in R?</p>
-</div>
-<div class="fragment">
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>magnolia_data <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">summarize</span>(<span class="at">mean_length =</span> <span class="fu">mean</span>(leaf_length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  mean_length
-        &lt;dbl&gt;
-1        17.1</code></pre>
-</div>
-</div>
-<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">lm</span>(leaf_length <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> magnolia_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = leaf_length ~ 1, data = magnolia_data)
-
-Coefficients:
-(Intercept)  
-      17.13  </code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="magnolia-data-5" class="slide level2 small">
-<h2>Magnolia data</h2>
 <div class="question small">
-<p>What if I want to know the average leaf length of the magnolias <strong>on the Mag Quad</strong>?</p>
+<p>What if I want to know the relationship between leaf length and leaf width of the magnolias <strong>on the Mag Quad</strong>?</p>
 </div>
 <div class="fragment">
 <p><br></p>
 <div class="question small">
-<p>How can we quantify how much we’d expect the mean to differ from one random sample to another?</p>
+<p>How can we quantify how much we’d expect the slope to differ from one random sample to another?</p>
 </div>
 <ul>
 <li class="fragment">We need a measure of <strong>uncertainty</strong></li>
-<li class="fragment">How about the <strong>standard error</strong> of the mean?</li>
-<li class="fragment">The <strong>standard error</strong> is how much we expect the sample mean to vary from one random sample to another.</li>
+<li class="fragment">How about the <strong>standard error</strong> of the slope?</li>
+<li class="fragment">The <strong>standard error</strong> is how much we expect <span class="math inline">\(\hat{\beta}_1\)</span> to vary from one random sample to another.</li>
 </ul>
 </div>
+</section>
+<section id="magnolia-data-3" class="slide level2 small">
+<h2>Magnolia data</h2>
+<div class="question small">
+<p>How can we quantify how much we’d expect the slope to differ from one random sample to another?</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(leaf_length <span class="sc">~</span> leaf_width, <span class="at">data =</span> magnolia_data)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">summary</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = leaf_length ~ leaf_width, data = magnolia_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.4424 -1.7942 -0.9585  1.0470  9.0647 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   1.8369     1.4507   1.266    0.216    
+leaf_width    1.2756     0.2645   4.822 4.51e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.243 on 28 degrees of freedom
+Multiple R-squared:  0.4537,    Adjusted R-squared:  0.4342 
+F-statistic: 23.26 on 1 and 28 DF,  p-value: 4.507e-05</code></pre>
+</div>
+</div>
+</section>
+<section id="magnolia-data-4" class="slide level2 small">
+<h2>Magnolia data</h2>
+<p>We need a <strong>test statistic</strong> that incorporates <span class="math inline">\(\hat{\beta}_1\)</span> and the standard error</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(leaf_length <span class="sc">~</span> leaf_width, <span class="at">data =</span> magnolia_data)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">summary</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = leaf_length ~ leaf_width, data = magnolia_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.4424 -1.7942 -0.9585  1.0470  9.0647 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   1.8369     1.4507   1.266    0.216    
+leaf_width    1.2756     0.2645   4.822 4.51e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.243 on 28 degrees of freedom
+Multiple R-squared:  0.4537,    Adjusted R-squared:  0.4342 
+F-statistic: 23.26 on 1 and 28 DF,  p-value: 4.507e-05</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment"><span class="math inline">\(t = \frac{\hat{\beta}_1}{SE_{\hat{\beta}_1}}\)</span></li>
+</ul>
+</section>
+<section id="magnolia-data-5" class="slide level2 small">
+<h2>Magnolia data</h2>
+<div class="question small">
+<p>How do we interpret this?</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(leaf_length <span class="sc">~</span> leaf_width, <span class="at">data =</span> magnolia_data)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">summary</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = leaf_length ~ leaf_width, data = magnolia_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.4424 -1.7942 -0.9585  1.0470  9.0647 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   1.8369     1.4507   1.266    0.216    
+leaf_width    1.2756     0.2645   4.822 4.51e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.243 on 28 degrees of freedom
+Multiple R-squared:  0.4537,    Adjusted R-squared:  0.4342 
+F-statistic: 23.26 on 1 and 28 DF,  p-value: 4.507e-05</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">“<span class="math inline">\(\hat{\beta}_1\)</span> is more than 4.82 standard errors above a slope of zero”</li>
+</ul>
 </section>
 <section id="magnolia-data-6" class="slide level2 small">
 <h2>Magnolia data</h2>
 <div class="question small">
-<p>How can we quantify how much we’d expect the mean to differ from one random sample to another?</p>
+<p>How do we know what values of this statistic are worth paying attention to?</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(leaf_length <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> magnolia_data)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">summary</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(leaf_length <span class="sc">~</span> leaf_width, <span class="at">data =</span> magnolia_data)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">summary</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = leaf_length ~ 1, data = magnolia_data)
+lm(formula = leaf_length ~ leaf_width, data = magnolia_data)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--9.509 -3.809 -1.029  2.621 13.071 
+    Min      1Q  Median      3Q     Max 
+-4.4424 -1.7942 -0.9585  1.0470  9.0647 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   17.129      1.031   16.62 2.32e-16 ***
+(Intercept)   1.8369     1.4507   1.266    0.216    
+leaf_width    1.2756     0.2645   4.822 4.51e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 5.645 on 29 degrees of freedom</code></pre>
+Residual standard error: 3.243 on 28 degrees of freedom
+Multiple R-squared:  0.4537,    Adjusted R-squared:  0.4342 
+F-statistic: 23.26 on 1 and 28 DF,  p-value: 4.507e-05</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">confidence intervals</li>
+<li class="fragment">p-values</li>
+<li class="fragment">Hypothesis testing: <span class="math inline">\(H_0: \beta_1 = 0\)</span> <span class="math inline">\(H_A: \beta_1 \neq 0\)</span></li>
+</ul>
+</section>
+<section id="magnolia-data-7" class="slide level2 small">
+<h2>Magnolia data</h2>
+<div class="question small">
+<p>How do get a confidence interval for <span class="math inline">\(\hat{\beta}_1\)</span>? What function can we use in R?</p>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">confint</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 2.5 %   97.5 %
+(Intercept) -1.1347019 4.808506
+leaf_width   0.7337573 1.817414</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="question small">
+<p>How do we interpret this value?</p>
 </div>
 </div>
 </section>
 <section id="fa-laptop-application-exercise" class="slide level2 small">
 <h2><i class="fa-solid fa-laptop" aria-hidden="true"></i> <code>Application Exercise</code></h2>
 <ol type="1">
-<li>Create a new project from this template in RStudio Pro:</li>
-</ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="ex">https://github.com/sta-112-f22/appex-08.git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Replace the text in the top code chunk that says <code>INSERT YOUR GOOGLE SPREADSHEET URL HERE</code> with the Google Spreadsheet URL with your magnolia data.</li>
-<li>Fit an intercept only model to calculate the average leaf length in your sample</li>
-<li>Use the <code>summary</code> function on the linear model you fit</li>
-<li>What is the standard error for the mean length? Interpret this value.</li>
+<li>Open <code>appex-08.qmd</code></li>
+<li>Fit the model of <code>leaf_length</code> and <code>leaf_width</code> in your data</li>
+<li>Calculate a confidence interval for the estimate <span class="math inline">\(\hat\beta_1\)</span></li>
+<li>Interpret this value</li>
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_0e9f1610" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_01d78c36" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
 </section>
-<section id="confidence-intervals" class="slide level2">
-<h2>confidence intervals</h2>
-<p>If we use the same sampling method to select different samples and computed an interval estimate for each sample, we would expect the true population parameter (the average leaf length on the Mag Quad) to fall within the interval estimates 95% of the time.</p>
-</section>
-<section id="confidence-interval" class="slide level2 small">
-<h2>Confidence interval</h2>
-<p><span class="math display">\[\bar{x} \pm t^∗ \times SE_{\bar{x}}\]</span></p>
+<section id="hypothesis-testing" class="slide level2">
+<h2>Hypothesis testing</h2>
 <ul>
-<li class="fragment"><span class="math inline">\(t^*\)</span> is the critical value for the <span class="math inline">\(t_{n−1}\)</span> density curve to obtain the desired confidence level</li>
-<li class="fragment">Often we want a <strong>95% confidence level</strong>.</li>
+<li class="fragment">So far, we have estimated the relationship between the length of magnolia leaves and the width.</li>
+<li class="fragment">This could be useful if we wanted to understand, on average, how these variables are related (<strong>estimation</strong>)</li>
+<li class="fragment">This could also be useful if we wanted to guess how long a leaf was based on how wide it is (<strong>prediction</strong>)</li>
+<li class="fragment">What if we just want to know whether there <em>is some</em> relationship bewteen the two? (<strong>hypothesis testing</strong>)</li>
 </ul>
-</section></section>
-<section>
-<section id="fa-laptop-demo" class="title-slide slide level1 center">
-<h1><i class="fa-solid fa-laptop" aria-hidden="true"></i> Demo</h1>
-
 </section>
-<section id="lets-do-it-in-r" class="slide level2 small">
-<h2>Let’s do it in R!</h2>
+<section id="hypothesis-testing-1" class="slide level2">
+<h2>Hypothesis testing</h2>
+<ul>
+<li class="fragment"><strong>Null hypothesis</strong>: There is no relationship between leaf length and leaf width
+<ul>
+<li class="fragment"><span class="math inline">\(H_0: \beta_1 = 0\)</span></li>
+</ul></li>
+<li class="fragment"><strong>Alternative hypothesis</strong>: There <strong>is</strong> a relationship between leaf length and leaf width
+<ul>
+<li class="fragment"><span class="math inline">\(H_A: \beta_1 \neq 0\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="hypothesis-testing-2" class="slide level2">
+<h2>Hypothesis testing</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(leaf_length <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> magnolia_data)</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">summary</span>(mod) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">summary</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = leaf_length ~ 1, data = magnolia_data)
+lm(formula = leaf_length ~ leaf_width, data = magnolia_data)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--9.509 -3.809 -1.029  2.621 13.071 
+    Min      1Q  Median      3Q     Max 
+-4.4424 -1.7942 -0.9585  1.0470  9.0647 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   17.129      1.031   16.62 2.32e-16 ***
+(Intercept)   1.8369     1.4507   1.266    0.216    
+leaf_width    1.2756     0.2645   4.822 4.51e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 5.645 on 29 degrees of freedom</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df =</span> <span class="fu">nrow</span>(magnolia_data) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.04523</code></pre>
-</div>
-</div>
-</section>
-<section id="lets-do-it-in-r-1" class="slide level2 small">
-<h2>Let’s do it in R!</h2>
-<div class="question">
-<p>Why 0.025?</p>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(leaf_length <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> magnolia_data)</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">summary</span>(mod) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = leaf_length ~ 1, data = magnolia_data)
-
-Residuals:
-   Min     1Q Median     3Q    Max 
--9.509 -3.809 -1.029  2.621 13.071 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   17.129      1.031   16.62 2.32e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 5.645 on 29 degrees of freedom</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df =</span> <span class="fu">nrow</span>(magnolia_data) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.04523</code></pre>
-</div>
-</div>
-</section>
-<section id="lets-do-it-in-r-2" class="slide level2 small">
-<h2>Let’s do it in R!</h2>
-<div class="question">
-<p>Why <code>lower.tail = FALSE</code>?</p>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(leaf_length <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> magnolia_data)</span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">summary</span>(mod) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = leaf_length ~ 1, data = magnolia_data)
-
-Residuals:
-   Min     1Q Median     3Q    Max 
--9.509 -3.809 -1.029  2.621 13.071 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   17.129      1.031   16.62 2.32e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 5.645 on 29 degrees of freedom</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df =</span> <span class="fu">nrow</span>(magnolia_data) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.04523</code></pre>
-</div>
-</div>
-</section>
-<section id="lets-do-it-in-r-3" class="slide level2 small">
-<h2>Let’s do it in R!</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(leaf_length <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> magnolia_data)</span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">summary</span>(mod) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = leaf_length ~ 1, data = magnolia_data)
-
-Residuals:
-   Min     1Q Median     3Q    Max 
--9.509 -3.809 -1.029  2.621 13.071 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   17.129      1.031   16.62 2.32e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 5.645 on 29 degrees of freedom</code></pre>
-</div>
-</div>
-<div class="cell">
-
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>t_star <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df =</span> <span class="fu">nrow</span>(magnolia_data) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="fl">14.827</span> <span class="sc">+</span> t_star <span class="sc">*</span> <span class="fl">0.912</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 16.7</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fl">14.827</span> <span class="sc">-</span> t_star <span class="sc">*</span> <span class="fl">0.912</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 13</code></pre>
+Residual standard error: 3.243 on 28 degrees of freedom
+Multiple R-squared:  0.4537,    Adjusted R-squared:  0.4342 
+F-statistic: 23.26 on 1 and 28 DF,  p-value: 4.507e-05</code></pre>
 </div>
 </div>
 <div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">confint</span>(mod) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            2.5 % 97.5 %
-(Intercept)    15   19.2</code></pre>
-</div>
+<div class="question">
+<p>Is <span class="math inline">\(\hat\beta_1\)</span> different from 0?</p>
 </div>
 </div>
 </section>
-<section id="confidence-intervals-1" class="slide level2">
-<h2>confidence intervals</h2>
-<p>If we use the same sampling method to select different samples and computed an interval estimate for each sample, we would expect the true population parameter (the mean) to fall within the interval estimates 95% of the time.</p>
+<section id="hypothesis-testing-3" class="slide level2">
+<h2>Hypothesis testing</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">summary</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = leaf_length ~ leaf_width, data = magnolia_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.4424 -1.7942 -0.9585  1.0470  9.0647 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   1.8369     1.4507   1.266    0.216    
+leaf_width    1.2756     0.2645   4.822 4.51e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.243 on 28 degrees of freedom
+Multiple R-squared:  0.4537,    Adjusted R-squared:  0.4342 
+F-statistic: 23.26 on 1 and 28 DF,  p-value: 4.507e-05</code></pre>
+</div>
+</div>
+<div class="question">
+<p>Is <span class="math inline">\(\beta_1\)</span> different from 0? (notice the lack of the hat!)</p>
+</div>
+</section>
+<section id="p-value" class="slide level2">
+<h2>p-value</h2>
+<p>The probability of observing a statistic as extreme or more extreme than the observed test statistic <strong>given the null hypothesis is true</strong></p>
+</section>
+<section id="p-value-1" class="slide level2">
+<h2>p-value</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">summary</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = leaf_length ~ leaf_width, data = magnolia_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.4424 -1.7942 -0.9585  1.0470  9.0647 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   1.8369     1.4507   1.266    0.216    
+leaf_width    1.2756     0.2645   4.822 4.51e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.243 on 28 degrees of freedom
+Multiple R-squared:  0.4537,    Adjusted R-squared:  0.4342 
+F-statistic: 23.26 on 1 and 28 DF,  p-value: 4.507e-05</code></pre>
+</div>
+</div>
+<div class="question">
+<p>What is the p-value? What is the interpretation?</p>
+</div>
+</section>
+<section id="hypothesis-testing-4" class="slide level2 small">
+<h2>Hypothesis testing</h2>
+<ul>
+<li class="fragment"><strong>Null hypothesis</strong>: <span class="math inline">\(\beta_1 = 0\)</span> (there is no relationship between the width and length of a magnolia leaf)</li>
+<li class="fragment"><strong>Alternative hypothesis</strong>: <span class="math inline">\(\beta_1 \neq 0\)</span> (there is a relationship between the width and length of a magnolia leaf)</li>
+<li class="fragment">Often we have an <span class="math inline">\(\alpha\)</span> level cutoff to compare the <strong>p-value</strong> to, for example <strong>0.05</strong>.</li>
+<li class="fragment">If <strong>p-value</strong> &lt; 0.05, we <strong>reject the null hypothesis</strong></li>
+<li class="fragment">If <strong>p-value</strong> &gt; 0.05, we <strong>fail to reject the null hypothesis</strong></li>
+<li class="fragment">Why don’t we <strong>ever</strong> “accept” the null hypothesis?</li>
+<li class="fragment"><strong>absense of evidence is not evidence of absense</strong></li>
+</ul>
+</section>
+<section id="p-value-2" class="slide level2">
+<h2>p-value</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">summary</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = leaf_length ~ leaf_width, data = magnolia_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.4424 -1.7942 -0.9585  1.0470  9.0647 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   1.8369     1.4507   1.266    0.216    
+leaf_width    1.2756     0.2645   4.822 4.51e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.243 on 28 degrees of freedom
+Multiple R-squared:  0.4537,    Adjusted R-squared:  0.4342 
+F-statistic: 23.26 on 1 and 28 DF,  p-value: 4.507e-05</code></pre>
+</div>
+</div>
+<div class="question">
+<p>Do we reject the null hypothesis?</p>
+</div>
 </section>
 <section id="fa-laptop-application-exercise-1" class="slide level2 small">
 <h2><i class="fa-solid fa-laptop" aria-hidden="true"></i> <code>Application Exercise</code></h2>
 <ol type="1">
 <li>Open <code>appex-08.qmd</code></li>
-<li>Calculate the <span class="math inline">\(t^*\)</span> value for your confidence interval</li>
-<li>Calculate the confidence interval “by hand” using the <span class="math inline">\(t^*\)</span> value from exercise 2 and the mean and standard error from the previous application exercise</li>
-<li>Calculate the confidence interval using the <code>confint</code> function</li>
-<li>Interpret this value</li>
+<li>Examine the summary of the model of <code>leaf_length</code> and <code>leaf_width</code> with your data</li>
+<li>Test the null hypothesis that there is no relationship between the length and width of magnolia leaves</li>
+<li>What is the p-value? What is the result of your hypothesis test?</li>
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_e9ca3f92" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_8df93648" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
@@ -801,25 +825,25 @@ Residual standard error: 5.645 on 29 degrees of freedom</code></pre>
 <img src="img/favicon.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p><a href="https://lucymcgowan.com">Dr.&nbsp;Lucy D’Agostino McGowan</a></p>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="08-drawing-inference_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="09-drawing-inference_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="08-drawing-inference_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="08-drawing-inference_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="08-drawing-inference_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="08-drawing-inference_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="08-drawing-inference_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="08-drawing-inference_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="09-drawing-inference_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="09-drawing-inference_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="09-drawing-inference_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="09-drawing-inference_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="09-drawing-inference_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="09-drawing-inference_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="08-drawing-inference_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="08-drawing-inference_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="08-drawing-inference_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="08-drawing-inference_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="09-drawing-inference_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="09-drawing-inference_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="09-drawing-inference_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="09-drawing-inference_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
