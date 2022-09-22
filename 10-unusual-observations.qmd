@@ -20,7 +20,7 @@ knitr:
 
 ## Outlier {.center}
 
-Points for which the magnitude of the **residual** is unusually large. These are points taht are unusually far away from the overall pattern.
+Points for which the magnitude of the **residual** is unusually large. These are points that are unusually far away from the overall pattern.
 
 
 
@@ -240,7 +240,7 @@ mod <- lm(Gold ~ Year, data = LongJumpOlympics)
 LongJumpOlympics %>%
   mutate(e = residuals(mod)) %>%
   summarise(
-    sse = sqrt(
+    sigma = sqrt(
       sum(e^2) / (n() - 2)
       )
     )
@@ -270,7 +270,7 @@ LongJumpOlympics %>%
 LongJumpOlympics %>%
   mutate(e = residuals(mod)) %>%
   summarise(
-    sse = sqrt(
+    sigma = sqrt(
       sum(e^2) / (n() - 2)
       )
     )
