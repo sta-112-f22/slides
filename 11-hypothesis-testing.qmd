@@ -180,6 +180,7 @@ pt(2.826, df = 28, lower.tail = FALSE) + pt(-2.826, df = 28)
 The proportion of area **greater** than 2.826 or **less** than -2.826
 
 ```{r}
+#| fig-height: 3.75
 null$color <- ifelse(null$t < 2.826 & null$t > -2.826, "out", "in")
 ggplot(null, aes(t, fill = color)) +
   geom_histogram(bins = 30) + 
