@@ -889,7 +889,7 @@ summary(mod)
 2.826^2
 ```
 
-## {{< fa laptop >}} `Application Exercise`
+## {{< fa laptop >}} `Application Exercise` {.small}
 
 1. Open `appex-11.qmd` 
 2. Using your magnolia data, predict leaf length from leaf width
