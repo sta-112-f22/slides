@@ -418,7 +418,7 @@
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>null <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="at">t =</span> <span class="fu">rt</span>(<span class="dv">10000</span>, <span class="at">df =</span> <span class="dv">28</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="at">t =</span> <span class="fu">rt</span>(<span class="dv">10000</span>, <span class="at">df =</span> <span class="dv">100</span>)</span>
 <span id="cb2-3"><a href="#cb2-3"></a>)</span>
 <span id="cb2-4"><a href="#cb2-4"></a></span>
 <span id="cb2-5"><a href="#cb2-5"></a><span class="fu">ggplot</span>(null, <span class="fu">aes</span>(t)) <span class="sc">+</span></span>
@@ -513,9 +513,9 @@ F-statistic: 7.988 on 1 and 98 DF,  p-value: 0.005707</code></pre>
 
 </div>
 <img data-src="11-hypothesis-testing_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"><div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">pt</span>(<span class="fl">2.826</span>, <span class="at">df =</span> <span class="dv">28</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">pt</span>(<span class="fl">2.826</span>, <span class="at">df =</span> <span class="dv">98</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.004299145</code></pre>
+<pre><code>[1] 0.002856431</code></pre>
 </div>
 </div>
 </section>
@@ -535,9 +535,9 @@ F-statistic: 7.988 on 1 and 98 DF,  p-value: 0.005707</code></pre>
 
 </div>
 <img data-src="11-hypothesis-testing_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"><div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">2.826</span>, <span class="at">df =</span> <span class="dv">28</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">2.826</span>, <span class="at">df =</span> <span class="dv">98</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.004299145</code></pre>
+<pre><code>[1] 0.002856431</code></pre>
 </div>
 </div>
 </section>
@@ -557,9 +557,9 @@ F-statistic: 7.988 on 1 and 98 DF,  p-value: 0.005707</code></pre>
 
 </div>
 <img data-src="11-hypothesis-testing_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"><div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">pt</span>(<span class="fl">2.826</span>, <span class="at">df =</span> <span class="dv">28</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fl">2.826</span>, <span class="at">df =</span> <span class="dv">28</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">pt</span>(<span class="fl">2.826</span>, <span class="at">df =</span> <span class="dv">98</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fl">2.826</span>, <span class="at">df =</span> <span class="dv">98</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.00859829</code></pre>
+<pre><code>[1] 0.005712862</code></pre>
 </div>
 </div>
 </section>
@@ -581,9 +581,9 @@ F-statistic: 7.988 on 1 and 98 DF,  p-value: 0.005707</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">pt</span>(<span class="fl">2.826</span>, <span class="at">df =</span> <span class="dv">28</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">pt</span>(<span class="fl">2.826</span>, <span class="at">df =</span> <span class="dv">98</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.00859829</code></pre>
+<pre><code>[1] 0.005712862</code></pre>
 </div>
 </div>
 <p><img src="img/favicon.png" class="slide-logo"></p>

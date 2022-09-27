@@ -42,7 +42,7 @@ Under the null $(\beta_1 = 0)$ the t-statistic $(\hat\beta_1/se_{\hat\beta_1})$ 
 
 ```{r}
 null <- tibble(
-  t = rt(10000, df = 28)
+  t = rt(10000, df = 100)
 )
 
 ggplot(null, aes(t)) +
@@ -136,7 +136,7 @@ ggplot(null, aes(t, fill = color)) +
 
 ```{r}
 #| code-fold: false
-pt(2.826, df = 28, lower.tail = FALSE)
+pt(2.826, df = 98, lower.tail = FALSE)
 ```
 
 ## Under the Null Hypothesis {.small}
@@ -154,7 +154,7 @@ ggplot(null, aes(t, fill = color)) +
 
 ```{r}
 #| code-fold: false
-pt(-2.826, df = 28)
+pt(-2.826, df = 98)
 ```
 
 ## Under the Null Hypothesis {.small}
@@ -172,7 +172,7 @@ ggplot(null, aes(t, fill = color)) +
 
 ```{r}
 #| code-fold: false
-pt(2.826, df = 28, lower.tail = FALSE) + pt(-2.826, df = 28)
+pt(2.826, df = 98, lower.tail = FALSE) + pt(-2.826, df = 98)
 ```
 
 ## Under the Null Hypothesis {.small}
@@ -191,6 +191,6 @@ ggplot(null, aes(t, fill = color)) +
 
 ```{r}
 #| code-fold: false
-pt(2.826, df = 28, lower.tail = FALSE) * 2
+pt(2.826, df = 98, lower.tail = FALSE) * 2
 ```
 
