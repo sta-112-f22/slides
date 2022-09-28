@@ -74,10 +74,6 @@ magnolia_data <- tibble(
 
 ```
 
-## {{< fa laptop >}} `Application Exercise`
-
-1. 
-
 
 ## Partitioning variability
 
