@@ -131,7 +131,7 @@ mod <- lm(leaf_length ~ leaf_width, data = magnolia_data)
 summary(mod)
 ```
 
-**6.6% of the variation** in the length of a magnolia leaf is explained by it's width.
+**7.5% of the variation** in the length of a magnolia leaf is explained by it's width.
 
 ## {{< fa laptop >}} `Application Exercise` {.small}
 
