@@ -359,9 +359,10 @@ Where `df` can be whatever you'd like to call your new dataset
 https://github.com/sta-112-f22/appex-13.git
 ```
 
-2. Amend the code to calculate the proportion of each gender admitted and rejected. 
-3. Create a bar plot of the percent admitted (and rejected) by gender
-4. Create a bar plot of the percent admitted (and rejected) by gender faceted by Department
+2. Run the code to calculate the proportion of each gender admitted and rejected. 
+3. Create a bar plot with gender on the x-axis, filled by the % admitted (or rejected)
+4. Amend the code from #2 to calculate the proportion of each gender admitted and rejected **by department**
+5. Create a bar plot of the percent admitted (and rejected) by gender faceted by department
 
 ```{r}
 #| echo: false
