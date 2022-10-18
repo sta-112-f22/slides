@@ -190,11 +190,9 @@ lm(Price ~ Mileage + Age, data = PorschePrice) %>%
 # Why might we want to do this? {.center}
 
 
-## 
+##  {.center}
 
-<img src = "img/08/flowchart.jpg" height=500>
-
-http://science.sciencemag.org/content/347/6228/1314
+![](img/13/flowchart.png)
 
 
 
@@ -304,10 +302,11 @@ ggdag(dag, text = FALSE, use_labels = "label") + theme_dag()
 
 ## Confounding example
 
-<img src = "img/08/meta-analysis-confounding.png" height = 400>
+<img src = "img/13/meta-analysis-confounding.png" height = 400>
 
+::: small
 Armstrong, K.A. (2012). Methods in comparative effectiveness research. _Journal of clinical oncology: official journal of the American Society of Clinical Oncology_, 30 34, 4208-14.
-
+:::
 
 ## A quick R aside {.small}
 
@@ -351,7 +350,7 @@ Where `df` can be whatever you'd like to call your new dataset
 :::
 
 
-## {{< fa laptop >}} `Application Exercise`
+## {{< fa laptop >}} `Application Exercise` {.small}
 
 1. Copy the following template into RStudio Pro:
 
@@ -514,13 +513,9 @@ confint(model)
 > * $t^*$ is the critical value from a $t$ density with degrees of freedom equal to the error df in the model $n-k-1$, where $k$ is the number of predictors
 
 
-##
+## {.center}
 
-<img src = "img/08/flowchart.jpg" height=500>
-
-http://science.sciencemag.org/content/347/6228/1314
-
-
+![](img/13/flowchart.png)
 
 
 # Multiple linear regression for prediction {.center}
