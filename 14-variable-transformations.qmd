@@ -1,0 +1,449 @@
+---
+title: "Variable Transformations"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages}
+#| echo: false
+library(Stat2Data)
+library(mosaicData)
+```
+
+## Adjusting for confounders
+
+* What is the relationship between average SAT scores and average teacher salaries?
+
+
+::: smaller
+
+```{r}
+#| echo: false
+data("SAT")
+DT::datatable(SAT, options = list(pageLength = 5))
+```
+:::
+
+> * Are we doing inference or prediction?
+
+
+
+## Adjusting for confounders
+
+* I fit a linear model for $\hat{sat} = \hat\beta_0 + \hat\beta_1 salary$
+
+```{r}
+#| code-fold: false
+lm(sat ~ salary, SAT)
+```
+
+> * How do we interpret this result?
+
+
+
+## Adjusting for confounders {.small}
+
+* There is a **third variable**, the fraction of students that took the SAT in that state. It is grouped as "Low", "Medium", and, "High".
+
+```{r}
+SAT <- SAT %>%
+  mutate(frac_group = case_when(
+    frac < 22 ~ "LOW",
+    frac < 49 ~ "MED",
+    TRUE ~ "HIGH"
+  ))
+lm(sat ~ salary + frac_group, SAT)
+```
+
+> * What is the referent category?
+> * How do you interpret the $\hat{\beta}$ for `frac_groupLOW`?
+> * How do you interpret the $\hat{\beta}$ for `salary` now?
+
+
+
+
+
+## $\hat\beta$ interpretation in multiple linear regression {.center}
+
+The coefficient for $x$ is $\hat\beta$ (95% CI: $LB_\hat\beta, UB_\hat\beta$). A one-unit increase in $x$ yields an expected increase in y of $\hat\beta$, **holding all other variables constant**.
+
+
+
+
+## $\hat\beta$ interpretation in multiple linear regression {.center}
+
+The coefficient for average salary is 1.09 (95% CI: -0.90, 3.08).  A one-unit increase in average salary yields an expected increase in average SAT score of 1.09, **holding the fraction of students that took the SAT constant**.
+
+
+
+## Adjusting for confounders
+
+```{r}
+ggplot(SAT, aes(salary, sat)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+
+## Adjusting for confoundrs
+
+```{r}
+ggplot(SAT, aes(salary, sat, color = frac_group, group = frac_group)) + 
+  geom_point() + 
+  geom_line(aes(y = predict(lm(sat ~ salary + frac_group, data = SAT)))) +
+  labs(color = "Fraction took SAT")
+```
+
+> * What is this called? Where the direction reverses?
+> * Notice here the lines are **parallel** so holding the group constant, this is the effect we see.
+> * `r emo::ji("scream")` what if the lines aren't parallel?
+
+
+## Interactions
+
+* Data looking at the growth rate for kids
+
+::: smaller
+```{r}
+#| echo: false
+data("Kids198")
+DT::datatable(Kids198)
+```
+:::
+
+
+
+## Interactions {.small}
+
+```{r}
+ggplot(Kids198, aes(Age, Weight)) +
+  geom_point()
+```
+
+> * Will $\hat\beta_{age}$ be positive or negative?
+
+
+
+## Interactions {.small}
+
+* Let's look at this relationship split by `sex` (blue: Girl, black: Boy)
+
+```{r}
+ggplot(Kids198, aes(Age, Weight, color = Sex)) +
+  geom_point() +
+  theme(legend.position = "none")
+```
+
+
+
+## Interactions {.small}
+
+* Let's look at this relationship split by `sex` (blue: Girl, black: Boy)
+
+```{r}
+ggplot(Kids198, aes(Age, Weight, color = Sex, group = Sex)) +
+  geom_point() +
+  theme(legend.position = "none") + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+> * `r emo::ji("scream")` the lines cross! That means there is an **interaction**, that is the slopes differ based on the group
+
+
+
+## Interactions {.small}
+
+* Let's look at this relationship split by `sex` (blue: Girl, black: Boy)
+
+```{r}
+ggplot(Kids198, aes(Age, Weight, color = Sex, group = Sex)) +
+  geom_point() +
+  theme(legend.position = "none") + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+> * What is the equation for this relationship?
+
+
+
+## Interactions {.small}
+
+$Weight = \beta_0 + \beta_1 Age + \beta_2 Girl + \beta_3 Age \times Girl + \epsilon$
+
+
+```{r}
+#| code-fold: false
+lm(Weight ~ Age + Sex + Age * Sex, data = Kids198)
+```
+
+
+> * What does this model become for **boys** (When `Sex = 0`)
+>     * $Weight = \beta_0 + \beta_1 Age + \epsilon$
+> * What does this model become for **girls** (When `Sex = 1`)
+>    * $Weight = \beta_0 + \beta_1 Age + \beta_2 1 + \beta_3 Age \times 1 + \epsilon$
+>    * $Weight = (\beta_0 + \beta_2) + (\beta_1 + \beta_3) Age  + \epsilon$
+> * How do you interpret $\hat\beta_0$ now?
+
+
+
+## Interactions {.small}
+
+
+```{r}
+#| code-fold: false
+lm(Weight ~ Age + Sex + Age * Sex, data = Kids198)
+```
+
+
+
+* What does this model become for **boys** (When `Sex = 0`)
+  * $Weight = \beta_0 + \beta_1 Age + \epsilon$
+* What does this model become for **girls** (When `Sex = 1`)
+  * $Weight = \beta_0 + \beta_1 Age + \beta_2 1 + \beta_3 Age \times 1 + \epsilon$
+  * $Weight = (\beta_0 + \beta_2) + (\beta_1 + \beta_3) Age  + \epsilon$
+* How do you interpret $\hat\beta_{2}$ now?
+
+
+>  * The difference in intercepts between boys and girls
+
+
+
+## Interactions {.small}
+
+
+```{r}
+#| code-fold: false
+lm(Weight ~ Age + Sex + Age * Sex, data = Kids198)
+```
+
+
+* What does this model become for **boys** (When `Sex = 0`)
+  * $Weight = \beta_0 + \beta_1 Age + \epsilon$
+* What does this model become for **girls** (When `Sex = 1`)
+  * $Weight = \beta_0 + \beta_1 Age + \beta_2 1 + \beta_3 Age \times 1 + \epsilon$
+  * $Weight = (\beta_0 + \beta_2) + (\beta_1 + \beta_3) Age  + \epsilon$
+* How do you interpret $\hat\beta_{3}$ now?
+
+
+>  * How much the slope changes as we move from the regression line for boys to that for girls
+
+
+
+## Interactions {.small}
+
+$Weight = \beta_0 + \beta_1 Age + \beta_2 Girl + \beta_3 Age \times Girl + \epsilon$
+
+* Hypothesis testing: What if you want to test whether the slope is different between groups?
+* Is the growth rate different for boys and girls?
+* What is $H_0$?
+
+>   * $H_0: \beta_3 = 0$
+> * What is $H_A$?
+>   * $H_A:\beta_3 \neq 0$
+  
+
+
+## Interactions {.small}
+
+
+```{r}
+lm(Weight ~ Age + Sex + Age * Sex, data = Kids198) %>%
+  summary()
+```
+
+
+> * What is the result of our hypothesis test?
+
+
+
+## $\hat\beta$ interpretation for interactions between $x$ and a binary indicator $I$ {.center}
+
+The coefficient for the interaction between $x$ and $I$ is $\hat\beta$ (95% CI: $LB_\hat\beta, UB_\hat\beta$). This means that the effect of $x$ on $y$ differs by $\hat\beta$ when $I = 1$ compared to $I = 0$ **holding all other variables constant***.
+
+
+> * You must include this line if there are **additional variables in your model**.
+
+
+## $\hat\beta$ interpretation for interactions between $x$ and a binary indicator $I$ {.center}
+
+The coefficient for the interaction between `Age` and `Sex` is -0.28 (95% CI: -0.44, -0.12). This means that the effect of `Age` on `Weight` lower by 0.28 among girls compared to boys.
+
+
+
+## Non-linear relationships
+
+* Sometimes the relationships between the outcome $y$ and $x$ variables are _nonlinear_. 
+* We can use _polynomials_ to address this!
+* Returning to the **Diamonds** data, let's say we are interested in predicting Total Price from the Carats.
+
+>  * Is this an example of inference or prediction?
+
+
+
+## Non-linear relationships
+
+```{r}
+data("Diamonds")
+ggplot(Diamonds, aes(Carat, TotalPrice)) +
+  geom_point()
+```
+
+
+
+
+## Non-linear relationships
+
+```{r}
+#| code-fold: false
+#| eval: false
+lm(TotalPrice ~ Carat, data = Diamonds)
+```
+
+```{r}
+data("Diamonds")
+ggplot(Diamonds, aes(Carat, TotalPrice)) +
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+
+## Non-linear relationships
+
+```{r}
+#| code-fold: false
+#| eval: true
+lm(TotalPrice ~ Carat + I(Carat^2), data = Diamonds)
+```
+
+```{r}
+data("Diamonds")
+ggplot(Diamonds, aes(Carat, TotalPrice)) +
+  geom_point() + 
+  geom_line(aes(y = predict(lm(TotalPrice ~ Carat + I(Carat^2), data = Diamonds))), lwd = 1.5, color = "blue")
+```
+
+
+> * What is the equation for this relationship?
+
+
+
+## Interpreting $\hat\beta$s in the presence of polynomials {.small}
+ 
+$Total Price = \beta_0 + \beta_1 Carat + \beta_2 Carat^2 + \epsilon$
+
+> * What is the interpretation of $\hat\beta_1$?
+> * Typically, in multiple linear regression, the interpretation of $\hat\beta_i$ is:
+a one-unit change in $x$ yields an expected change in $y$ of $\hat\beta_i$ **holding all other variables constant**.
+>   * What does it mean to see a change in `Caret` holding `Carat` $^2$ constant?
+> * When you have a polynomial term, you need to **specify the values you are changing between**, since the change is no longer constant across all values of $x$.
+
+
+
+## Interpreting $\hat\beta$ in the presence of polynomials {.small}
+
+```{r}
+#| code-fold: false
+lm(TotalPrice ~ Carat + I(Carat^2), data = Diamonds)
+```
+
+
+What is the expected change in `TotalPrice` for a one-unit change in `Carat`, changing from 0.8 to 1.8?
+
+. . .
+
+::: {layout-ncol=2}
+```{r, echo = TRUE}
+(-522.7 + 2386 * 1.8 + 4498.2 * 1.8^2) - 
+  (-522.7 + 2386 * 0.8 + 4498.2 * 0.8^2)
+```
+
+
+```{r, echo = TRUE}
+2386 * (1.8 - 0.8) + 
+  4498.2 * (1.8^2 - 0.8^2)
+```
+
+:::
+
+
+
+## Interpreting $\hat\beta$ in the presence of polynomials {.small}
+
+```{r}
+#| code-fold: false
+lm(TotalPrice ~ Carat + I(Carat^2), data = Diamonds) 
+```
+
+
+What is the expected change in `TotalPrice` for a one-unit change in `Carat`, changing from 1.8 to 2.8?
+
+. . .
+
+```{r}
+#| code-fold: false
+2386 * (2.8 - 1.8) + 4498.2 * (2.8^2 - 1.8^2)
+```
+
+> * Can we talk about $\hat\beta_1$ and $\hat\beta_2$ in the context of a one-unit change in `Carat`?
+
+
+## Interpreting $\hat\beta$ in the presence of polynomials {.small}
+
+> * $\hat\beta$ coefficients that are transformations of the same $x$ variable **must** be interpreted together
+> * You must first choose to values of $x$ to change between, and then report the change. 
+> * A sensible choice for the two $x$ values can be the 25th% quantile and the 75th% quantile.
+
+
+## General $\hat\beta$ interpretation with quadratic terms {.center}
+
+The linear term in the model for $x$ has a coefficient of $\hat\beta_1$ (95% CI: $(LB_{\hat\beta_1}, UB_{\hat\beta_1})$). The quadratic term in the model for $x$ has a coefficient of $\hat\beta_2$ (95% CI: $(LB_{\hat\beta_2}, UB_{\hat\beta_2})$). A change in $x$ from $a$ to $b$ yields an expected change in $y$ of $\hat\beta_1 (b - a) + \hat\beta_2 (b^2 - a^2)$ **holding all other variables constant***.
+
+> * You must include this line if there are **additional variables in your model**.
+
+
+
+## Specific $\hat\beta$ interpretation for $y = \beta_0 + \beta_1 Carat + \beta_2 Carat^2 + \epsilon$ model {.center}
+
+The linear term in the model for `Carat` has a coefficient of 2386 (95% CI: $(906, 3866)$). The quadratic term in the model for `Carat` has a coefficient of $4498$ (95% CI: $(3981, 5016)$). A change in `Carat` from $0.7$ to $1.24$ yields an expected change in `TotalPrice` of $6000.5$.
+
+
+> * Why didn't I say **holding all other variables constant?**
+
+
+
+## Take aways
+
+> * The interpretation of $\hat\beta$ in multiple linear regression
+>    * A one-unit change in $x$ yields an expected change in $y$ of $\hat\beta$ **holding all other included variables constant**
+> * If the _slope differs_ between groups (the lines cross in a scatterplot), an **interaction** is present
+> * You can include polynomial terms to address **non-linear** relationships
+>    * The coefficients for a polynomial must be interpreted together
+  
+
+
+## {{< fa laptop >}} `Application Exercise}
+
+1. Open `appex-14.qmd`
+2.  Fit the model  $TotalPrice = \beta_0  + \beta_1Carat + \beta_2 Carat^2 + \beta_3 Color+\epsilon$
+3.  Find the 0.25 quantile and 0.75 quantile of `Carat`
+4.  What is the interpretation of $\hat\beta_1$, $\hat\beta_2$, and $\hat\beta_3$?
+
+
+
+
