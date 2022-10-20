@@ -1,0 +1,356 @@
+---
+title: "Types of variables"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+
+## Variable types
+
+```{r child = "setup.Rmd"}
+```
+
+```{r}
+#| label: packages
+#| echo: false
+library(Stat2Data)
+```
+
+
+* There are two major classes of variables
+  * numeric (quantitative) 
+  * categorical
+
+
+## Variable types
+
+* Recall from the first week of class, you can use the `glimpse()` function to see all of your variables and their types
+
+```{r}
+#| code-fold: false
+data("PorschePrice")
+glimpse(PorschePrice)
+```
+
+> * What are the variables here?
+> * `fct`: "factor" this is a type of categorical variable
+
+
+
+## Variable types
+
+* Recall from the first week of class, you can use the `glimpse()` function to see all of your variables and their types
+
+
+```{r}
+#| code-fold: false
+#| eval: false
+glimpse(starwars)
+```
+
+
+```{r}
+#| echo: false
+glimpse(starwars[, 1:5])
+```
+
+
+> * `chr`: "character" this is a type of categorical variable
+
+
+
+## Variable types
+
+> * So far, our models have only included _numeric_ (_quantitative_) variables
+> * What would the equation be for predicting $y$ from $x$ when $x$ is numeric?
+> * What would happen if $x$ is categorical?
+>    * What would the equation be for predicting $y$ from $x$ if $x$ is categorical with 2 levels?
+>    * What would the equation be for predicting $y$ from $x$ if $x$ is categorical with 3 levels?
+  
+
+## indicator variable {.center}
+
+An **indicator variable** uses two values, usually 0 and 1, to indicate whether a data case does (1) or does not (0) belong to a specific category
+
+
+## Indicator variable 
+
+```{r}
+#| echo: false
+data("Diamonds")
+```
+
+::: smaller
+
+```{r}
+#| echo: false
+Diamonds %>% 
+  select(TotalPrice, Color, Carat) %>%
+  DT::datatable()
+```
+:::
+
+
+
+## Indicator variables
+
+::: question 
+What does this line of code do?
+:::
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "3"
+Diamonds <- Diamonds %>%
+  mutate(
+    ColorD = ifelse(Color == "D", 1, 0), 
+    ColorE = ifelse(Color == "E", 1, 0),
+    ColorF = ifelse(Color == "F", 1, 0),
+    ColorG = ifelse(Color == "G", 1, 0),
+    ColorH = ifelse(Color == "H", 1, 0),
+    ColorI = ifelse(Color == "I", 1, 0),
+    ColorJ = ifelse(Color == "J", 1, 0)
+  )
+```
+
+
+
+
+## Indicator variables
+
+::: question
+What does this line of code do?
+:::
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "4"
+Diamonds <- Diamonds %>%
+  mutate(
+    ColorD = ifelse(Color == "D", 1, 0), 
+    ColorE = ifelse(Color == "E", 1, 0), 
+    ColorF = ifelse(Color == "F", 1, 0),
+    ColorG = ifelse(Color == "G", 1, 0),
+    ColorH = ifelse(Color == "H", 1, 0),
+    ColorI = ifelse(Color == "I", 1, 0),
+    ColorJ = ifelse(Color == "J", 1, 0)
+  )
+```
+
+
+
+## Indicator variables
+
+::: smaller
+
+```{r}
+#| echo: false
+Diamonds %>%
+  select(TotalPrice, Carat, Color, ColorD, ColorE, ColorF, ColorG, ColorH, ColorI) %>%
+  DT::datatable()
+```
+
+:::
+
+## Indicator variables
+
+::: question
+What if I wanted to model the relationship between `TotalPrice` and `Color`?
+:::
+
+::: smaller
+
+```{r}
+#| echo: false
+Diamonds %>%
+  select(TotalPrice, Carat, Color, ColorD, ColorE, ColorF, ColorG, ColorH, ColorI) %>%
+  DT::datatable(options = list(pageLength = 5))
+```
+:::
+
+
+
+## Indicator variables {.small}
+
+::: question
+Why is `ColorJ` `NA`?
+:::
+
+
+```{r}
+#| code-fold: false
+lm(TotalPrice ~ ColorD + ColorE + ColorF + ColorG + ColorH + ColorI + ColorJ,
+   data = Diamonds)
+```
+
+
+> * When including indicator variables in a model for `k` categories, always include `k-1` 
+> * The one that is left out is the "reference" category
+
+
+
+## Indicator variables {.small}
+
+::: question
+What is the reference category?
+:::
+
+
+```{r}
+#| code-fold: false
+lm(TotalPrice ~ ColorD + ColorE + ColorF + ColorG + ColorH + ColorI,
+   data = Diamonds)
+```
+
+
+> * **Interpretation:** A diamond with Color `D` compared to color `J` increases the expected total price by 3632.
+> * **Interpretation:** A diamond with Color `E` compared to color `J` increases the expected total price by 2423
+
+
+
+## Indicator variables {.small}
+
+::: question
+What is the reference category?
+:::
+
+
+```{r}
+#| code-fold: false
+lm(TotalPrice ~ ColorD + ColorE + ColorF + ColorG + ColorH + ColorI,
+   data = Diamonds)
+```
+
+
+* **Interpretation:** A diamond with Color `D` compared to color `J` increases the expected total price by 3632.
+* What is the interpretation for a diamond with Color `F`?
+
+
+
+## R is smart
+
+```{r}
+#| code-fold: false
+lm(TotalPrice ~ Color, data = Diamonds)
+```
+
+
+. . .
+
+::: question
+What is the reference category?
+:::
+
+## R is smart {.small}
+
+
+```{r}
+#| code-fold: false
+lm(TotalPrice ~ Color, data = Diamonds)
+```
+
+
+> * What is the interpretation for Color `E` now?
+> * What if we wanted a different referent category?
+>   * We could code the indicators ourselves
+>   * We could **relevel** the factor
+
+
+
+
+## Relevel
+
+```{r}
+#| code-fold: false
+levels(Diamonds$Color)
+```
+
+. . .
+
+```{r}
+#| code-fold: false
+new_levels <- c("J", "D", "E", "F", "G", "H", "I")
+Diamonds <- Diamonds %>%
+  mutate(Color = fct_relevel(Color, new_levels))
+```
+
+```{r}
+#| code-fold: false
+levels(Diamonds$Color)
+```
+
+
+
+## R is smart
+
+
+```{r}
+#| code-fold: false
+lm(TotalPrice ~ Color, data = Diamonds)
+```
+
+
+. . .
+
+::: question
+What is the reference category?
+:::
+
+
+
+## What if the variable is **binary**
+
+* A **binary** variable is a special type of categorical variable with **two levels**
+
+
+
+## ICU example
+
+> * A sample of 200 patients in an ICU unit
+> * Want to see if the patient's heart rate is related to whether they were admitted via the emergency room 
+>   * y: Heart rate (beats per minute)
+>   * x: indicator for emergency room admission
+> * Aside: Is this inference or prediction?
+
+
+
+## Binary x variable
+
+```{r}
+#| code-fold: false
+data("ICU")
+lm(Pulse ~ Emergency, data = ICU)
+```
+
+> * How can we interpret $\hat{\beta}_0$ now?
+> * How can we interpret $\hat{\beta}_1$?
+
+
+
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+1. Copy the following template into RStudio Pro:
+
+```bash
+https://github.com/sta-112-f22/appex-14.git
+```
+
+2. What are the variables in the `Diamonds` dataset?
+3. What are the levels of the `Clarity` variable in the `Diamonds` data?
+4. Fit a model with `TotalPrice` as the outcome and `Clarity` as the explanatory variable
+5. Change the referent category to `SI1` and refit the model
+6. Add the variable `Depth` to your model. How do you interpret the coefficient for this parameter?
+
+
+
