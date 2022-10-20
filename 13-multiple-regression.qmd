@@ -74,7 +74,7 @@ $$\hat{y} = \hat\beta_0 + \hat\beta_1X_1 + \hat\beta_2X_2+\dots+\hat\beta_kX_k$$
 ## Let's do it in R!
 
 ::: question
-What is my response variable? What are my explantory variables?
+What is my response variable? What are my explanatory variables?
 :::
 
 * Data: Porsche Price
