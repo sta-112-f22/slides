@@ -352,5 +352,10 @@ https://github.com/sta-112-f22/appex-14.git
 5. Change the referent category to `SI1` and refit the model
 6. Add the variable `Depth` to your model. How do you interpret the coefficient for this parameter?
 
+```{r}
+#| echo: false
+
+countdown::countdown(5)
+```
 
 
