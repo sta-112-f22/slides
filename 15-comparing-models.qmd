@@ -60,7 +60,7 @@ options(digits = 3)
 >   * You have a "small" model and a "large" model where the "small" model is completely contained in the "large" model
 > * The F-test we have learned so far is one example of this, comparing:
 >    * $y = \beta_0 + \epsilon$ (**small**)
->    * $y = \beta_0 + \beta_1 + \beta_2 + \dots +\beta_k + \epsilon$ (**large**)
+>    * $y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \dots +\beta_kx_k + \epsilon$ (**large**)
 > * The full (**large**) model has $k$ predictors, the reduced (**small**) model has $k - p$ predictors
 
 
@@ -95,7 +95,7 @@ options(digits = 3)
   
 . . .
 
-* (4) in (1) in (2)
+((4) in (1) in (2))
 
 
 
@@ -311,7 +311,7 @@ anova(model1, model2)
 ::: smaller
 ```{r}
 #| code-fold: false
-summary(model2)
+summary(model1)
 ```
 :::
 
@@ -406,8 +406,8 @@ BIC(model2)
 ```{r}
 #| code-fold: false
 AIC(model1)
-AIC(model1)
-BIC(model2)
+AIC(model2)
+BIC(model1)
 BIC(model2)
 ```
 

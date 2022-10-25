@@ -430,7 +430,7 @@
 <li class="fragment">The F-test we have learned so far is one example of this, comparing:
 <ul>
 <li class="fragment"><span class="math inline">\(y = \beta_0 + \epsilon\)</span> (<strong>small</strong>)</li>
-<li class="fragment"><span class="math inline">\(y = \beta_0 + \beta_1 + \beta_2 + \dots +\beta_k + \epsilon\)</span> (<strong>large</strong>)</li>
+<li class="fragment"><span class="math inline">\(y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \dots +\beta_kx_k + \epsilon\)</span> (<strong>large</strong>)</li>
 </ul></li>
 <li class="fragment">The full (<strong>large</strong>) model has <span class="math inline">\(k\)</span> predictors, the reduced (<strong>small</strong>) model has <span class="math inline">\(k - p\)</span> predictors</li>
 </ul>
@@ -474,11 +474,7 @@
 <li><span class="math inline">\(y = \beta_0 + \beta_1 x_4 + \epsilon\)</span></li>
 </ol>
 <div class="fragment">
-<ul>
-<li><ol start="4" type="1">
-<li>in (1) in (2)</li>
-</ol></li>
-</ul>
+<p>((4) in (1) in (2))</p>
 </div>
 </section>
 <section id="nested-f-test-for-multiple-linear-regression-4" class="slide level2">
@@ -734,31 +730,28 @@ Model 2: Weight ~ Length + Width + I(Length^2) + I(Width^2) + Length *
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="smaller quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">summary</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = Weight ~ Length + Width + I(Length^2) + I(Width^2) + 
-    Length * Width, data = Perch)
+lm(formula = Weight ~ Length + Width + Length * Width, data = Perch)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--117.17  -11.90    2.82   11.56  157.60 
+-140.11  -12.23    1.23    8.49  181.41 
 
 Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept)   156.349     61.415    2.55    0.014 *
-Length        -25.001     14.273   -1.75    0.086 .
-Width          20.977     82.588    0.25    0.801  
-I(Length^2)     1.572      0.724    2.17    0.035 *
-I(Width^2)     34.406     18.745    1.84    0.072 .
-Length:Width   -9.776      7.145   -1.37    0.177  
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   113.935     58.784    1.94    0.058 .  
+Length         -3.483      3.152   -1.10    0.274    
+Width         -94.631     22.295   -4.24  9.1e-05 ***
+Length:Width    5.241      0.413   12.69  &lt; 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 43.1 on 50 degrees of freedom
-Multiple R-squared:  0.986, Adjusted R-squared:  0.985 
-F-statistic:  705 on 5 and 50 DF,  p-value: &lt;2e-16</code></pre>
+Residual standard error: 44.2 on 52 degrees of freedom
+Multiple R-squared:  0.985, Adjusted R-squared:  0.984 
+F-statistic: 1.11e+03 on 3 and 52 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 </div>
 </div>
@@ -889,13 +882,13 @@ F-statistic:  705 on 5 and 50 DF,  p-value: &lt;2e-16</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 589</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">AIC</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">AIC</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 589</code></pre>
+<pre><code>[1] 588</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">BIC</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">BIC</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 602</code></pre>
+<pre><code>[1] 599</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">BIC</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -932,7 +925,7 @@ F-statistic:  705 on 5 and 50 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_7dd4f70e" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_2d687969" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
