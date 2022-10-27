@@ -90,7 +90,7 @@ options(digits = 3)
 (1) $y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon$  
 (2) $y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 * x_2 + \epsilon$  
 (3) $y = \beta_0 + \beta_1 x_3 + \epsilon$  
-(4) $y = \beta_0 + \beta_2 x_2 + \epsilon$  
+(4) $y = \beta_0 + \beta_1 x_1 + \epsilon$  
 (5) $y = \beta_0 + \beta_1 x_4 + \epsilon$  
   
 . . .
@@ -103,7 +103,7 @@ options(digits = 3)
 
 ## `r emo::ji("hammer_and_wrench")` Nested F-test for Multiple Linear Regression
 
-(1) $y = \beta_0 + \beta_2 x_2 + \epsilon$  
+(1) $y = \beta_0 + \beta_1 x_1 + \epsilon$  
 (2) $y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 * x_2 + \epsilon$  
 
 > * Comparing these two models, what is $p$?
@@ -127,7 +127,7 @@ model1 <- lm(
   data = Perch
   )
 model2 <- lm(
-  Weight ~ Length + Width + I(Length ^ 2) + I(Width ^ 2) + Length * Width,
+  Weight ~ Length + Width + Length * Width + I(Length ^ 2) + I(Width ^ 2),
   data = Perch
   )
 ```
@@ -151,16 +151,16 @@ model1 <- lm(
   data = Perch
   )
 model2 <- lm(
-  Weight ~ Length + Width + I(Length ^ 2) + I(Width ^ 2) + Length * Width,
+  Weight ~ Length + Width + Length * Width + I(Length ^ 2) + I(Width ^ 2),
   data = Perch
   )
 ```
 
 
 > * If we want to do a _nested F-test_, what is $H_0$?
->   * $H_0: \beta_3 = \beta_4 = 0$
+>   * $H_0: \beta_4 = \beta_5 = 0$
 > * What is $H_A$?
->   * $H_A: \beta_3\neq 0$ or $\beta_4\neq 0$
+>   * $H_A: \beta_4\neq 0$ or $\beta_5\neq 0$
 > * What are the degrees of freedom of this test? (n = 56)
 >   * 2, 50
 
