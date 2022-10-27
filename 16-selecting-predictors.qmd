@@ -1,0 +1,344 @@
+---
+title: "Selecting predictors"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+## Selecting variables {.small}
+
+```{r child = "setup.Rmd"}
+```
+
+```{r}
+#| include: false
+library(glue)
+```
+
+::: question
+When the goal is **inference** how do we choose what to include in our model?
+:::
+
+> * We need to understand the theoretical relationship between the explanatory variable we are interested in, the outcome variable we are interested in, and any **confounders**.
+>* There is not a statistical test we can do to test whether we have included all relevant variables
+
+## Selecting variables {.small}
+
+> * When the goal is **prediction** we can use the metrics we learned about last class to compare models
+> * But how do we choose what to put in those models to begin with?
+> * What if we look at every combination of all available variables?
+
+
+## Multicollinearity {.small}
+
+> * One concern with including every potential combination of all variables is that we may include variables that are highly correlated
+> * In the extreme case, if one predictor has an **exact** linear relationship with one ormore other predictors in the model, the least squares process does not have a unique solution
+
+. . .
+
+::: small
+```{r}
+#| code-fold: false
+
+d <- tibble(
+  x1 = rnorm(100),
+  x2 = rnorm(100),
+  x3 = 3 * x1 + 4 * x2,
+  y = rnorm(100)
+)
+
+lm(y ~ x1 + x2 + x3, data = d)
+
+```
+:::
+
+
+## Multicollinearity {.small}
+
+* In the less extreme case where the variables are not **perfect** linear combinations of each other, but still highly correlated, including all variables could inflate your variance
+
+::: {layout-ncol=2}
+
+::: small
+
+```{r}
+d <- tibble(
+  x1 = rnorm(100),
+  x2 = rnorm(100),
+  x3 = 4 * x2 + rnorm(100, sd = 0.1),
+  y = x1 + x2 + rnorm(100)
+)
+
+summary(lm(y ~ x1 + x2 + x3, data = d))
+```
+:::
+
+
+::: small
+```{r}
+summary(lm(y ~ x1 + x2, data = d))
+```
+:::
+:::
+
+> * Here, I am focusing on the $\hat\beta$ and it's standard error, is this an **inference** focus or **prediction**?
+
+## Multicollinearity {.small}
+
+>* For **prediction** we care about multicollinearity if we are trying to fit a parsimonious model. We can potentially remove predictors that are highly correlated with other variables since they don't add much additional information
+>* To determine how correlated a predictor is with all of the other variables included, we can examine the **variance inflation factor**
+
+. . .
+
+$$VIF_i = \frac{1}{1-R_i^2}$$
+
+> * $R_i^2$ is the $R^2$ value from the model used to predict $X_i$ from all of the remaining predictors.
+
+## Variance inflation factor {.small}
+
+
+::: {layout-ncol=2}
+::: small
+```{r}
+#| code-fold: false
+summary(lm(x1 ~ x2 + x3, data = d))
+1 / (1 - 0.005468)
+```
+
+:::
+
+::: small
+
+```{r}
+#| code-fold: false
+summary(lm(x2 ~ x1 + x3, data = d))
+1 / (1 - 0.9995)
+```
+:::
+
+:::
+
+> * A rule of thumb is that we suspect multicollinearity if VIF > 5
+> * We could drop one of the highly correlated predictors from our model
+
+## Choosing predictors {.small}
+
+> * We could try every combination of all variables
+> * This could get computationally expensive - you are fitting $2^k$ models (so if you have 10 predictors, that is 1,024 models you are choosing between, yikes!)
+> * Another issue with trying every possible combination of models is you could *overfit* your model to your data -- that is, the model might fit very well to **these particular** observations, but would do a poor job predicting a new sample. 
+
+## Overfitting {.small}
+
+::: {layout-ncol=2}
+::: small
+```{r}
+set.seed(1)
+d_samp1 <- tibble(
+  x1 = rnorm(20),
+  x2 = rnorm(20),
+  x3 = rnorm(20),
+  x4 = rnorm(20),
+  x5 = rnorm(20),
+  x6 = rnorm(20),
+  x7 = rnorm(20),
+  x8 = rnorm(20),
+  x9 = rnorm(20),
+  x10 = rnorm(20),
+  x11 = rnorm(20),
+  x12 = rnorm(20),
+  x13 = rnorm(20),
+  x14 = rnorm(20),
+  x15 = rnorm(20),
+  y = x1 + rnorm(20)
+)
+
+set.seed(98)
+d_samp2 <- tibble(
+  x1 = rnorm(20),
+  x2 = rnorm(20),
+  x3 = rnorm(20),
+  x4 = rnorm(20),
+  x5 = rnorm(20),
+  x6 = rnorm(20),
+  x7 = rnorm(20),
+  x8 = rnorm(20),  
+  x9 = rnorm(20),
+  x10 = rnorm(20),
+  x11 = rnorm(20),
+  x12 = rnorm(20),
+  x13 = rnorm(20),
+  x14 = rnorm(20),
+  x15 = rnorm(20),
+  y =  x1 + rnorm(20)
+)
+
+mod <- lm(y ~ x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10 + x11 + x12 + x13 + x14 + x15, data = d_samp1)
+summary(mod)
+```
+:::
+
+
+```{r}
+ggplot(d_samp1, aes(x = fitted(mod), y = residuals(mod))) +
+  geom_point(size = 3) +
+  geom_hline(yintercept = 0) +
+  labs(x = "Fitted value",
+       y = "Residuals")
+```
+
+:::
+
+## Overfitting {.small}
+
+::: {layout-ncol=2}
+
+```{r}
+#| code-fold: false
+mean(residuals(mod)^2)
+resids <- d_samp2$y - predict(mod, d_samp2)
+resids
+mean(resids^2)
+```
+
+```{r}
+ggplot(d_samp2, aes(x = predict(mod, d_samp2), y = resids)) +
+  geom_point(size = 3) + 
+  geom_point(aes(x = fitted(mod), y = residuals(mod)), color = "cornflower blue", size = 3) + 
+  geom_hline(yintercept = 0) + 
+  labs(x = "Fitted (new sample)",
+       y = "Residuals (new sample)")
+```
+:::
+
+## Overfitting {.small}
+
+> * **Solution**: Fit the model on **part of the data** and calculate 
+> * **Cross-validation**: fit the model on a subset of observations, see how it performs on the rest
+> * **Leave-on-out cross validation**: fit the model on n-1 observations, see how the model performs on the nth
+
+
+## LOOCV {.small}
+
+::: small
+```{r}
+#| code-fold: false
+set.seed(10)
+train <- d_samp1 %>%
+  sample_n(19)
+test <- d_samp1 %>%
+  anti_join(train)
+mod <- lm(y ~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10 + x11 + x12 + x13 + x14 + x15, data = train)
+summary(mod)
+mean(residuals(mod)^2)
+mean((test$y - predict(mod, test))^2)
+```
+:::
+
+## LOOCV
+
+
+```{r}
+#| cache: true
+get_error <- function(k) {
+  train <- d_samp1 %>%
+    sample_n(19)
+  test <- d_samp1 %>%
+    anti_join(train, by = c("x1", "x2", "x3", "x4", "x5", "x6", "x7", "y"))
+  form <- as.formula(glue(
+    "y ~ {glue_collapse(glue('x{1:k}'), sep = ' + ')}"
+  ))
+  mod <- lm(form, data = train)
+  tibble(
+    error = c(mean(residuals(mod)^2), mean((test$y - predict(mod, test))^2)),
+    type = c("train", "test"),
+    k = k
+  )
+}
+
+set.seed(1)
+err <- map_df(rep(1:7, each = 100), get_error) 
+err %>%
+  group_by(k, type) %>%
+  summarise(error = mean(error)) %>%
+  ggplot(aes(x = k, y = error, color = type)) +
+  geom_point() +
+  geom_line()
+
+```
+
+## AIC {.small}
+
+* It turns out in the case of linear regression, **AIC** mimics the choice from LOOCV so you don't have to learn how to do this complicated method!
+
+```{r}
+get_aic <- function(k) {
+   form <- as.formula(glue(
+    "y ~ {glue_collapse(glue('x{1:k}'), sep = ' + ')}"
+  ))
+  mod <- lm(form, data = d_samp1)
+  tibble(
+    AIC = AIC(mod),
+    k = k
+  )
+}
+
+err <- map_df(1:7, get_aic)
+err %>%
+  ggplot(aes(x = k, y = AIC)) +
+  geom_point() +
+  geom_line()
+```
+
+## BIC {.small}
+
+* **BIC** is equivalent to leave-$k$-out cross validation (where $k = n[1-1/log(n)-1])$) for linear models, so we can also use this metric without having to code up the complex cross validation!
+
+```{r}
+get_bic <- function(k) {
+   form <- as.formula(glue(
+    "y ~ {glue_collapse(glue('x{1:k}'), sep = ' + ')}"
+  ))
+  mod <- lm(form, data = d_samp1)
+  tibble(
+    BIC = BIC(mod),
+    k = k
+  )
+}
+
+err <- map_df(1:7, get_bic)
+err %>%
+  ggplot(aes(x = k, y = BIC)) +
+  geom_point() +
+  geom_line()
+```
+
+## Big picture {.small}
+
+### inference
+
+we need to use our theoretical understanding of the relationship between variables in order to properly select variables to include in our model
+
+## Big picture {.small}
+
+### inference
+
+we need to use our theoretical understanding of the relationship between variables in order to properly select variables to include in our model
+
+
+### prediction
+
+1. Choose a set of predictors to assess
+2. Use a metric that balances parsimony with goodness of fit ($R^2_{adj}$, AIC, BIC) to select the model
+3. Best practice is to fit the model on one set of data and test it on another (using something like Leave-one-out cross validation), but it turns out **AIC** and **BIC** mimic this for linear regression (yay!) so we can reliably use these metric even when not splitting our data
+
+
