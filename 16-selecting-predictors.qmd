@@ -72,6 +72,7 @@ lm(y ~ x1 + x2 + x3, data = d)
 ::: small
 
 ```{r}
+set.seed(1)
 d <- tibble(
   x1 = rnorm(100),
   x2 = rnorm(100),
@@ -112,7 +113,7 @@ $$VIF_i = \frac{1}{1-R_i^2}$$
 ```{r}
 #| code-fold: false
 summary(lm(x1 ~ x2 + x3, data = d))
-1 / (1 - 0.005468)
+1 / (1 - 0.0003379)
 ```
 
 :::
@@ -122,7 +123,7 @@ summary(lm(x1 ~ x2 + x3, data = d))
 ```{r}
 #| code-fold: false
 summary(lm(x2 ~ x1 + x3, data = d))
-1 / (1 - 0.9995)
+1 / (1 - 0.9993)
 ```
 :::
 
@@ -222,7 +223,7 @@ ggplot(d_samp2, aes(x = predict(mod, d_samp2), y = resids)) +
 
 ## Overfitting {.small}
 
-> * **Solution**: Fit the model on **part of the data** and calculate 
+> * **Solution**: Fit the model on **part of the data** and calculate the error on the remaining part
 > * **Cross-validation**: fit the model on a subset of observations, see how it performs on the rest
 > * **Leave-on-out cross validation**: fit the model on n-1 observations, see how the model performs on the nth
 

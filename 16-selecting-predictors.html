@@ -431,7 +431,7 @@ lm(formula = y ~ x1 + x2 + x3, data = d)
 
 Coefficients:
 (Intercept)           x1           x2           x3  
-   -0.20555     -0.11998      0.07224           NA  </code></pre>
+    0.12514      0.03661     -0.02821           NA  </code></pre>
 </div>
 </div>
 </div>
@@ -448,14 +448,15 @@ Coefficients:
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="at">x1 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">x2 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="at">x3 =</span> <span class="dv">4</span> <span class="sc">*</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd =</span> <span class="fl">0.1</span>),</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">y =</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb3-6"><a href="#cb3-6"></a>)</span>
-<span id="cb3-7"><a href="#cb3-7"></a></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3, <span class="at">data =</span> d))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">x1 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="at">x2 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">x3 =</span> <span class="dv">4</span> <span class="sc">*</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd =</span> <span class="fl">0.1</span>),</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="at">y =</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3, <span class="at">data =</span> d))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -463,21 +464,21 @@ Call:
 lm(formula = y ~ x1 + x2 + x3, data = d)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--1.9912 -0.6511 -0.1230  0.8049  1.9974 
+     Min       1Q   Median       3Q      Max 
+-2.58201 -0.52738  0.00281  0.65058  1.82364 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -0.06668    0.09995  -0.667    0.506    
-x1           0.99395    0.10372   9.583 1.17e-15 ***
-x2           0.86982    3.71020   0.234    0.815    
-x3           0.02461    0.92882   0.026    0.979    
+(Intercept)  0.05273    0.10065   0.524    0.602    
+x1           0.94204    0.11169   8.434  3.4e-13 ***
+x2          -3.23987    3.88095  -0.835    0.406    
+x3           1.04623    0.97118   1.077    0.284    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.9975 on 96 degrees of freedom
-Multiple R-squared:  0.6653,    Adjusted R-squared:  0.6548 
-F-statistic:  63.6 on 3 and 96 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.998 on 96 degrees of freedom
+Multiple R-squared:  0.6144,    Adjusted R-squared:  0.6024 
+F-statistic:    51 on 3 and 96 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div>
@@ -493,20 +494,20 @@ Call:
 lm(formula = y ~ x1 + x2, data = d)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--1.9908 -0.6484 -0.1223  0.8071  1.9979 
+     Min       1Q   Median       3Q      Max 
+-2.48809 -0.54939 -0.05717  0.65489  1.81422 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -0.06664    0.09942   -0.67    0.504    
-x1           0.99429    0.10240    9.71 5.68e-16 ***
-x2           0.96811    0.08980   10.78  &lt; 2e-16 ***
+(Intercept)  0.05538    0.10070   0.550    0.584    
+x1           0.94425    0.11177   8.448 2.96e-13 ***
+x2           0.93946    0.10480   8.964 2.31e-14 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.9923 on 97 degrees of freedom
-Multiple R-squared:  0.6653,    Adjusted R-squared:  0.6584 
-F-statistic: 96.39 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.9989 on 97 degrees of freedom
+Multiple R-squared:  0.6098,    Adjusted R-squared:  0.6017 
+F-statistic: 75.79 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div>
@@ -543,21 +544,21 @@ lm(formula = x1 ~ x2 + x3, data = d)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--2.89298 -0.55043 -0.07041  0.59391  2.82084 
+-2.30129 -0.60350  0.01765  0.58513  2.27806 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)  0.05385    0.09769   0.551    0.583
-x2          -4.45946    3.60384  -1.237    0.219
-x3           1.09671    0.90244   1.215    0.227
+(Intercept)  0.10841    0.09083   1.194    0.236
+x2          -0.63849    3.52738  -0.181    0.857
+x3           0.15960    0.88270   0.181    0.857
 
-Residual standard error: 0.9765 on 97 degrees of freedom
-Multiple R-squared:  0.02343,   Adjusted R-squared:  0.003297 
-F-statistic: 1.164 on 2 and 97 DF,  p-value: 0.3166</code></pre>
+Residual standard error: 0.9073 on 97 degrees of freedom
+Multiple R-squared:  0.0003379, Adjusted R-squared:  -0.02027 
+F-statistic: 0.01639 on 2 and 97 DF,  p-value: 0.9837</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.005468</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.0003379</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.005498</code></pre>
+<pre><code>[1] 1.000338</code></pre>
 </div>
 </div>
 </div>
@@ -571,23 +572,23 @@ lm(formula = x2 ~ x1 + x3, data = d)
 
 Residuals:
       Min        1Q    Median        3Q       Max 
--0.064929 -0.015876 -0.000702  0.020591  0.060371 
+-0.066055 -0.016015  0.000616  0.011195  0.073233 
 
 Coefficients:
               Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -0.0004334  0.0027349  -0.158    0.874    
-x1          -0.0034848  0.0028162  -1.237    0.219    
-x3           0.2502687  0.0006184 404.705   &lt;2e-16 ***
+(Intercept) -0.0006617  0.0026323  -0.251    0.802    
+x1          -0.0005288  0.0029217  -0.181    0.857    
+x3           0.2501524  0.0006856 364.880   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.0273 on 97 degrees of freedom
-Multiple R-squared:  0.9994,    Adjusted R-squared:  0.9994 
-F-statistic: 8.26e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.02611 on 97 degrees of freedom
+Multiple R-squared:  0.9993,    Adjusted R-squared:  0.9993 
+F-statistic: 6.657e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.9995</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.9993</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2000</code></pre>
+<pre><code>[1] 1428.571</code></pre>
 </div>
 </div>
 </div>
@@ -755,7 +756,7 @@ F-statistic: 0.6768 on 14 and 5 DF,  p-value: 0.7413</code></pre>
 <section id="overfitting-2" class="slide level2 small">
 <h2>Overfitting</h2>
 <ul>
-<li class="fragment"><strong>Solution</strong>: Fit the model on <strong>part of the data</strong> and calculate</li>
+<li class="fragment"><strong>Solution</strong>: Fit the model on <strong>part of the data</strong> and calculate the error on the remaining part</li>
 <li class="fragment"><strong>Cross-validation</strong>: fit the model on a subset of observations, see how it performs on the rest</li>
 <li class="fragment"><strong>Leave-on-out cross validation</strong>: fit the model on n-1 observations, see how the model performs on the nth</li>
 </ul>

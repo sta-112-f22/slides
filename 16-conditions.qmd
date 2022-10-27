@@ -167,7 +167,7 @@ Assumption| What it means | How do you check? | How do you fix?
 ----|-----|-----------|-----
 Linearity |The relationship between the outcome and explanatory variable or predictor is linear **holding all other variables constant**| Residuals vs. fits plot <br> Marginal effects plots| fit a better model (transformations, polynomial terms, more / different variables, etc.)
 Zero Mean | The error distribution is centered at zero | by default | --
-Constant Variance | The variability in the errors is the same for all values of the predictor variable | Residuals vs fits plot | fit a better model (try taking the log or square root or square root of the outcome)
+Constant Variance | The variability in the errors is the same for all values of the predictor variable | Residuals vs fits plot | fit a better model (try taking the log or square root of the outcome)
 Independence | | |
 
 :::
