@@ -1,0 +1,303 @@
+---
+title: "Interpreting coefficients"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+## Interpreting coefficients
+
+::: question
+In general, in what context are we concerned with interpreting coefficients, **prediction** or **inference**?
+:::
+
+```{r child = "setup.Rmd"}
+```
+
+
+## Interpreting coefficients {.small}
+
+::: smaller
+
+model type | interpretation of $\hat\beta$
+-----------|----------------------------
+simple linear regression | 
+
+:::
+
+## Interpreting coefficients {.small}
+
+::: smaller
+
+model type | interpretation of $\hat\beta$
+-----------|----------------------------
+simple linear regression | A one unit change in $x$ yields an **expected** change in $y$ of $\hat\beta_1$
+:::
+
+. . .
+
+**Note**: Always state what the units are for $x$ and what the units are for $y$ in the context of the problem
+
+## Interpreting coefficients {.small}
+
+::: smaller
+
+model type | interpretation of $\hat\beta$
+-----------|----------------------------
+simple linear regression | A one unit change in $x$ yields an **expected** change in $y$ of $\hat\beta_1$
+multiple linear regression **where $x_i$ is only included once in the model** |  A one unit change in $x_i$ yields an **expected** change in $y$ of $\hat\beta_i$ holding all other variables constant
+:::
+
+. . .
+
+**Note**: Always state what the units are for $x$ and what the units are for $y$ in the context of the problem AND what the variables being held constant are
+
+
+## Interpreting coefficients {.small}
+
+::: smaller
+
+model type | interpretation of $\hat\beta$
+-----------|----------------------------
+simple linear regression | A one unit change in $x$ yields an **expected** change in $y$ of $\hat\beta_1$
+multiple linear regression **where $x_i$ is only included once in the model** |  A one unit change in $x_i$ yields an **expected** change in $y$ of $\hat\beta_i$ holding all other variables constant
+multiple linear regression **where a quadratic of $x_i$ is also included** |
+:::
+
+## Interpreting coefficients {.small}
+
+::: smaller
+
+model type | interpretation of $\hat\beta$
+-----------|----------------------------
+simple linear regression | A one unit change in $x$ yields an **expected** change in $y$ of $\hat\beta_1$
+multiple linear regression **where $x_i$ is only included once in the model** |  A one unit change in $x_i$ yields an **expected** change in $y$ of $\hat\beta_i$ holding all other variables constant
+multiple linear regression **where a quadratic of $x_i$ is also included** | A change in $x_i$ from $a$ to $b$ yields an **expected** change in $y$ of $\hat\beta_{x_i}(b-a) + \hat\beta_{x_i^2}(b^2-a^2)$ holding all other variables constant
+:::
+
+## Interpreting coefficients {.small}
+
+::: smaller
+
+model type | interpretation of $\hat\beta$
+-----------|----------------------------
+simple linear regression | A one unit change in $x$ yields an **expected** change in $y$ of $\hat\beta_1$
+multiple linear regression **where $x_i$ is only included once in the model** |  A one unit change in $x_i$ yields an **expected** change in $y$ of $\hat\beta_i$ holding all other variables constant
+multiple linear regression **where a quadratic of $x_i$ is also included** | A change in $x_i$ from $a$ to $b$ yields an **expected** change in $y$ of $\hat\beta_{x_i}(b-a) + \hat\beta_{x_i^2}(b^2-a^2)$ holding all other variables constant
+multiple linear regression **where a quadratic and cubic term of $x_i$ are also included** |
+:::
+
+## Interpreting coefficients {.small}
+
+::: smaller
+
+model type | interpretation of $\hat\beta$
+-----------|----------------------------
+simple linear regression | A one unit change in $x$ yields an **expected** change in $y$ of $\hat\beta_1$
+multiple linear regression **where $x_i$ is only included once in the model** |  A one unit change in $x_i$ yields an **expected** change in $y$ of $\hat\beta_i$ holding all other variables constant
+multiple linear regression **where a quadratic of $x_i$ is also included** | A change in $x_i$ from $a$ to $b$ yields an **expected** change in $y$ of $\hat\beta_{x_i}(b-a) + \hat\beta_{x_i^2}(b^2-a^2)$ holding all other variables constant
+multiple linear regression **where a quadratic and cubic term of $x_i$ are also included** | A change in $x_i$ from $a$ to $b$ yields an **expected** change in $y$ of $\hat\beta_{x_i}(b-a) + \hat\beta_{x_i^2}(b^2-a^2)+ \hat\beta_{x_i^3}(b^3-a^3)$ holding all other variables constant
+:::
+
+## Interpreting coefficients {.small}
+
+::: smaller
+
+model type | interpretation of $\hat\beta$
+-----------|----------------------------
+simple linear regression | A one unit change in $x$ yields an **expected** change in $y$ of $\hat\beta_1$
+multiple linear regression **where $x_i$ is only included once in the model** |  A one unit change in $x_i$ yields an **expected** change in $y$ of $\hat\beta_i$ holding all other variables constant
+multiple linear regression **where a quadratic of $x_i$ is also included** | A change in $x_i$ from $a$ to $b$ yields an **expected** change in $y$ of $\hat\beta_{x_i}(b-a) + \hat\beta_{x_i^2}(b^2-a^2)$ holding all other variables constant
+multiple linear regression **where a quadratic and cubic term of $x_i$ are also included** | A change in $x_i$ from $a$ to $b$ yields an **expected** change in $y$ of $\hat\beta_{x_i}(b-a) + \hat\beta_{x_i^2}(b^2-a^2)+ \hat\beta_{x_i^3}(b^3-a^3)$ holding all other variables constant
+multiple linear regression **where an interaction of $x_i$ with a binary variable is included** |
+:::
+
+## Interpreting coefficients {.small}
+
+::: smaller
+
+model type | interpretation of $\hat\beta$
+-----------|----------------------------
+simple linear regression | A one unit change in $x$ yields an **expected** change in $y$ of $\hat\beta_1$
+multiple linear regression **where $x_i$ is only included once in the model** |  A one unit change in $x_i$ yields an **expected** change in $y$ of $\hat\beta_i$ holding all other variables constant
+multiple linear regression **where a quadratic of $x_i$ is also included** | A change in $x_i$ from $a$ to $b$ yields an **expected** change in $y$ of $\hat\beta_{x_i}(b-a) + \hat\beta_{x_i^2}(b^2-a^2)$ holding all other variables constant
+multiple linear regression **where a quadratic and cubic term of $x_i$ are also included** | A change in $x_i$ from $a$ to $b$ yields an **expected** change in $y$ of $\hat\beta_{x_i}(b-a) + \hat\beta_{x_i^2}(b^2-a^2)+ \hat\beta_{x_i^3}(b^3-a^3)$ holding all other variables constant
+multiple linear regression **where an interaction of $x_1$ with a variable $x_{2}$ is included**  | A one unit change in $x_1$ yields an **expected** change in $y$ of $\hat\beta_1$ when $x_{2}=0$ holding all other variables constant
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x$$
+
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x$$
+
+
+
+::: question
+How do you interpret $\hat\beta_0$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x$$
+
+
+
+::: question
+How do you interpret $\hat\beta_1$?
+:::
+
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_0$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_1$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_1^2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_0$?
+:::
+
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_1^2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_1$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_1^2+\hat\beta_3x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_1$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2 + \hat\beta_3x_1\times x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_0$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2 + \hat\beta_3x_1\times x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_1$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2 + \hat\beta_3x_1\times x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_2$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2 + \hat\beta_3x_1\times x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_3$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2 + \hat\beta_3x_3 + \hat\beta_4x_1\times x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_0$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2 + \hat\beta_3x_3 + \hat\beta_4x_1\times x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_1$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2 + \hat\beta_3x_3 + \hat\beta_4x_1\times x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_2$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2 + \hat\beta_3x_3 + \hat\beta_4x_1\times x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_3$?
+:::
+
+## Examples
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2 + \hat\beta_3x_3 + \hat\beta_4x_1\times x_2$$
+
+
+
+::: question
+How do you interpret $\hat\beta_4$?
+:::
