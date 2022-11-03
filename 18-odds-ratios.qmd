@@ -264,14 +264,14 @@ Total | 462 | 851 | 1313
 . . . 
 
 
-$$\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}$$
+$$\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}$$
 
 
 
 ## Odds ratios {.small}
 
 
-$$\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}$$
+$$\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}$$
 
 
 ```{r}
@@ -289,7 +289,7 @@ What is my referent category?
 :::
 
 
-$$\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}$$
+$$\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}$$
 
 
 
@@ -306,7 +306,7 @@ levels(Titanic$Sex)
 How do I change that?
 :::
 
-$$\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}$$
+$$\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}$$
 
 
 ```{r, eval = FALSE}
@@ -323,7 +323,7 @@ Titanic <- Titanic %>%
 How do I change that?
 :::
 
-$$\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}$$
+$$\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}$$
 
 ```{r}
 #| code-fold: false

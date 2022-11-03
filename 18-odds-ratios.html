@@ -776,12 +776,12 @@
 </tbody>
 </table>
 <div class="fragment">
-<p><span class="math display">\[\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}\]</span></p>
+<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
 </div>
 </section>
 <section id="odds-ratios-14" class="slide level2 small">
 <h2>Odds ratios</h2>
-<p><span class="math display">\[\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}\]</span></p>
+<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">glm</span>(Survived <span class="sc">~</span> Sex, <span class="at">data =</span> Titanic, <span class="at">family =</span> binomial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -803,7 +803,7 @@ Residual Deviance: 1360     AIC: 1360</code></pre>
 <div class="question">
 <p>What is my referent category?</p>
 </div>
-<p><span class="math display">\[\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}\]</span></p>
+<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">levels</span>(Titanic<span class="sc">$</span>Sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -816,7 +816,7 @@ Residual Deviance: 1360     AIC: 1360</code></pre>
 <div class="question">
 <p>How do I change that?</p>
 </div>
-<p><span class="math display">\[\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}\]</span></p>
+<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>Titanic <span class="ot">&lt;-</span> Titanic <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  (<span class="at">Sex =</span> <span class="sc">---</span>(Sex, <span class="fu">c</span>(<span class="st">"male"</span>, <span class="st">"female"</span>))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -827,7 +827,7 @@ Residual Deviance: 1360     AIC: 1360</code></pre>
 <div class="question">
 <p>How do I change that?</p>
 </div>
-<p><span class="math display">\[\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}\]</span></p>
+<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>Titanic <span class="ot">&lt;-</span> Titanic <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">mutate</span>(<span class="at">Sex =</span> <span class="fu">fct_relevel</span>(Sex, <span class="fu">c</span>(<span class="st">"male"</span>, <span class="st">"female"</span>))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
