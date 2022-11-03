@@ -872,6 +872,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <div class="question">
 <p>How do you interpret this result?</p>
 </div>
+<div class="small">
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -910,6 +911,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <pre><code>[1] 9.99</code></pre>
 </div>
 </div>
+</div>
 <p><em>the odds of surviving for the female passengers was 9.99 times the odds of surviving for the male passengers</em></p>
 </section>
 <section id="odds-ratios-20" class="slide level2 small">
@@ -919,6 +921,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <li class="fragment">We did this already on Tuesday!</li>
 </ul>
 <div class="fragment">
+<div class="small">
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -952,6 +955,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 </div>
 </div>
 </div>
+</div>
 <div class="fragment">
 <p><em>A one unit increase in GPA yields a 5.45 increase in the log odds of acceptance</em></p>
 </div>
@@ -962,6 +966,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <li>What if the explanatory variable is continuous?</li>
 <li>We did this already on Tuesday!</li>
 </ul>
+<div class="small">
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -994,6 +999,7 @@ AIC: 60.84
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
 </div>
+</div>
 <div class="fragment">
 <p><em>A one unit increase in GPA yields a 234-fold increase in the odds of acceptance</em></p>
 </div>
@@ -1008,6 +1014,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <div class="question">
 <p>How could we get the odds associated with increasing GPA by 0.1?</p>
 </div>
+<div class="small">
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1039,6 +1046,7 @@ AIC: 60.84
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
 </div>
+</div>
 <div class="fragment">
 <div class="cell">
 <details>
@@ -1066,6 +1074,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <div class="question">
 <p>How could we get the odds associated with increasing GPA by 0.1?</p>
 </div>
+<div class="small">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>MedGPA <span class="ot">&lt;-</span> MedGPA <span class="sc">%&gt;%</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">mutate</span>(<span class="at">GPA_10 =</span> GPA <span class="sc">*</span> <span class="dv">10</span>)</span>
@@ -1095,6 +1104,7 @@ Residual deviance: 56.839  on 53  degrees of freedom
 AIC: 60.84
 
 Number of Fisher Scoring iterations: 4</code></pre>
+</div>
 </div>
 </div>
 <p><em>A one-tenth unit increase in GPA yields a 1.73-fold increase in the odds of acceptance</em></p>

@@ -356,13 +356,14 @@ summary(model)
 How do you interpret this result?
 :::
 
-
+::: small
 ```{r}
 glm(Survived ~ Sex, data = Titanic, family = binomial) %>%
   summary()
 
 exp(2.301176)
 ```
+:::
 
 _the odds of surviving for the female passengers was 9.99 times the odds of surviving for the male passengers_
 
@@ -375,13 +376,13 @@ _the odds of surviving for the female passengers was 9.99 times the odds of surv
 
 . . .
 
-
+::: small
 ```{r}
 data("MedGPA")
 glm(Acceptance ~ GPA, data = MedGPA, family = binomial) %>%
   summary()
 ```
-
+:::
 
 . . .
 
@@ -395,13 +396,13 @@ _A one unit increase in GPA yields a 5.45 increase in the log odds of acceptance
 * What if the explanatory variable is continuous?
 * We did this already on Tuesday!
 
-
+::: small
 ```{r}
 data("MedGPA")
 glm(Acceptance ~ GPA, data = MedGPA, family = binomial) %>%
   summary()
 ```
-
+:::
 
 . . .
 
@@ -419,12 +420,12 @@ _A one unit increase in GPA yields a 234-fold increase in the odds of acceptance
 How could we get the odds associated with increasing GPA by 0.1?
 :::
 
-
+::: small
 ```{r}
 glm(Acceptance ~ GPA, data = MedGPA, family = binomial) %>%
   summary()
 ```
-
+:::
 
 . . .
 
@@ -446,7 +447,7 @@ _A one-tenth unit increase in GPA yields a 1.73-fold increase in the odds of acc
 How could we get the odds associated with increasing GPA by 0.1?
 :::
 
-
+::: small
 ```{r}
 #| code-fold: false
 MedGPA <- MedGPA %>%
@@ -455,6 +456,6 @@ MedGPA <- MedGPA %>%
 glm(Acceptance ~ GPA_10, data = MedGPA, family = binomial) %>%
   summary()
 ```
-
+:::
 
 _A one-tenth unit increase in GPA yields a 1.73-fold increase in the odds of acceptance_
