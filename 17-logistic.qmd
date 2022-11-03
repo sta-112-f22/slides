@@ -188,7 +188,7 @@ Model | Outcome | Form
 ------|---------|-------
 Ordinary linear Regression | Numeric | $y \approx \beta_0 + \beta_1 x$
 Number of Doctors example | Numeric | $\sqrt{\textrm{Number of doctors}}\approx \beta_0 +\beta_1x$
-Logistic regression | Binary| $\log\left(\frac{\pi}{1-\pi}\right) \approx \beta_0 + \beta_1x$
+Logistic regression | Binary| $\log\left(\frac{\pi}{1-\pi}\right) = \beta_0 + \beta_1x$
 
 
 > * $\pi$ is the probability that $y = 1$ ( $P(y = 1)$ )
@@ -313,8 +313,8 @@ $l$ | $e^l$ | $\frac{e^l}{1+e^l} = \pi$
 ## The logistic model {.small}
 
 > * `r emo::ji("v")` forms
-> * **log(odds)**: $l \approx \beta_0 + \beta_1x$
-> * **P(Outcome = Yes)**: $\Large\pi \approx\frac{e^{\beta_0 + \beta_1x}}{1+e^{\beta_0 + \beta_1x}}$
+> * **log(odds)**: $l = \beta_0 + \beta_1x$
+> * **P(Outcome = Yes)**: $\Large\pi =\frac{e^{\beta_0 + \beta_1x}}{1+e^{\beta_0 + \beta_1x}}$
 
 
 
@@ -352,7 +352,7 @@ What is the equation for the model we are going to fit?
 :::
 
 * $\log(odds) = \beta_0 + \beta_1 GPA$
-* P(Accept) $\approx \frac{e^{\beta_0 + \beta_1GPA}}{1+e^{\beta_0 + \beta_1GPA}}$
+* P(Accept) $= \frac{e^{\beta_0 + \beta_1GPA}}{1+e^{\beta_0 + \beta_1GPA}}$
 * We are interested in the probability of getting accepted to medical school given a college student's GPA
 
 
