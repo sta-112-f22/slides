@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="18-odds-ratios_files/libs/clipboard/clipboard.min.js"></script>
-<script src="18-odds-ratios_files/libs/quarto-html/tabby.min.js"></script>
-<script src="18-odds-ratios_files/libs/quarto-html/popper.min.js"></script>
-<script src="18-odds-ratios_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="18-odds-ratios_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="18-odds-ratios_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="18-odds-ratios_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="18-assumptions_files/libs/clipboard/clipboard.min.js"></script>
+<script src="18-assumptions_files/libs/quarto-html/tabby.min.js"></script>
+<script src="18-assumptions_files/libs/quarto-html/popper.min.js"></script>
+<script src="18-assumptions_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="18-assumptions_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="18-assumptions_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="18-assumptions_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.0.38">
 
   <meta name="author" content="Lucy D’Agostino McGowan">
-  <title>Odds Ratios</title>
+  <title>Assumptions of Logistic Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="18-odds-ratios_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="18-odds-ratios_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="18-assumptions_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="18-assumptions_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -88,13 +88,13 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="18-odds-ratios_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="18-odds-ratios_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="18-odds-ratios_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="18-odds-ratios_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="18-odds-ratios_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="18-odds-ratios_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="18-odds-ratios_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="18-assumptions_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="18-assumptions_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="18-assumptions_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="18-assumptions_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="18-assumptions_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="18-assumptions_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="18-assumptions_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -385,765 +385,597 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">Odds Ratios</h1>
+  <h1 class="title">Assumptions of Logistic Regression</h1>
   <p class="author">Lucy D’Agostino McGowan</p>
 </section>
 
-<section id="odds-ratios" class="slide level2 small">
-<h2>Odds ratios</h2>
-<p>A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.</p>
+<section id="conditions-for-simple-linear-regression" class="slide level2 small">
+<h2>Conditions for simple linear regression</h2>
 <ul>
-<li>Researchers recruited 200 subjects who suffered from migraines</li>
-<li>randomly assigned them to receive either the TMS (transcranial magnetic stimulation) treatment or a placebo treatment</li>
-<li>Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later. (either <strong>Pain-free</strong> or <strong>Not pain-free</strong>)</li>
+<li>Linearity</li>
+<li>Zero Mean</li>
+<li>Constant Variance</li>
+<li>Independence</li>
+<li>Random</li>
+<li>Normality</li>
 </ul>
 </section>
-<section id="odds-ratios-1" class="slide level2 small">
-<h2>Odds ratios</h2>
+<section id="conditions-for-simple-linear-regression-1" class="slide level2 small">
+<h2>Conditions for <del>simple</del> linear regression</h2>
+<ul>
+<li>Linearity</li>
+<li>Zero Mean</li>
+<li>Constant Variance</li>
+<li>Independence</li>
+<li>Random</li>
+<li>Normality</li>
+</ul>
+</section>
+<section id="conditions-for-linear-regression" class="slide level2 small">
+<h2>Conditions for linear regression</h2>
+<ul>
+<li><strong>Linearity</strong></li>
+<li>Zero Mean</li>
+<li>Constant Variance</li>
+<li>Independence</li>
+<li>Random</li>
+<li>Normality</li>
+</ul>
+</section>
+<section id="conditions-for-linear-regression-1" class="slide level2 small">
+<h2>Conditions for linear regression</h2>
 <div class="question">
-<p>What is the explanatory variable?</p>
+<p>How do we check these conditions?</p>
 </div>
-<p>A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.</p>
 <ul>
-<li>Researchers recruited 200 subjects who suffered from migraines</li>
-<li>randomly assigned them to receive either the TMS (transcranial magnetic stimulation) treatment or a placebo treatment</li>
-<li>Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either <strong>Pain-free</strong> or <strong>Not pain-free</strong>)</li>
+<li>Linearity</li>
+<li>Zero Mean</li>
+<li>Constant Variance</li>
+<li>Independence</li>
+<li>Random</li>
+<li>Normality</li>
 </ul>
 </section>
-<section id="odds-ratios-2" class="slide level2 small">
-<h2>Odds ratios</h2>
+<section id="conditions-for-linear-regression-2" class="slide level2 small">
+<h2>Conditions for linear regression</h2>
 <div class="question">
-<p>What type of variable is this?</p>
-</div>
-<p>A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.</p>
-<ul>
-<li>Researchers recruited 200 subjects who suffered from migraines</li>
-<li>randomly assigned them to receive either the TMS (transcranial magnetic stimulation) treatment or a placebo treatment</li>
-<li>Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either <strong>Pain-free</strong> or <strong>Not pain-free</strong>)</li>
-</ul>
-</section>
-<section id="odds-ratios-3" class="slide level2 small">
-<h2>Odds ratios</h2>
-<div class="question">
-<p>What is the outcome variable?</p>
-</div>
-<p>A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.</p>
-<ul>
-<li>Researchers recruited 200 subjects who suffered from migraines</li>
-<li>randomly assigned them to receive either the TMS (transcranial magnetic stimulation) treatment or a placebo treatment</li>
-<li>Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either <strong>Pain-free</strong> or <strong>Not pain-free</strong>)</li>
-</ul>
-</section>
-<section id="odds-ratios-4" class="slide level2 small">
-<h2>Odds ratios</h2>
-<div class="question">
-<p>What type of variable is this?</p>
-</div>
-<p>A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.</p>
-<ul>
-<li>Researchers recruited 200 subjects who suffered from migraines</li>
-<li>randomly assigned them to receive either the TMS (transcranial magnetic stimulation) treatment or a placebo treatment</li>
-<li>Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either <strong>Pain-free</strong> or <strong>Not pain-free</strong>)</li>
-</ul>
-</section>
-<section id="odds-ratios-5" class="slide level2 small">
-<h2>Odds ratios</h2>
-<table>
-<thead>
-<tr class="header">
-<th>__</th>
-<th>TMS</th>
-<th>Placebo</th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Pain-free two hours later</td>
-<td>39</td>
-<td>22</td>
-<td>61</td>
-</tr>
-<tr class="even">
-<td>Not pain-free two hours later</td>
-<td>61</td>
-<td>78</td>
-<td>139</td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td>100</td>
-<td>100</td>
-<td>200</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li class="fragment">We can compare the results using <strong>odds</strong></li>
-<li class="fragment">What are the odds of being pain-free for the placebo group?
-<ul>
-<li class="fragment"><span class="math inline">\((22/100)/(78/100) = 22/78 = 0.282\)</span></li>
-</ul></li>
-<li class="fragment">What are the odds of being pain-free for the treatment group?
-<ul>
-<li class="fragment"><span class="math inline">\(39/61 = 0.639\)</span></li>
-</ul></li>
-<li class="fragment">Comparing the <strong>odds</strong> what can we conclude?
-<ul>
-<li class="fragment">TMS increases the likelihood of success</li>
-</ul></li>
-</ul>
-</section>
-<section id="odds-ratios-6" class="slide level2 small">
-<h2>Odds ratios</h2>
-<table>
-<thead>
-<tr class="header">
-<th>__</th>
-<th>TMS</th>
-<th>Placebo</th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Pain-free two hours later</td>
-<td>39</td>
-<td>22</td>
-<td>61</td>
-</tr>
-<tr class="even">
-<td>Not pain-free two hours later</td>
-<td>61</td>
-<td>78</td>
-<td>139</td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td>100</td>
-<td>100</td>
-<td>200</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>We can summarize this relationship with an <strong>odds ratio</strong>: the ratio of the two odds</li>
-</ul>
-<div class="fragment">
-<p><span class="math inline">\(OR = \frac{39/61}{22/78} = \frac{0.639}{0.282} = 2.27\)</span></p>
-</div>
-<div class="fragment">
-<p><em>“the odds of being pain free were 2.27 times higher with TMS than with the placebo”</em></p>
-</div>
-</section>
-<section id="odds-ratios-7" class="slide level2 small">
-<h2>Odds ratios</h2>
-<div class="question">
-<p>What if we wanted to calculate this in terms of <em>Not pain-free</em> (with <em>pain-free</em>) as the referent?</p>
+<p>How do we check these conditions?</p>
 </div>
 <table>
 <thead>
 <tr class="header">
-<th>__</th>
-<th>TMS</th>
-<th>Placebo</th>
-<th>Total</th>
+<th>Condition</th>
+<th>Graph</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Pain-free two hours later</td>
-<td>39</td>
-<td>22</td>
-<td>61</td>
+<td>Linearity</td>
+<td>Residuals vs.&nbsp;fits</td>
 </tr>
 <tr class="even">
-<td>Not pain-free two hours later</td>
-<td>61</td>
-<td>78</td>
-<td>139</td>
+<td>Zero Mean</td>
+<td><em>by default it’s true</em></td>
 </tr>
 <tr class="odd">
-<td>Total</td>
-<td>100</td>
-<td>100</td>
-<td>200</td>
+<td>Constant Variance</td>
+<td>Residuals vs fits</td>
+</tr>
+<tr class="even">
+<td>Independence</td>
+<td>No formal check</td>
+</tr>
+<tr class="odd">
+<td>Random</td>
+<td>No formal check</td>
+</tr>
+<tr class="even">
+<td>Normality</td>
+<td>QQ-plot or histogram of residuals</td>
 </tr>
 </tbody>
 </table>
-<div class="fragment">
-<p><span class="math inline">\(OR = \frac{61/39}{78/22} = \frac{1.564}{3.545} = 0.441\)</span></p>
-</div>
-<div class="fragment">
-<p><em>the odds for still being in pain for the TMS group are 0.441 times the odds of being in pain for the placebo group</em></p>
-</div>
 </section>
-<section id="odds-ratios-8" class="slide level2 small">
-<h2>Odds ratios</h2>
-<div class="question">
-<p>What changed here?</p>
-</div>
-<table>
-<thead>
-<tr class="header">
-<th>__</th>
-<th>TMS</th>
-<th>Placebo</th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Pain-free two hours later</td>
-<td>39</td>
-<td>22</td>
-<td>61</td>
-</tr>
-<tr class="even">
-<td>Not pain-free two hours later</td>
-<td>61</td>
-<td>78</td>
-<td>139</td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td>100</td>
-<td>100</td>
-<td>200</td>
-</tr>
-</tbody>
-</table>
-<p><span class="math inline">\(OR = \frac{78/22}{61/39} = \frac{3.545}{1.564} = 2.27\)</span></p>
-<p><em>the odds for still being in pain for the placebo group are 2.27 times the odds of being in pain for the TMS group</em></p>
-</section>
-<section id="odds-ratios-9" class="slide level2 small">
-<h2>Odds ratios</h2>
+<section id="conditions-for-logistic-regression" class="slide level2 small">
+<h2>Conditions for <strong>logistic</strong> regression</h2>
 <ul>
-<li>In general, it’s more natural to interpret odds ratios &gt; 1, you can flip the referent to do so</li>
+<li>Linearity</li>
+<li>Independence</li>
+<li>Random</li>
+</ul>
+</section>
+<section id="testing-linearity-for-logistic-regression" class="slide level2 small">
+<h2>Testing linearity for logistic regression</h2>
+<ul>
+<li class="fragment">In logistic regression, the <strong>log(odds)</strong> are a linear function of <span class="math inline">\(x\)</span>, that is: <span class="math inline">\(\log(odds) \approx \beta_0 + \beta_1x\)</span></li>
+<li class="fragment">You can check this by plotting the <strong>empirical logits</strong></li>
+<li class="fragment">Example: ⛳ Examining the relationship between the length of a putt with whether it was made</li>
 </ul>
 <table>
 <thead>
 <tr class="header">
-<th>__</th>
-<th>TMS</th>
-<th>Placebo</th>
-<th>Total</th>
+<th>Length</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Pain-free two hours later</td>
-<td>39</td>
-<td>22</td>
+<td>Number of successes</td>
+<td>84</td>
+<td>88</td>
 <td>61</td>
-</tr>
-<tr class="even">
-<td>Not pain-free two hours later</td>
 <td>61</td>
-<td>78</td>
-<td>139</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>Number of failures</td>
+<td>17</td>
+<td>31</td>
+<td>47</td>
+<td>64</td>
+<td>90</td>
 </tr>
 <tr class="odd">
 <td>Total</td>
-<td>100</td>
-<td>100</td>
-<td>200</td>
+<td>101</td>
+<td>119</td>
+<td>108</td>
+<td>125</td>
+<td>134</td>
 </tr>
 </tbody>
 </table>
-<p><span class="math inline">\(OR = \frac{78/22}{61/39} = \frac{3.545}{1.564} = 2.27\)</span></p>
-<p><em>the odds for still being in pain for the placebo group are 2.27 times the odds of being in pain for the TMS group</em></p>
-<!-- insert exercise? -->
 </section>
-<section id="odds-ratios-10" class="slide level2 small">
-<h2>Odds ratios</h2>
+<section id="testing-for-linearity-in-logistic-regression" class="slide level2 small">
+<h2>⛳ Testing for linearity in logistic regression</h2>
+<div class="question">
+<p>What is the proportion of sucess when length is 3?</p>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th>Length</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Number of successes</td>
+<td>84</td>
+<td>88</td>
+<td>61</td>
+<td>61</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>Number of failures</td>
+<td>17</td>
+<td>31</td>
+<td>47</td>
+<td>64</td>
+<td>90</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>101</td>
+<td>119</td>
+<td>108</td>
+<td>125</td>
+<td>134</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="testing-for-linearity-in-logistic-regression-1" class="slide level2 small">
+<h2>⛳ Testing for linearity in logistic regression</h2>
+<div class="question">
+<p>What is the proportion of sucesses when length is 3?</p>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th>Length</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Number of successes</td>
+<td>84</td>
+<td>88</td>
+<td>61</td>
+<td>61</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>Number of failures</td>
+<td>17</td>
+<td>31</td>
+<td>47</td>
+<td>64</td>
+<td>90</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>101</td>
+<td>119</td>
+<td>108</td>
+<td>125</td>
+<td>134</td>
+</tr>
+<tr class="even">
+<td>Probability of success</td>
+<td>0.832</td>
+<td>0.739</td>
+<td>0.565</td>
+<td>0.488</td>
+<td>0.328</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="testing-for-linearity-in-logistic-regression-2" class="slide level2 small">
+<h2>⛳ Testing for linearity in logistic regression</h2>
+<div class="question">
+<p>What are the odds of success when length is 3?</p>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th>Length</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Number of successes</td>
+<td>84</td>
+<td>88</td>
+<td>61</td>
+<td>61</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>Number of failures</td>
+<td>17</td>
+<td>31</td>
+<td>47</td>
+<td>64</td>
+<td>90</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>101</td>
+<td>119</td>
+<td>108</td>
+<td>125</td>
+<td>134</td>
+</tr>
+<tr class="even">
+<td>Probability of success</td>
+<td>0.832</td>
+<td>0.739</td>
+<td>0.565</td>
+<td>0.488</td>
+<td>0.328</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="testing-for-linearity-in-logistic-regression-3" class="slide level2 small">
+<h2>⛳ Testing for linearity in logistic regression</h2>
+<div class="question">
+<p>What are the odds of success when length is 3?</p>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th>Length</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Number of successes</td>
+<td>84</td>
+<td>88</td>
+<td>61</td>
+<td>61</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>Number of failures</td>
+<td>17</td>
+<td>31</td>
+<td>47</td>
+<td>64</td>
+<td>90</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>101</td>
+<td>119</td>
+<td>108</td>
+<td>125</td>
+<td>134</td>
+</tr>
+<tr class="even">
+<td>Probability of success</td>
+<td>0.832</td>
+<td>0.739</td>
+<td>0.565</td>
+<td>0.488</td>
+<td>0.328</td>
+</tr>
+<tr class="odd">
+<td>Odds of success</td>
+<td>4.941</td>
+<td>2.839</td>
+<td>1.298</td>
+<td>0.953</td>
+<td>0.489</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="testing-for-linearity-in-logistic-regression-4" class="slide level2 small">
+<h2>⛳ Testing for linearity in logistic regression</h2>
+<div class="question">
+<p>What are the log(odds) of success when length is 3?</p>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th>Length</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Number of successes</td>
+<td>84</td>
+<td>88</td>
+<td>61</td>
+<td>61</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>Number of failures</td>
+<td>17</td>
+<td>31</td>
+<td>47</td>
+<td>64</td>
+<td>90</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>101</td>
+<td>119</td>
+<td>108</td>
+<td>125</td>
+<td>134</td>
+</tr>
+<tr class="even">
+<td>Probability of success</td>
+<td>0.832</td>
+<td>0.739</td>
+<td>0.565</td>
+<td>0.488</td>
+<td>0.328</td>
+</tr>
+<tr class="odd">
+<td>Odds of success</td>
+<td>4.941</td>
+<td>2.839</td>
+<td>1.298</td>
+<td>0.953</td>
+<td>0.489</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="testing-for-linearity-in-logistic-regression-5" class="slide level2 small">
+<h2>⛳ Testing for linearity in logistic regression</h2>
+<div class="question">
+<p>What are the log(odds) of success when length is 3?</p>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th>Length</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Number of successes</td>
+<td>84</td>
+<td>88</td>
+<td>61</td>
+<td>61</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>Number of failures</td>
+<td>17</td>
+<td>31</td>
+<td>47</td>
+<td>64</td>
+<td>90</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>101</td>
+<td>119</td>
+<td>108</td>
+<td>125</td>
+<td>134</td>
+</tr>
+<tr class="even">
+<td>Probability of success</td>
+<td>0.832</td>
+<td>0.739</td>
+<td>0.565</td>
+<td>0.488</td>
+<td>0.328</td>
+</tr>
+<tr class="odd">
+<td>Odds of success</td>
+<td>4.941</td>
+<td>2.839</td>
+<td>1.298</td>
+<td>0.953</td>
+<td>0.489</td>
+</tr>
+<tr class="even">
+<td>Empirical logit</td>
+<td>1.60</td>
+<td>1.04</td>
+<td>0.26</td>
+<td>−0.05</td>
+<td>−0.72</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="testing-for-linearity-in-logistic-regression-6" class="slide level2 small">
+<h2>⛳ Testing for linearity in logistic regression</h2>
 <ul>
-<li>Let’s look at some Titanic data. We are interested in whether the sex of the passenger is related to whether they survived.</li>
-</ul>
-<div class="cell">
-
-</div>
-<table>
-<thead>
-<tr class="header">
-<th>__</th>
-<th>Female</th>
-<th>Male</th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Survived</td>
-<td>308</td>
-<td>142</td>
-<td>450</td>
-</tr>
-<tr class="even">
-<td>Died</td>
-<td>154</td>
-<td>709</td>
-<td>863</td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td>462</td>
-<td>851</td>
-<td>1313</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="odds-ratios-11" class="slide level2 small">
-<h2>Odds ratios</h2>
-<div class="question">
-<p>What are the odds of surviving for females versus males?</p>
-</div>
-<ul>
-<li>Let’s look at some Titanic data. We are interested in whether the sex of the passenger is related to whether they survived.</li>
+<li>We can plot the <strong>empirical logit</strong> to examine the linearity assumption</li>
 </ul>
 <table>
 <thead>
 <tr class="header">
-<th>____</th>
-<th>Female</th>
-<th>Male</th>
-<th>Total</th>
+<th>Length</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Survived</td>
-<td>308</td>
-<td>142</td>
-<td>450</td>
+<td>Number of successes</td>
+<td>84</td>
+<td>88</td>
+<td>61</td>
+<td>61</td>
+<td>44</td>
 </tr>
 <tr class="even">
-<td>Died</td>
-<td>154</td>
-<td>709</td>
-<td>863</td>
+<td>Number of failures</td>
+<td>17</td>
+<td>31</td>
+<td>47</td>
+<td>64</td>
+<td>90</td>
 </tr>
 <tr class="odd">
 <td>Total</td>
-<td>462</td>
-<td>851</td>
-<td>1313</td>
-</tr>
-</tbody>
-</table>
-<div class="fragment">
-<p><span class="math display">\[OR = \frac{308/154}{142/709} = \frac{2}{0.2} = 9.99\]</span></p>
-</div>
-</section>
-<section id="odds-ratios-12" class="slide level2 small">
-<h2>Odds ratios</h2>
-<div class="question">
-<p>How do you interpret this?</p>
-</div>
-<table>
-<thead>
-<tr class="header">
-<th>___</th>
-<th>Female</th>
-<th>Male</th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Survived</td>
-<td>308</td>
-<td>142</td>
-<td>450</td>
+<td>101</td>
+<td>119</td>
+<td>108</td>
+<td>125</td>
+<td>134</td>
 </tr>
 <tr class="even">
-<td>Died</td>
-<td>154</td>
-<td>709</td>
-<td>863</td>
+<td>Probability of success</td>
+<td>0.832</td>
+<td>0.739</td>
+<td>0.565</td>
+<td>0.488</td>
+<td>0.328</td>
 </tr>
 <tr class="odd">
-<td>Total</td>
-<td>462</td>
-<td>851</td>
-<td>1313</td>
-</tr>
-</tbody>
-</table>
-<p><span class="math display">\[OR = \frac{308/154}{142/709} = \frac{2}{0.2} = 9.99\]</span></p>
-<div class="fragment">
-<p><em>the odds of surviving for the female passengers was 9.99 times the odds of surviving for the male passengers</em></p>
-</div>
-</section>
-<section id="odds-ratios-13" class="slide level2 small">
-<h2>Odds ratios</h2>
-<div class="question">
-<p>What if we wanted to fit a <strong>model</strong>? What would the equation be?</p>
-</div>
-<table>
-<thead>
-<tr class="header">
-<th>__</th>
-<th>Female</th>
-<th>Male</th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Survived</td>
-<td>308</td>
-<td>142</td>
-<td>450</td>
+<td>Odds of success</td>
+<td>4.941</td>
+<td>2.839</td>
+<td>1.298</td>
+<td>0.953</td>
+<td>0.489</td>
 </tr>
 <tr class="even">
-<td>Died</td>
-<td>154</td>
-<td>709</td>
-<td>863</td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td>462</td>
-<td>851</td>
-<td>1313</td>
+<td>Empirical logit</td>
+<td>1.60</td>
+<td>1.04</td>
+<td>0.26</td>
+<td>−0.05</td>
+<td>−0.72</td>
 </tr>
 </tbody>
 </table>
-<div class="fragment">
-<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
-</div>
 </section>
-<section id="odds-ratios-14" class="slide level2 small">
-<h2>Odds ratios</h2>
-<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">glm</span>(Survived <span class="sc">~</span> Sex, <span class="at">data =</span> Titanic, <span class="at">family =</span> binomial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:  glm(formula = Survived ~ Sex, family = binomial, data = Titanic)
-
-Coefficients:
-(Intercept)      Sexmale  
-      0.693       -2.301  
-
-Degrees of Freedom: 1312 Total (i.e. Null);  1311 Residual
-Null Deviance:      1690 
-Residual Deviance: 1360     AIC: 1360</code></pre>
-</div>
-</div>
-</section>
-<section id="odds-ratios-15" class="slide level2 small">
-<h2>Odds Ratios</h2>
-<div class="question">
-<p>What is my referent category?</p>
-</div>
-<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">levels</span>(Titanic<span class="sc">$</span>Sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "female" "male"  </code></pre>
-</div>
-</div>
-</section>
-<section id="odds-ratios-16" class="slide level2 small">
-<h2>Odds Ratios</h2>
-<div class="question">
-<p>How do I change that?</p>
-</div>
-<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>Titanic <span class="ot">&lt;-</span> Titanic <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  (<span class="at">Sex =</span> <span class="sc">---</span>(Sex, <span class="fu">c</span>(<span class="st">"male"</span>, <span class="st">"female"</span>))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="odds-ratios-17" class="slide level2 small">
-<h2>Odds Ratios</h2>
-<div class="question">
-<p>How do I change that?</p>
-</div>
-<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>Titanic <span class="ot">&lt;-</span> Titanic <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">mutate</span>(<span class="at">Sex =</span> <span class="fu">fct_relevel</span>(Sex, <span class="fu">c</span>(<span class="st">"male"</span>, <span class="st">"female"</span>))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="odds-ratios-18" class="slide level2 small">
-<h2>Odds Ratios</h2>
-<div class="question">
-<p>How do you interpret this result?</p>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Survived <span class="sc">~</span> Sex, <span class="at">data =</span> Titanic, <span class="at">family =</span> binomial)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Survived ~ Sex, family = binomial, data = Titanic)
-
-Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--1.482  -0.604  -0.604   0.900   1.892  
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  -1.6080     0.0919   -17.5   &lt;2e-16 ***
-Sexfemale     2.3012     0.1349    17.1   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 1688.1  on 1312  degrees of freedom
-Residual deviance: 1355.5  on 1311  degrees of freedom
-AIC: 1360
-
-Number of Fisher Scoring iterations: 4</code></pre>
-</div>
-</div>
-</section>
-<section id="odds-ratios-19" class="slide level2 small">
-<h2>Odds Ratios</h2>
-<div class="question">
-<p>How do you interpret this result?</p>
-</div>
-<div class="small">
+<section id="testing-for-linearity-in-logistic-regression-7" class="slide level2 small">
+<h2>⛳ Testing for linearity in logistic regression</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">glm</span>(Survived <span class="sc">~</span> Sex, <span class="at">data =</span> Titanic, <span class="at">family =</span> binomial) <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="at">length =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>),</span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="at">emp_logit =</span> <span class="fu">c</span>(<span class="fl">1.6</span>, <span class="fl">1.04</span>, <span class="fl">0.26</span>, <span class="sc">-</span><span class="fl">0.05</span>, <span class="sc">-</span><span class="fl">0.72</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(length, emp_logit)) <span class="sc">+</span> </span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"log odds of success"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Survived ~ Sex, family = binomial, data = Titanic)
 
-Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--1.482  -0.604  -0.604   0.900   1.892  
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  -1.6080     0.0919   -17.5   &lt;2e-16 ***
-Sexfemale     2.3012     0.1349    17.1   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 1688.1  on 1312  degrees of freedom
-Residual deviance: 1355.5  on 1311  degrees of freedom
-AIC: 1360
-
-Number of Fisher Scoring iterations: 4</code></pre>
 </div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">exp</span>(<span class="fl">2.301176</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 9.99</code></pre>
-</div>
-</div>
-</div>
-<p><em>the odds of surviving for the female passengers was 9.99 times the odds of surviving for the male passengers</em></p>
-</section>
-<section id="odds-ratios-20" class="slide level2 small">
-<h2>Odds ratios</h2>
-<ul>
-<li class="fragment">What if the explanatory variable is continuous?</li>
-<li class="fragment">We did this already on Tuesday!</li>
-</ul>
-<div class="fragment">
-<div class="small">
+<img data-src="18-assumptions_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="testing-for-linearity-in-logistic-regression-8" class="slide level2 small">
+<h2>⛳ Testing for linearity in logistic regression</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">data</span>(<span class="st">"MedGPA"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">glm</span>(Acceptance <span class="sc">~</span> GPA, <span class="at">data =</span> MedGPA, <span class="at">family =</span> binomial) <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="at">length =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>),</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">emp_logit =</span> <span class="fu">c</span>(<span class="fl">1.6</span>, <span class="fl">1.04</span>, <span class="fl">0.26</span>, <span class="sc">-</span><span class="fl">0.05</span>, <span class="sc">-</span><span class="fl">0.72</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(length, emp_logit)) <span class="sc">+</span> </span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">3.26</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.566</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"log odds of success"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Acceptance ~ GPA, family = binomial, data = MedGPA)
 
-Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--1.780  -0.852   0.441   0.782   2.097  
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)   -19.21       5.63   -3.41  0.00064 ***
-GPA             5.45       1.58    3.45  0.00055 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 75.791  on 54  degrees of freedom
-Residual deviance: 56.839  on 53  degrees of freedom
-AIC: 60.84
-
-Number of Fisher Scoring iterations: 4</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><em>A one unit increase in GPA yields a 5.45 increase in the log odds of acceptance</em></p>
-</div>
-</section>
-<section id="odds-ratios-21" class="slide level2 small">
-<h2>Odds ratios</h2>
-<ul>
-<li>What if the explanatory variable is continuous?</li>
-<li>We did this already on Tuesday!</li>
-</ul>
-<div class="small">
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">data</span>(<span class="st">"MedGPA"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">glm</span>(Acceptance <span class="sc">~</span> GPA, <span class="at">data =</span> MedGPA, <span class="at">family =</span> binomial) <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Acceptance ~ GPA, family = binomial, data = MedGPA)
-
-Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--1.780  -0.852   0.441   0.782   2.097  
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)   -19.21       5.63   -3.41  0.00064 ***
-GPA             5.45       1.58    3.45  0.00055 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 75.791  on 54  degrees of freedom
-Residual deviance: 56.839  on 53  degrees of freedom
-AIC: 60.84
-
-Number of Fisher Scoring iterations: 4</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><em>A one unit increase in GPA yields a 234-fold increase in the odds of acceptance</em></p>
-</div>
-<div class="fragment">
-<ul>
-<li>😱 that seems huge! <strong>Remember:</strong> the interpretation of these coefficients depends on your units (the same as in ordinary linear regression).</li>
-</ul>
-</div>
-</section>
-<section id="odds-ratios-22" class="slide level2 small">
-<h2>Odds ratios</h2>
+<img data-src="18-assumptions_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="testing-for-linearity-in-logistic-regression-9" class="slide level2 small">
+<h2>Testing for linearity in logistic regression</h2>
 <div class="question">
-<p>How could we get the odds associated with increasing GPA by 0.1?</p>
+<p>What if the <span class="math inline">\(x\)</span> variable isn’t discrete?</p>
 </div>
-<div class="small">
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">glm</span>(Acceptance <span class="sc">~</span> GPA, <span class="at">data =</span> MedGPA, <span class="at">family =</span> binomial) <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Acceptance ~ GPA, family = binomial, data = MedGPA)
-
-Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--1.780  -0.852   0.441   0.782   2.097  
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)   -19.21       5.63   -3.41  0.00064 ***
-GPA             5.45       1.58    3.45  0.00055 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 75.791  on 54  degrees of freedom
-Residual deviance: 56.839  on 53  degrees of freedom
-AIC: 60.84
-
-Number of Fisher Scoring iterations: 4</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">exp</span>(<span class="fl">5.454</span>) <span class="do">## a one unit increase in GPA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 234</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">exp</span>(<span class="fl">5.454</span> <span class="sc">*</span> <span class="fl">0.1</span>) <span class="do">## a 0.1 increase in GPA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.73</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><em>A one-tenth unit increase in GPA yields a 1.73-fold increase in the odds of acceptance</em></p>
-</div>
-</section>
-<section id="odds-ratios-23" class="slide level2 small">
-<h2>Odds ratios</h2>
-<div class="question">
-<p>How could we get the odds associated with increasing GPA by 0.1?</p>
-</div>
-<div class="small">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>MedGPA <span class="ot">&lt;-</span> MedGPA <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">mutate</span>(<span class="at">GPA_10 =</span> GPA <span class="sc">*</span> <span class="dv">10</span>)</span>
-<span id="cb23-3"><a href="#cb23-3"></a></span>
-<span id="cb23-4"><a href="#cb23-4"></a><span class="fu">glm</span>(Acceptance <span class="sc">~</span> GPA_10, <span class="at">data =</span> MedGPA, <span class="at">family =</span> binomial) <span class="sc">%&gt;%</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Acceptance ~ GPA_10, family = binomial, data = MedGPA)
-
-Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--1.780  -0.852   0.441   0.782   2.097  
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  -19.207      5.629   -3.41  0.00064 ***
-GPA_10         0.545      0.158    3.45  0.00055 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 75.791  on 54  degrees of freedom
-Residual deviance: 56.839  on 53  degrees of freedom
-AIC: 60.84
-
-Number of Fisher Scoring iterations: 4</code></pre>
-</div>
-</div>
-</div>
-<p><em>A one-tenth unit increase in GPA yields a 1.73-fold increase in the odds of acceptance</em></p>
+<ul>
+<li class="fragment">We can plot the <strong>empirical logit</strong> to examine the linearity assumption</li>
+<li class="fragment">You can create “bins” and calculate the empirical logit within each bin (for example, count the number of success when x is between 1 and 5: bin 1, count the number of successes when x is between 5 and 10: bin 2, etc)</li>
+</ul>
 
 <img src="img/favicon.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p><a href="https://lucymcgowan.com">Dr.&nbsp;Lucy D’Agostino McGowan</a></p>
@@ -1153,20 +985,20 @@ Number of Fisher Scoring iterations: 4</code></pre>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="18-odds-ratios_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="18-assumptions_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="18-odds-ratios_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="18-odds-ratios_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="18-odds-ratios_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="18-odds-ratios_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="18-odds-ratios_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="18-odds-ratios_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="18-assumptions_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="18-assumptions_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="18-assumptions_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="18-assumptions_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="18-assumptions_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="18-assumptions_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="18-odds-ratios_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="18-odds-ratios_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="18-odds-ratios_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="18-odds-ratios_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="18-assumptions_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="18-assumptions_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="18-assumptions_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="18-assumptions_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

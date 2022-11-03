@@ -91,8 +91,8 @@ stimulation) treatment or a placebo treatment
 
 ## Odds ratios {.small}
 
-|TMS | Placebo| Total
-|-----|--------|------
+__ |TMS | Placebo| Total
+-----|-----|--------|------
 Pain-free two hours later |39| 22 |61
 Not pain-free two hours later |61 |78| 139
 Total| 100| 100 |200
@@ -108,8 +108,8 @@ Total| 100| 100 |200
 
 ## Odds ratios {.small}
 
-|TMS | Placebo| Total
-|----|--------|------
+ __|TMS | Placebo| Total
+---|----|--------|------
 Pain-free two hours later |39| 22 |61
 Not pain-free two hours later |61 |78| 139
 Total| 100| 100 |200
@@ -132,8 +132,8 @@ _"the odds of being pain free were 2.27 times higher with TMS than with the plac
 What if we wanted to calculate this in terms of _Not pain-free_ (with _pain-free_) as the referent?
 :::
 
-|TMS | Placebo| Total
-|----|-------|-------
+__|TMS | Placebo| Total
+-----|----|-------|-------
 Pain-free two hours later |39| 22 |61
 Not pain-free two hours later |61 |78| 139
 Total| 100| 100 |200
@@ -154,8 +154,8 @@ _the odds for still being in pain for the TMS group are 0.441 times the odds of 
 What changed here?
 :::
 
-|TMS | Placebo| Total
-|-----|------|------
+__|TMS | Placebo| Total
+----|-----|------|------
 Pain-free two hours later |39| 22 |61
 Not pain-free two hours later |61 |78| 139
 Total| 100| 100 |200
@@ -173,8 +173,8 @@ _the odds for still being in pain for the placebo group are 2.27 times the odds 
 
 * In general, it's more natural to interpret odds ratios > 1, you can flip the referent to do so
 
-|TMS | Placebo| Total
-|-----|------|-------
+__|TMS | Placebo| Total
+----|-----|------|-------
 Pain-free two hours later |39| 22 |61
 Not pain-free two hours later |61 |78| 139
 Total| 100| 100 |200
@@ -197,8 +197,8 @@ data("Titanic")
 options(digits = 3)
 ```
 
-|Female | Male | Total
-|-----|-------|------
+__|Female | Male | Total
+---|-----|-------|------
 Survived| 308 | 142 | 450
 Died | 154 | 709| 863
 Total | 462 | 851 | 1313
@@ -213,8 +213,8 @@ What are the odds of surviving for females versus males?
 
 * Let's look at some Titanic data. We are interested in whether the sex of the passenger is related to whether they survived.
 
-|Female | Male | Total
-|-------|-------|----
+____|Female | Male | Total
+-----|-------|-------|----
 Survived| 308 | 142 | 450
 Died | 154 | 709| 863
 Total | 462 | 851 | 1313
@@ -232,8 +232,8 @@ How do you interpret this?
 :::
 
 
-|Female | Male | Total
-|--------|-----|-------
+___|Female | Male | Total
+----|--------|-----|-------
 Survived| 308 | 142 | 450
 Died | 154 | 709| 863
 Total | 462 | 851 | 1313
@@ -255,8 +255,8 @@ What if we wanted to fit a **model**? What would the equation be?
 :::
 
 
-|Female | Male | Total
-|-|--|--
+__|Female | Male | Total
+---|-|--|--
 Survived| 308 | 142 | 450
 Died | 154 | 709| 863
 Total | 462 | 851 | 1313

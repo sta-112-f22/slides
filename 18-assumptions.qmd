@@ -1,0 +1,262 @@
+---
+title: "Assumptions of Logistic Regression"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+
+---
+
+## Conditions for simple linear regression {.small}
+
+```{r child = "setup.Rmd"}
+```
+* Linearity
+* Zero Mean
+* Constant Variance
+* Independence
+* Random
+* Normality
+
+
+
+
+## Conditions for ~~simple~~ linear regression {.small}
+
+* Linearity
+* Zero Mean
+* Constant Variance
+* Independence
+* Random
+* Normality
+
+
+
+## Conditions for linear regression {.small}
+
+* **Linearity**
+* Zero Mean
+* Constant Variance
+* Independence
+* Random
+* Normality
+
+
+ 
+## Conditions for linear regression {.small}
+
+::: question
+How do we check these conditions?
+::: 
+
+* Linearity
+* Zero Mean
+* Constant Variance
+* Independence
+* Random
+* Normality
+
+
+
+## Conditions for linear regression {.small}
+
+::: question
+How do we check these conditions?
+:::
+
+Condition | Graph
+----|----
+Linearity | Residuals vs. fits
+Zero Mean | _by default it's true_
+Constant Variance | Residuals vs fits
+Independence | No formal check
+Random | No formal check
+Normality | QQ-plot or histogram of residuals
+
+
+
+## Conditions for **logistic** regression {.small}
+
+* Linearity
+* Independence
+* Random
+
+
+
+## Testing linearity for logistic regression {.small}
+
+> * In logistic regression, the **log(odds)** are a linear function of $x$, that is: $\log(odds) \approx \beta_0 + \beta_1x$
+> * You can check this by plotting the **empirical logits**
+> * Example: `r emo::ji("golf")` Examining the relationship between the length of a putt with whether it was made
+
+Length | 3 | 4 | 5 | 6 | 7
+------|----|---|---|---|---
+Number of successes | 84 | 88 | 61 | 61 | 44 
+Number of failures | 17 | 31 | 47 | 64 | 90 
+Total | 101 | 119 | 108 | 125 | 134
+
+
+
+## `r emo::ji("golf")` Testing for linearity in logistic regression {.small}
+
+::: question
+What is the proportion of sucess when length is 3?
+:::
+
+
+Length | 3 | 4 | 5 | 6 | 7
+------|----|---|---|---|---
+Number of successes | 84 | 88 | 61 | 61 | 44 
+Number of failures | 17 | 31 | 47 | 64 | 90 
+Total | 101 | 119 | 108 | 125 | 134
+
+
+
+## `r emo::ji("golf")` Testing for linearity in logistic regression {.small}
+
+::: question
+What is the proportion of sucesses when length is 3?
+:::
+
+
+Length | 3 | 4 | 5 | 6 | 7
+------|----|---|---|---|---
+Number of successes | 84 | 88 | 61 | 61 | 44 
+Number of failures | 17 | 31 | 47 | 64 | 90 
+Total | 101 | 119 | 108 | 125 | 134
+Probability of success | 0.832 | 0.739 | 0.565 | 0.488 | 0.328
+
+
+
+## `r emo::ji("golf")` Testing for linearity in logistic regression {.small}
+
+::: question
+What are the odds of success when length is 3?
+:::
+
+
+Length | 3 | 4 | 5 | 6 | 7
+------|----|---|---|---|---
+Number of successes | 84 | 88 | 61 | 61 | 44 
+Number of failures | 17 | 31 | 47 | 64 | 90 
+Total | 101 | 119 | 108 | 125 | 134
+Probability of success | 0.832 | 0.739 | 0.565 | 0.488 | 0.328
+
+
+
+## `r emo::ji("golf")` Testing for linearity in logistic regression {.small}
+
+::: question
+What are the odds of success when length is 3?
+:::
+
+Length | 3 | 4 | 5 | 6 | 7
+------|----|---|---|---|---
+Number of successes | 84 | 88 | 61 | 61 | 44 
+Number of failures | 17 | 31 | 47 | 64 | 90 
+Total | 101 | 119 | 108 | 125 | 134
+Probability of success | 0.832 | 0.739 | 0.565 | 0.488 | 0.328
+Odds of success | 4.941 | 2.839 | 1.298| 0.953| 0.489
+
+
+
+## `r emo::ji("golf")` Testing for linearity in logistic regression {.small}
+
+::: question
+What are the log(odds) of success when length is 3?
+:::
+
+
+Length | 3 | 4 | 5 | 6 | 7
+------|----|---|---|---|---
+Number of successes | 84 | 88 | 61 | 61 | 44 
+Number of failures | 17 | 31 | 47 | 64 | 90 
+Total | 101 | 119 | 108 | 125 | 134
+Probability of success | 0.832 | 0.739 | 0.565 | 0.488 | 0.328
+Odds of success | 4.941 | 2.839 | 1.298| 0.953| 0.489
+
+
+
+## `r emo::ji("golf")` Testing for linearity in logistic regression {.small}
+
+::: question
+What are the log(odds) of success when length is 3?
+:::
+
+
+Length | 3 | 4 | 5 | 6 | 7
+------|----|---|---|---|---
+Number of successes | 84 | 88 | 61 | 61 | 44 
+Number of failures | 17 | 31 | 47 | 64 | 90 
+Total | 101 | 119 | 108 | 125 | 134
+Probability of success | 0.832 | 0.739 | 0.565 | 0.488 | 0.328
+Odds of success | 4.941 | 2.839 | 1.298| 0.953| 0.489
+Empirical logit | 1.60 | 1.04| 0.26 |−0.05 |−0.72
+
+
+
+## `r emo::ji("golf")` Testing for linearity in logistic regression {.small}
+
+* We can plot the **empirical logit** to examine the linearity assumption
+
+Length | 3 | 4 | 5 | 6 | 7
+------|----|---|---|---|---
+Number of successes | 84 | 88 | 61 | 61 | 44 
+Number of failures | 17 | 31 | 47 | 64 | 90 
+Total | 101 | 119 | 108 | 125 | 134
+Probability of success | 0.832 | 0.739 | 0.565 | 0.488 | 0.328
+Odds of success | 4.941 | 2.839 | 1.298| 0.953| 0.489
+Empirical logit | 1.60 | 1.04| 0.26 |−0.05 |−0.72
+
+
+
+## `r emo::ji("golf")` Testing for linearity in logistic regression  {.small}
+
+
+```{r, fig.height = 2}
+data <- data.frame(
+  length = c(3, 4, 5, 6, 7),
+  emp_logit = c(1.6, 1.04, 0.26, -0.05, -0.72)
+)
+ggplot(data, aes(length, emp_logit)) + 
+  geom_point() + 
+  labs(y = "log odds of success")
+```
+
+
+
+
+## `r emo::ji("golf")` Testing for linearity in logistic regression {.small}
+
+
+```{r, fig.height = 2}
+data <- data.frame(
+  length = c(3, 4, 5, 6, 7),
+  emp_logit = c(1.6, 1.04, 0.26, -0.05, -0.72)
+)
+ggplot(data, aes(length, emp_logit)) + 
+  geom_point() + 
+  geom_abline(intercept = 3.26, slope = -0.566, lty = 2) +
+  labs(y = "log odds of success")
+```
+
+
+
+
+##  Testing for linearity in logistic regression {.small}
+
+::: question
+What if the $x$ variable isn't discrete?
+:::
+
+>* We can plot the **empirical logit** to examine the linearity assumption
+>* You can create "bins" and calculate the empirical logit within each bin (for example, count the number of success when x is between 1 and 5: bin 1, count the number of successes when x is between 5 and 10: bin 2, etc)
