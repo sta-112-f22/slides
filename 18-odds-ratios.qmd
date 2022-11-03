@@ -1,0 +1,460 @@
+---
+title: "Odds Ratios"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+
+## Odds ratios {.small}
+
+```{r child = "setup.Rmd"}
+```
+
+
+
+A study investigated whether a handheld device that sends a magnetic pulse into a person’s head
+might be an effective treatment for migraine headaches.
+
+* Researchers recruited 200 subjects who suffered from migraines 
+* randomly assigned them to receive either the TMS (transcranial magnetic
+stimulation) treatment or a placebo treatment 
+* Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later. (either **Pain-free** or **Not pain-free**)
+
+
+
+## Odds ratios {.small}
+
+::: question
+What is the explanatory variable?
+:::
+
+A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.
+
+* Researchers recruited 200 subjects who suffered from migraines 
+* randomly assigned them to receive either the TMS (transcranial magnetic
+stimulation) treatment or a placebo treatment 
+* Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either **Pain-free** or **Not pain-free**)
+
+
+## Odds ratios {.small}
+
+::: question
+What type of variable is this?
+:::
+
+A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.
+
+* Researchers recruited 200 subjects who suffered from migraines 
+* randomly assigned them to receive either the TMS (transcranial magnetic
+stimulation) treatment or a placebo treatment 
+* Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either **Pain-free** or **Not pain-free**)
+
+
+## Odds ratios {.small}
+
+::: question
+What is the outcome variable?
+:::
+
+A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.
+
+* Researchers recruited 200 subjects who suffered from migraines 
+* randomly assigned them to receive either the TMS (transcranial magnetic
+stimulation) treatment or a placebo treatment 
+* Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either **Pain-free** or **Not pain-free**)
+
+ 
+## Odds ratios {.small}
+
+::: question
+What type of variable is this?
+:::
+
+A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.
+
+* Researchers recruited 200 subjects who suffered from migraines 
+* randomly assigned them to receive either the TMS (transcranial magnetic
+stimulation) treatment or a placebo treatment 
+* Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either **Pain-free** or **Not pain-free**)
+
+
+## Odds ratios {.small}
+
+|TMS | Placebo| Total
+|-----|--------|------
+Pain-free two hours later |39| 22 |61
+Not pain-free two hours later |61 |78| 139
+Total| 100| 100 |200
+
+> * We can compare the results using **odds**
+> * What are the odds of being pain-free for the placebo group?
+>    * $(22/100)/(78/100) = 22/78 = 0.282$
+> * What are the odds of being pain-free for the treatment group?
+>    * $39/61 = 0.639$
+> * Comparing the **odds** what can we conclude?
+>    * TMS increases the likelihood of success
+
+
+## Odds ratios {.small}
+
+|TMS | Placebo| Total
+|----|--------|------
+Pain-free two hours later |39| 22 |61
+Not pain-free two hours later |61 |78| 139
+Total| 100| 100 |200
+
+* We can summarize this relationship with an **odds ratio**: the ratio of the two odds
+
+. . .
+
+$OR = \frac{39/61}{22/78} = \frac{0.639}{0.282} = 2.27$
+
+. . .
+
+_"the odds of being pain free were 2.27 times higher with TMS than with the placebo"_
+
+
+
+## Odds ratios {.small}
+
+::: question
+What if we wanted to calculate this in terms of _Not pain-free_ (with _pain-free_) as the referent?
+:::
+
+|TMS | Placebo| Total
+|----|-------|-------
+Pain-free two hours later |39| 22 |61
+Not pain-free two hours later |61 |78| 139
+Total| 100| 100 |200
+
+. . .
+
+$OR = \frac{61/39}{78/22} = \frac{1.564}{3.545} = 0.441$
+
+. . .
+
+_the odds for still being in pain for the TMS group are 0.441 times the odds of being in pain for the placebo group_
+ 
+
+
+## Odds ratios {.small}
+
+::: question
+What changed here?
+:::
+
+|TMS | Placebo| Total
+|-----|------|------
+Pain-free two hours later |39| 22 |61
+Not pain-free two hours later |61 |78| 139
+Total| 100| 100 |200
+
+
+$OR = \frac{78/22}{61/39} = \frac{3.545}{1.564} = 2.27$
+
+
+_the odds for still being in pain for the placebo group are 2.27 times the odds of being in pain for the TMS group_
+ 
+
+
+
+## Odds ratios {.small}
+
+* In general, it's more natural to interpret odds ratios > 1, you can flip the referent to do so
+
+|TMS | Placebo| Total
+|-----|------|-------
+Pain-free two hours later |39| 22 |61
+Not pain-free two hours later |61 |78| 139
+Total| 100| 100 |200
+
+
+$OR = \frac{78/22}{61/39} = \frac{3.545}{1.564} = 2.27$
+
+
+_the odds for still being in pain for the placebo group are 2.27 times the odds of being in pain for the TMS group_
+
+<!-- insert exercise? -->
+
+## Odds ratios {.small}
+
+* Let's look at some Titanic data. We are interested in whether the sex of the passenger is related to whether they survived.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(Stat2Data)
+data("Titanic")
+options(digits = 3)
+```
+
+|Female | Male | Total
+|-----|-------|------
+Survived| 308 | 142 | 450
+Died | 154 | 709| 863
+Total | 462 | 851 | 1313
+
+
+
+## Odds ratios {.small}
+
+::: question
+What are the odds of surviving for females versus males?
+:::
+
+* Let's look at some Titanic data. We are interested in whether the sex of the passenger is related to whether they survived.
+
+|Female | Male | Total
+|-------|-------|----
+Survived| 308 | 142 | 450
+Died | 154 | 709| 863
+Total | 462 | 851 | 1313
+
+. . .
+
+$$OR = \frac{308/154}{142/709} = \frac{2}{0.2} = 9.99$$
+
+
+
+## Odds ratios {.small}
+
+::: question
+How do you interpret this?
+:::
+
+
+|Female | Male | Total
+|--------|-----|-------
+Survived| 308 | 142 | 450
+Died | 154 | 709| 863
+Total | 462 | 851 | 1313
+
+
+$$OR = \frac{308/154}{142/709} = \frac{2}{0.2} = 9.99$$
+
+
+. . .
+
+_the odds of surviving for the female passengers was 9.99 times the odds of surviving for the male passengers_
+
+
+
+## Odds ratios {.small}
+
+::: question
+What if we wanted to fit a **model**? What would the equation be?
+:::
+
+
+|Female | Male | Total
+|-|--|--
+Survived| 308 | 142 | 450
+Died | 154 | 709| 863
+Total | 462 | 851 | 1313
+
+. . . 
+
+
+$$\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}$$
+
+
+
+## Odds ratios {.small}
+
+
+$$\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}$$
+
+
+```{r}
+#| code-fold: false
+glm(Survived ~ Sex, data = Titanic, family = binomial)
+```
+
+
+
+
+## Odds Ratios {.small}
+
+::: question
+What is my referent category?
+:::
+
+
+$$\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}$$
+
+
+
+```{r}
+#| code-fold: false
+levels(Titanic$Sex)
+```
+
+
+
+## Odds Ratios {.small}
+
+::: question
+How do I change that?
+:::
+
+$$\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}$$
+
+
+```{r, eval = FALSE}
+#| code-fold: false
+Titanic <- Titanic %>%
+  (Sex = ---(Sex, c("male", "female"))) 
+```
+
+
+
+## Odds Ratios {.small}
+
+::: question
+How do I change that?
+:::
+
+$$\log(\textrm{odds of survival}) \approx \beta_0 + \beta_1 \textrm{Male}$$
+
+```{r}
+#| code-fold: false
+Titanic <- Titanic %>%
+  mutate(Sex = fct_relevel(Sex, c("male", "female"))) 
+```
+
+
+
+
+## Odds Ratios {.small}
+
+::: question
+How do you interpret this result?
+:::
+
+
+```{r}
+#| code-fold: false
+model <- glm(Survived ~ Sex, data = Titanic, family = binomial)
+summary(model)
+```
+
+
+
+
+## Odds Ratios {.small}
+
+::: question
+How do you interpret this result?
+:::
+
+
+```{r}
+glm(Survived ~ Sex, data = Titanic, family = binomial) %>%
+  summary()
+
+exp(2.301176)
+```
+
+_the odds of surviving for the female passengers was 9.99 times the odds of surviving for the male passengers_
+
+
+
+## Odds ratios {.small}
+
+> * What if the explanatory variable is continuous?
+> * We did this already on Tuesday!
+
+. . .
+
+
+```{r}
+data("MedGPA")
+glm(Acceptance ~ GPA, data = MedGPA, family = binomial) %>%
+  summary()
+```
+
+
+. . .
+
+_A one unit increase in GPA yields a 5.45 increase in the log odds of acceptance_
+
+
+
+
+## Odds ratios {.small}
+
+* What if the explanatory variable is continuous?
+* We did this already on Tuesday!
+
+
+```{r}
+data("MedGPA")
+glm(Acceptance ~ GPA, data = MedGPA, family = binomial) %>%
+  summary()
+```
+
+
+. . .
+
+_A one unit increase in GPA yields a 234-fold increase in the odds of acceptance_
+
+. . .
+
+* `r emo::ji("scream")` that seems huge! **Remember:** the interpretation of these coefficients depends on your units (the same as in ordinary linear regression).
+
+
+
+## Odds ratios {.small}
+
+::: question
+How could we get the odds associated with increasing GPA by 0.1?
+:::
+
+
+```{r}
+glm(Acceptance ~ GPA, data = MedGPA, family = binomial) %>%
+  summary()
+```
+
+
+. . .
+
+```{r}
+exp(5.454) ## a one unit increase in GPA
+exp(5.454 * 0.1) ## a 0.1 increase in GPA
+```
+
+
+. . .
+
+_A one-tenth unit increase in GPA yields a 1.73-fold increase in the odds of acceptance_
+
+
+
+## Odds ratios {.small}
+
+::: question
+How could we get the odds associated with increasing GPA by 0.1?
+:::
+
+
+```{r}
+#| code-fold: false
+MedGPA <- MedGPA %>%
+  mutate(GPA_10 = GPA * 10)
+
+glm(Acceptance ~ GPA_10, data = MedGPA, family = binomial) %>%
+  summary()
+```
+
+
+_A one-tenth unit increase in GPA yields a 1.73-fold increase in the odds of acceptance_
