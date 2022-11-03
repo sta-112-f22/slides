@@ -365,7 +365,7 @@ What is the equation for the model we are going to fit?
 
 ```{r}
 #| code-fold: false
-glm(Accept ~ GPA, data = MedGPA,
+glm(Acceptance ~ GPA, data = MedGPA,
     family = "binomial") 
 ```
 :::
@@ -379,7 +379,7 @@ glm(Accept ~ GPA, data = MedGPA,
 
 ```{r}
 #| code-fold: false
-glm(Accept ~ GPA, data = MedGPA,
+glm(Acceptance ~ GPA, data = MedGPA,
     family = "binomial") %>%
   fitted() 
 ```

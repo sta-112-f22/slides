@@ -639,7 +639,7 @@
 <li>The “odds” tell you how likely an event is</li>
 </ul>
 <ul>
-<li class="fragment">🌂 Let’s say there is a 60% chance of rain today<br>
+<li class="fragment">⛱ Let’s say there is a 60% chance of rain today<br>
 </li>
 <li class="fragment">What is the probability that it will rain?
 <ul>
@@ -835,15 +835,15 @@
 </ul>
 <div class="small">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">glm</span>(Accept <span class="sc">~</span> GPA, <span class="at">data =</span> MedGPA,</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">glm</span>(Acceptance <span class="sc">~</span> GPA, <span class="at">data =</span> MedGPA,</span>
 <span id="cb8-2"><a href="#cb8-2"></a>    <span class="at">family =</span> <span class="st">"binomial"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Call:  glm(formula = Accept ~ GPA, family = "binomial", data = MedGPA)
+Call:  glm(formula = Acceptance ~ GPA, family = "binomial", data = MedGPA)
 
 Coefficients:
 (Intercept)          GPA  
-     19.207       -5.454  
+    -19.207        5.454  
 
 Degrees of Freedom: 54 Total (i.e. Null);  53 Residual
 Null Deviance:      75.79 
@@ -858,26 +858,26 @@ Residual Deviance: 56.84    AIC: 60.84</code></pre>
 <li>We are interested in the probability of getting accepted to medical school given a college student’s GPA</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">glm</span>(Accept <span class="sc">~</span> GPA, <span class="at">data =</span> MedGPA,</span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">glm</span>(Acceptance <span class="sc">~</span> GPA, <span class="at">data =</span> MedGPA,</span>
 <span id="cb10-2"><a href="#cb10-2"></a>    <span class="at">family =</span> <span class="st">"binomial"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">fitted</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         1          2          3          4          5          6          7 
-0.36875124 0.14963149 0.83055235 0.28508641 0.68382844 0.25293978 0.11813588 
+0.63124876 0.85036851 0.16944765 0.71491359 0.31617156 0.74706022 0.88186412 
          8          9         10         11         12         13         14 
-0.72900668 0.26338419 0.11813588 0.07969225 0.54276124 0.20493962 0.38153545 
+0.27099332 0.73661581 0.88186412 0.92030775 0.45723876 0.79506038 0.61846455 
         15         16         17         18         19         20         21 
-0.76990154 0.47471048 0.33154562 0.47471048 0.81464260 0.11813588 0.26338419 
+0.23009846 0.52528952 0.66845438 0.52528952 0.18535740 0.88186412 0.73661581 
         22         23         24         25         26         27         28 
-0.20493962 0.10723642 0.12393741 0.29633169 0.44761104 0.60925271 0.42081927 
+0.79506038 0.89276358 0.87606259 0.70366831 0.55238896 0.39074729 0.57918073 
         29         30         31         32         33         34         35 
-0.65978556 0.16404816 0.36875124 0.91318271 0.11813588 0.27410164 0.82273747 
+0.34021444 0.83595184 0.63124876 0.08681729 0.88186412 0.72589836 0.17726253 
         36         37         38         39         40         41         42 
-0.13627523 0.47471048 0.65978556 0.12998185 0.88898568 0.69550081 0.68382844 
+0.86372477 0.52528952 0.34021444 0.87001815 0.11101432 0.30449919 0.31617156 
         43         44         45         46         47         48         49 
-0.36875124 0.09254820 0.69550081 0.70692694 0.07969225 0.93250610 0.77942127 
+0.63124876 0.90745180 0.30449919 0.29307306 0.92030775 0.06749390 0.22057873 
         50         51         52         53         54         55 
-0.30782954 0.98752126 0.44761104 0.55626209 0.98082597 0.60925271 </code></pre>
+0.69217046 0.01247874 0.55238896 0.44373791 0.01917403 0.39074729 </code></pre>
 </div>
 </div>
 

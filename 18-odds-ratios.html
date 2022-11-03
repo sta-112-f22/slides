@@ -658,7 +658,7 @@
 <section id="odds-ratios-10" class="slide level2 small">
 <h2>Odds ratios</h2>
 <ul>
-<li>Let’s look at some Titanic data. We are interested in whether the sex of the passenger is related to whether they survived.</li>
+<li>Let’s look at some Titanic data. We are interested in whether being female is related to whether they survived.</li>
 </ul>
 <div class="cell">
 
@@ -700,7 +700,7 @@
 <p>What are the odds of surviving for females versus males?</p>
 </div>
 <ul>
-<li>Let’s look at some Titanic data. We are interested in whether the sex of the passenger is related to whether they survived.</li>
+<li>Let’s look at some Titanic data. We are interested in whether being female is related to whether they survived.</li>
 </ul>
 <table>
 <thead>
@@ -812,7 +812,7 @@
 </tbody>
 </table>
 <div class="fragment">
-<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
+<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Female}\]</span></p>
 </div>
 </section>
 <section id="odds-ratios-14" class="slide level2 small">
@@ -863,7 +863,7 @@ Residual Deviance: 1360     AIC: 1360</code></pre>
 <div class="question">
 <p>How do I change that?</p>
 </div>
-<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}\]</span></p>
+<p><span class="math display">\[\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Female}\]</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>Titanic <span class="ot">&lt;-</span> Titanic <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">mutate</span>(<span class="at">Sex =</span> <span class="fu">fct_relevel</span>(Sex, <span class="fu">c</span>(<span class="st">"male"</span>, <span class="st">"female"</span>))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -954,7 +954,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <h2>Odds ratios</h2>
 <ul>
 <li class="fragment">What if the explanatory variable is continuous?</li>
-<li class="fragment">We did this already on Tuesday!</li>
+<li class="fragment">We did this already!</li>
 </ul>
 <div class="fragment">
 <div class="small">
@@ -1000,9 +1000,9 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <h2>Odds ratios</h2>
 <ul>
 <li>What if the explanatory variable is continuous?</li>
-<li>We did this already on Tuesday!</li>
+<li>We did this already!</li>
 </ul>
-<div class="small">
+<div class="smaller">
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1036,14 +1036,10 @@ Number of Fisher Scoring iterations: 4</code></pre>
 </div>
 </div>
 </div>
-<div class="fragment">
-<p><em>A one unit increase in GPA yields a 234-fold increase in the odds of acceptance</em></p>
-</div>
-<div class="fragment">
 <ul>
-<li>😱 that seems huge! <strong>Remember:</strong> the interpretation of these coefficients depends on your units (the same as in ordinary linear regression).</li>
+<li class="fragment"><em>A one unit increase in GPA yields a 234-fold increase in the odds of acceptance</em></li>
+<li class="fragment">😱 that seems huge! <strong>Remember:</strong> the interpretation of these coefficients depends on your units (the same as in ordinary linear regression).</li>
 </ul>
-</div>
 </section>
 <section id="odds-ratios-22" class="slide level2 small">
 <h2>Odds ratios</h2>

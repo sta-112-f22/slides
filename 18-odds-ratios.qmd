@@ -189,7 +189,7 @@ _the odds for still being in pain for the placebo group are 2.27 times the odds 
 
 ## Odds ratios {.small}
 
-* Let's look at some Titanic data. We are interested in whether the sex of the passenger is related to whether they survived.
+* Let's look at some Titanic data. We are interested in whether being female is related to whether they survived.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(Stat2Data)
@@ -211,7 +211,7 @@ Total | 462 | 851 | 1313
 What are the odds of surviving for females versus males?
 :::
 
-* Let's look at some Titanic data. We are interested in whether the sex of the passenger is related to whether they survived.
+* Let's look at some Titanic data. We are interested in whether being female is related to whether they survived.
 
 ____|Female | Male | Total
 -----|-------|-------|----
@@ -264,7 +264,7 @@ Total | 462 | 851 | 1313
 . . . 
 
 
-$$\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}$$
+$$\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Female}$$
 
 
 
@@ -323,7 +323,7 @@ Titanic <- Titanic %>%
 How do I change that?
 :::
 
-$$\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Male}$$
+$$\log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Female}$$
 
 ```{r}
 #| code-fold: false
@@ -372,7 +372,7 @@ _the odds of surviving for the female passengers was 9.99 times the odds of surv
 ## Odds ratios {.small}
 
 > * What if the explanatory variable is continuous?
-> * We did this already on Tuesday!
+> * We did this already!
 
 . . .
 
@@ -394,9 +394,9 @@ _A one unit increase in GPA yields a 5.45 increase in the log odds of acceptance
 ## Odds ratios {.small}
 
 * What if the explanatory variable is continuous?
-* We did this already on Tuesday!
+* We did this already!
 
-::: small
+::: smaller
 ```{r}
 data("MedGPA")
 glm(Acceptance ~ GPA, data = MedGPA, family = binomial) %>%
@@ -404,13 +404,8 @@ glm(Acceptance ~ GPA, data = MedGPA, family = binomial) %>%
 ```
 :::
 
-. . .
-
-_A one unit increase in GPA yields a 234-fold increase in the odds of acceptance_
-
-. . .
-
-* `r emo::ji("scream")` that seems huge! **Remember:** the interpretation of these coefficients depends on your units (the same as in ordinary linear regression).
+> * _A one unit increase in GPA yields a 234-fold increase in the odds of acceptance_
+> * `r emo::ji("scream")` that seems huge! **Remember:** the interpretation of these coefficients depends on your units (the same as in ordinary linear regression).
 
 
 
