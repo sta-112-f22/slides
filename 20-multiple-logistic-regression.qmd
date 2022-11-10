@@ -1,0 +1,347 @@
+---
+title: "Multiple Logistic Regression"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+## Types of statistical models {.small}
+
+```{r child = "setup.Rmd"}
+```
+
+
+response | predictor(s) | model
+---------|--------------|-------
+quantitative | one quantitative | simple linear regression
+quantitative | two or more (of either kind) | multiple linear regression
+binary | one (of either kind) | simple logistic regression
+binary | two or more (of either kind) | multiple logistic regression
+
+
+
+## Types of statistical models {.small}
+
+response | predictor(s) | model
+---------|--------------|-------
+quantitative | one quantitative | simple linear regression
+quantitative | two or more (of either kind) | multiple linear regression
+binary | one (of either kind) | simple logistic regression
+**binary** | **two or more (of either kind)** | **multiple logistic regression**
+
+
+
+## Types of statistical models {.small}
+
+variables | predictor | ordinary regression | logistic regression
+---------|--------------|-------------------|---------------
+one: $x$ | $\beta_0 + \beta_1 x$ | Response $y$ | $\textrm{logit}(\pi)=\log\left(\frac{\pi}{1-\pi}\right)$
+several: $x_1,x_2,\dots,x_k$| $\beta_0 + \beta_1x_1 + \dots+\beta_kx_k$|Response $y$ | $\textrm{logit}(\pi)=\log\left(\frac{\pi}{1-\pi}\right)$
+
+
+
+## Multiple logistic regression {.small}
+
+* `r emo::ji("v")` forms
+
+Form | Model
+-----|-----
+Logit form | $\log\left(\frac{\pi}{1-\pi}\right) = \beta_0 + \beta_1x_1 + \beta_2x_2 + \dots \beta_kx_k$
+Probability form | $\Large\pi = \frac{e^{\beta_0 + \beta_1x_1 + \beta_2x_2 + \dots \beta_kx_k}}{1+e^{\beta_0 + \beta_1x_1 + \beta_2x_2 + \dots \beta_kx_k}}$
+
+
+
+## Steps for modeling 
+
+```{mermaid}
+%%| fig-width: 8
+flowchart LR
+  A[Choose] --> B[Fit]
+  B --> C[Assess]
+  C --> D[Use]
+  C --> A
+```
+
+
+
+
+## Fit 
+
+
+```{r}
+#| code-fold: false
+library(Stat2Data)
+data(MedGPA)
+glm(Acceptance ~ MCAT + GPA, data = MedGPA, family = "binomial")
+```
+
+
+
+## Fit
+
+
+```{r}
+#| code-fold: false
+glm(Acceptance ~ MCAT + GPA, data = MedGPA, family = "binomial") %>%
+  summary()
+```
+
+
+## Fit
+
+::: question
+How do we get a confidence interval?
+:::
+
+```{r}
+#| code-fold: false
+glm(Acceptance ~ MCAT + GPA, data = MedGPA, family = "binomial") %>%
+  summary()
+```
+
+
+
+
+## Fit
+
+::: question
+How do we convert this to an odds ratio from the log odds scale?
+:::
+
+```{r}
+#| code-fold: false
+glm(Acceptance ~ MCAT + GPA, data = MedGPA, family = "binomial") %>%
+  confint()
+```
+
+## Fit
+
+::: question
+How do we convert this to an odds ratio from the log odds scale?
+:::
+
+```{r}
+#| code-fold: false
+glm(Acceptance ~ MCAT + GPA, data = MedGPA, family = "binomial") %>%
+  confint() %>%
+  exp()
+```
+
+
+## Assess
+
+::: question
+What are the assumptions of multiple logistic regression?
+:::
+
+
+> * Linearity
+> * Independence
+> * Randomness
+
+
+
+## Assess
+
+::: question
+How do you determine whether the conditions are met?
+:::
+
+* Linearity
+* Independence
+* Randomness
+
+
+
+## Assess
+
+::: question
+How do you determine whether the conditions are met?
+:::
+
+* Linearity: empirical logit plots
+* Independence: look at the data generation process
+* Randomness: look at the data generation process (does the outcome come from a Bernoulli distribution?)
+
+
+
+## Assess {.small}
+
+::: question
+If I have two nested models, how do you think I can determine if the full model is significantly better than the reduced?
+:::
+
+> * We can compare values of $-2 \log(\mathcal{L})$ (deviance) between the two models
+> * Calculate the "drop in deviance" the difference between  $(-2 \log(\mathcal{L}_{reduced})) - ( -2 \log(\mathcal{L}_{full}))$
+> * This is a "likelihood ratio test"
+> * This is $\chi^2$ distributed with $p$ degrees of freedom
+> * $p$ is the difference in number of predictors between the full and reduced models
+
+
+
+## Assess {.small}
+
+* We want to compare a model with GPA and MCAT to one with only GPA
+
+:::: columns
+
+::: column
+
+```{r}
+#| code-fold: false
+glm(Acceptance ~ GPA, data = MedGPA, family = binomial) %>%
+  summary()
+```
+
+:::
+
+::: column
+
+
+```{r}
+#| code-fold: false
+glm(Acceptance ~ GPA + MCAT, data = MedGPA, family = binomial) %>%
+  summary()
+```
+
+:::
+
+::::
+
+```{r}
+#| code-fold: false
+56.83901 - 54.01419		
+```
+
+
+## Assess {.small}
+
+* We want to compare a model with GPA and MCAT to one with only GPA
+
+:::: columns
+
+::: column
+
+```{r}
+#| code-fold: false
+glm(Acceptance ~ GPA, data = MedGPA, family = binomial) %>%
+  summary()
+```
+
+:::
+
+::: column
+
+
+```{r}
+#| code-fold: false
+glm(Acceptance ~ GPA + MCAT, data = MedGPA, family = binomial) %>%
+  summary()
+```
+
+:::
+
+::::
+
+
+```{r}
+#| code-fold: false
+pchisq(56.83901 - 54.01419, df = 1, lower.tail = FALSE)
+```
+
+
+
+
+## Assess {.small}
+
+* We want to compare a model with GPA, MCAT, and number of applications to one with only GPA
+
+:::: columns
+
+::: column
+
+```{r}
+#| code-fold: false
+glm(Acceptance ~ GPA, data = MedGPA, family = binomial) %>%
+  summary()
+```
+
+:::
+
+::: column
+
+
+```{r}
+#| code-fold: false
+glm(Acceptance ~ GPA + MCAT + Apps, data = MedGPA, family = binomial) %>%
+  summary()
+```
+
+:::
+
+::::
+
+
+```{r}
+#| code-fold: false
+pchisq(56.83901 - 53.68239, df = 2, lower.tail = FALSE)
+```
+
+
+
+
+## Use {.small}
+
+* We can calculate confidence intervals for the $\beta$ coefficients: $\hat\beta\pm z^*\times SE_{\hat\beta}$
+* To determine whether individual explanatory variables are statistically significant, we can calculate p-values based on the $z$-statistic of the $\beta$ coefficients (using the normal distribution)
+
+
+
+## Use {.small}
+
+::: question
+How do you interpret these $\beta$ coefficients?
+:::
+
+
+```{r}
+glm(Acceptance ~ MCAT + GPA, data = MedGPA, family = "binomial") %>%
+  summary()
+```
+
+
+
+
+
+## $\hat\beta$ interpretation in multiple logistic regression {.center}
+
+The coefficient for $x$ is $\hat\beta$ (95% CI: $LB_\hat\beta, UB_\hat\beta$). A one-unit increase in $x$ yields a $\hat\beta$ expected change in the log odds of y, **holding all other variables constant**.
+
+
+
+## $e^{\hat\beta}$ interpretation in multiple logistic regression {.center}
+
+The odds ratio for $x$ is $e^{\hat\beta}$ (95% CI: $e^{LB_\hat\beta}, e^{UB_\hat\beta}$). A one-unit increase in $x$ yields a $e^{\hat\beta}$-fold expected change in the odds of y, **holding all other variables constant**.
+
+
+
+
+## Summary {.small}
+
+--| Ordinary regression | Logistic regression
+------------------|-----------------------|-------------------
+test or interval for $\beta$ | $t = \frac{\hat\beta}{SE_{\hat\beta}}$ |  $z = \frac{\hat\beta}{SE_{\hat\beta}}$ | 
+| t-distribution | z-distribution
+test for nested models | $F = \frac{\Delta SSModel / p}{SSE_{full} / (n - k - 1)}$ | G = $\Delta(-2\log\mathcal{L})$|
+| F-distribution | $\chi^2$-distribution
+
