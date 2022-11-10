@@ -61,7 +61,7 @@ $$\color{red}z = \frac{\hat\beta_1}{SE_{\hat\beta_1}}$$
 
 ::: question
 What do you think goes in this blank to calculate a confidence interval (instead of $t^*$ as it was for _linear regression_)?
-::
+:::
 
 
 $$\hat\beta_1 \pm [\_^*] SE_{\hat\beta_1}$$
