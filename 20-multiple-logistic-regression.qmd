@@ -341,7 +341,7 @@ The odds ratio for $x$ is $e^{\hat\beta}$ (95% CI: $e^{LB_\hat\beta}, e^{UB_\hat
 --| Ordinary regression | Logistic regression
 ------------------|-----------------------|-------------------
 test or interval for $\beta$ | $t = \frac{\hat\beta}{SE_{\hat\beta}}$ |  $z = \frac{\hat\beta}{SE_{\hat\beta}}$ | 
-| t-distribution | z-distribution
+---| t-distribution | z-distribution
 test for nested models | $F = \frac{\Delta SSModel / p}{SSE_{full} / (n - k - 1)}$ | G = $\Delta(-2\log\mathcal{L})$|
-| F-distribution | $\chi^2$-distribution
+---| F-distribution | $\chi^2$-distribution
 
