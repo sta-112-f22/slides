@@ -420,9 +420,33 @@
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_1ef44c59" data-update-every="1" tabindex="0" style="right:0;bottom:0;margin:0em;">
+<div class="countdown" id="timer_3fd10d99" data-update-every="1" tabindex="0" style="right:0;bottom:0;margin:0em;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section>
+<section id="examine-the-distribution-of-the-other-variables" class="slide level2">
+<h2>Examine the distribution of the other variables</h2>
+<p>We can build a table</p>
+</section>
+<section id="fa-laptop-application-exercise-1" class="slide level2">
+<h2><i class="fa-solid fa-laptop" aria-hidden="true"></i> <code>Application Exercise</code></h2>
+<ol type="1">
+<li>In the Console in RStudio Pro run:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">install.packages</span>(<span class="st">"gtsummary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Edit the code in the <code>table-one</code> chunk to examine a Table of your variables.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_b968769e" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
@@ -442,80 +466,80 @@
 
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(ggdag)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>dag <span class="ot">&lt;-</span> <span class="fu">dagify</span>(</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  exposure <span class="sc">~</span> variable1 <span class="sc">+</span> variable2 <span class="sc">+</span> variable3 <span class="sc">+</span> variable4,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  outcome <span class="sc">~</span> exposure <span class="sc">+</span> variable1,</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  variable1 <span class="sc">~</span> variable3,</span>
-<span id="cb2-7"><a href="#cb2-7"></a>  variable2 <span class="sc">~</span> variable3</span>
-<span id="cb2-8"><a href="#cb2-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="ggdag-1" class="slide level2 small">
-<h2>ggdag</h2>
-<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(ggdag)</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a>dag <span class="ot">&lt;-</span> <span class="fu">dagify</span>(</span>
 <span id="cb3-4"><a href="#cb3-4"></a>  exposure <span class="sc">~</span> variable1 <span class="sc">+</span> variable2 <span class="sc">+</span> variable3 <span class="sc">+</span> variable4,</span>
 <span id="cb3-5"><a href="#cb3-5"></a>  outcome <span class="sc">~</span> exposure <span class="sc">+</span> variable1,</span>
 <span id="cb3-6"><a href="#cb3-6"></a>  variable1 <span class="sc">~</span> variable3,</span>
-<span id="cb3-7"><a href="#cb3-7"></a>  variable2 <span class="sc">~</span> variable3,</span>
-<span id="cb3-8"><a href="#cb3-8"></a>  <span class="at">exposure =</span> <span class="st">"exposure"</span>,</span>
-<span id="cb3-9"><a href="#cb3-9"></a>  <span class="at">outcome =</span> <span class="st">"outcome"</span>,</span>
-<span id="cb3-10"><a href="#cb3-10"></a>  <span class="at">latent =</span> <span class="st">"variable3"</span>,</span>
-<span id="cb3-11"><a href="#cb3-11"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="at">variable1 =</span> <span class="st">"Variable 1"</span>,</span>
-<span id="cb3-12"><a href="#cb3-12"></a>             <span class="at">variable2 =</span> <span class="st">"Variable 2"</span>,</span>
-<span id="cb3-13"><a href="#cb3-13"></a>             <span class="at">variable3 =</span> <span class="st">"Variable 3"</span>,</span>
-<span id="cb3-14"><a href="#cb3-14"></a>             <span class="at">variable4 =</span> <span class="st">"Variable 4"</span>,</span>
-<span id="cb3-15"><a href="#cb3-15"></a>             <span class="at">exposure =</span> <span class="st">"Exposure"</span>,</span>
-<span id="cb3-16"><a href="#cb3-16"></a>             <span class="at">outcome =</span> <span class="st">"Outcome"</span>)</span>
-<span id="cb3-17"><a href="#cb3-17"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7"></a>  variable2 <span class="sc">~</span> variable3</span>
+<span id="cb3-8"><a href="#cb3-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ggdag-1" class="slide level2 small">
+<h2>ggdag</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(ggdag)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>dag <span class="ot">&lt;-</span> <span class="fu">dagify</span>(</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  exposure <span class="sc">~</span> variable1 <span class="sc">+</span> variable2 <span class="sc">+</span> variable3 <span class="sc">+</span> variable4,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  outcome <span class="sc">~</span> exposure <span class="sc">+</span> variable1,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>  variable1 <span class="sc">~</span> variable3,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>  variable2 <span class="sc">~</span> variable3,</span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="at">exposure =</span> <span class="st">"exposure"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="at">outcome =</span> <span class="st">"outcome"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="at">latent =</span> <span class="st">"variable3"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="at">variable1 =</span> <span class="st">"Variable 1"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12"></a>             <span class="at">variable2 =</span> <span class="st">"Variable 2"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13"></a>             <span class="at">variable3 =</span> <span class="st">"Variable 3"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14"></a>             <span class="at">variable4 =</span> <span class="st">"Variable 4"</span>,</span>
+<span id="cb4-15"><a href="#cb4-15"></a>             <span class="at">exposure =</span> <span class="st">"Exposure"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16"></a>             <span class="at">outcome =</span> <span class="st">"Outcome"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="ggdag-2" class="slide level2 small">
 <h2>ggdag</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dag <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">ggdag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>dag <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">ggdag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>dag <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">tidy_dagitty</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">node_status</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="fu">aes</span>(x, y, <span class="at">xend =</span> xend, <span class="at">yend =</span> yend, <span class="at">color =</span> status)</span>
-<span id="cb5-6"><a href="#cb5-6"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>  <span class="fu">geom_dag_edges</span>() <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">geom_dag_point</span>() <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">geom_dag_label_repel</span>() <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">scale_color_okabe_ito</span>(<span class="at">na.value =</span> <span class="st">"grey90"</span>) <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dag <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">tidy_dagitty</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">node_status</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="fu">aes</span>(x, y, <span class="at">xend =</span> xend, <span class="at">yend =</span> yend, <span class="at">color =</span> status)</span>
+<span id="cb6-6"><a href="#cb6-6"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">geom_dag_edges</span>() <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">geom_dag_point</span>() <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">geom_dag_label_repel</span>() <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">scale_color_okabe_ito</span>(<span class="at">na.value =</span> <span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="21-final-project_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<img data-src="21-final-project_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
 <section id="ggdag-3" class="slide level2 small">
 <h2>ggdag</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dag <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">ggdag_adjustment_set</span>(<span class="at">text_col =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>dag <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">ggdag_adjustment_set</span>(<span class="at">text_col =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="21-final-project_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
+<img data-src="21-final-project_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
 <section id="final-model" class="slide level2">
 <h2>Final model</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">lm</span>(outcome <span class="sc">~</span> exposure <span class="sc">+</span> variable1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">lm</span>(outcome <span class="sc">~</span> exposure <span class="sc">+</span> variable1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>🎉</p>
 </section>
-<section id="fa-laptop-application-exercise-1" class="slide level2 small">
+<section id="fa-laptop-application-exercise-2" class="slide level2 small">
 <h2><i class="fa-solid fa-laptop" aria-hidden="true"></i> <code>Application Exercise</code></h2>
 <div class="small">
 <ol type="1">
@@ -532,7 +556,7 @@
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_a9e62c75" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_02cd3770" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">20</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -548,7 +572,7 @@
 <li>Report a predicted change in retention based on a change in your variable for a school with Wake Forest’s same characteristics along with the appropriate 95% Interval</li>
 </ul>
 </section>
-<section id="fa-laptop-application-exercise-2" class="slide level2 small">
+<section id="fa-laptop-application-exercise-3" class="slide level2 small">
 <h2><i class="fa-solid fa-laptop" aria-hidden="true"></i> <code>Application Exercise</code></h2>
 <ol type="1">
 <li>Open <code>final-model.qmd</code></li>
@@ -559,7 +583,7 @@
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_b283ae74" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_fdb7755b" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">20</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>

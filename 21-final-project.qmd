@@ -52,6 +52,29 @@ https://github.com/sta-112-f22/final-project.git
 countdown::countdown(8, margin = "0em")
 ```
 
+## Examine the distribution of the other variables
+
+We can build a table 
+
+## {{< fa laptop >}} `Application Exercise`
+
+1. In the Console in RStudio Pro run:
+
+```{r}
+#| eval: false
+#| code-fold: false
+install.packages("gtsummary")
+```
+
+2. Edit the code in the `table-one` chunk to examine a Table of your variables.
+
+```{r}
+#| echo: false
+
+countdown::countdown(5)
+```
+
+
 ## Building your causal framework {.small}
 
 The `ggdag` package can help us display our causal assumptions you drew last week. There are three steps:
