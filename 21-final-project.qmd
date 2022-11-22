@@ -1,0 +1,231 @@
+---
+title: "Final Project"
+author: "Lucy D'Agostino McGowan"
+footer:  "[Dr. Lucy D'Agostino McGowan](https://lucymcgowan.com)"
+logo: "img/favicon.png"
+editor: source
+format: 
+  revealjs: 
+    theme: [custom.scss]
+    slide-number: true
+    chalkboard: true
+knitr:
+  opts_chunk: 
+    code-fold: true
+    echo: true
+---
+
+## The data
+
+```{r child = "setup.Rmd"}
+```
+
+* Data was obtained from IPEDS
+* Includes:
+  * US 4 year public or not-for-profit private institions that are degree-granting, primarily baccalaureate or above with between 1,000-9,999 students (N = 1,002)
+  * 157 observations were dropped due to missing data, leaving **N = 845** observations in the final data set
+
+
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+1. Copy the following template into RStudio Pro:
+
+```bash
+https://github.com/sta-112-f22/final-project.git
+```
+
+2. Open the file labeled `data-exploration.qmd`
+
+3. Read in the data set into an object called `dat`
+
+4. Examine the data, how many observations are there? How many variables? Add the description to your file.
+
+5. Examine the data dictionary by opening the file called `data-dictionary.csv`
+
+6. Find the outcome variable (the retention rate) and your variable of interest specific to your group. Create a plot to visualize the relationship between these variables. Add a description to your file
+
+7. Does the data look like it needs a transformation? If so, apply one and examine the plot again. Describe this in your file.
+
+```{r}
+#| echo: false
+
+countdown::countdown(8, margin = "0em")
+```
+
+## Building your causal framework {.small}
+
+The `ggdag` package can help us display our causal assumptions you drew last week. There are three steps:
+
+1. Write out the models (like the ones you are submitting in homework 2) in a function called `dagify`
+2. Pass this to the `ggdag` function to plot them
+3. Pass this to the `ggdag_adjustment_set` function to determine what you need to add to your final model.
+
+## ggdag {.small}
+
+```{r}
+#| echo: false
+options(
+  # set default colors in ggplot2 to colorblind-friendly 
+  # Okabe-Ito and Viridis palettes
+  ggplot2.discrete.colour = ggokabeito::palette_okabe_ito(),
+  ggplot2.discrete.fill = ggokabeito::palette_okabe_ito(),
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis",
+  # set theme font and size
+  book.base_family = "sans",
+  book.base_size = 14
+)
+library(ggplot2)
+library(ggokabeito)
+# set default theme
+theme_set(
+  theme_minimal(
+    base_size = getOption("book.base_size"), 
+    base_family = getOption("book.base_family")
+  ) %+replace% 
+    theme(
+      panel.grid.minor = element_blank(),
+      legend.position = "bottom"
+    )
+)
+theme_dag <- function() {
+  ggdag::theme_dag(base_family = getOption("book.base_family"))
+}
+geom_dag_label_repel <- function(..., seed = 10) {
+  ggdag::geom_dag_label_repel(
+    aes(x, y, label = label),
+    box.padding = 3.5, 
+    inherit.aes = FALSE,
+    max.overlaps = Inf, 
+    family = getOption("book.base_family"),
+    seed = seed,
+    label.size = NA, 
+    label.padding = 0.1,
+    size = getOption("book.base_size") / 3,
+    ...
+  ) 
+}
+```
+
+```{r}
+#| code-fold: false
+library(ggdag)
+
+dag <- dagify(
+  exposure ~ variable1 + variable2 + variable3 + variable4,
+  outcome ~ exposure + variable1,
+  variable1 ~ variable3,
+  variable2 ~ variable3
+)
+```
+
+## ggdag {.small}
+
+```{r}
+#| code-fold: false
+library(ggdag)
+
+dag <- dagify(
+  exposure ~ variable1 + variable2 + variable3 + variable4,
+  outcome ~ exposure + variable1,
+  variable1 ~ variable3,
+  variable2 ~ variable3,
+  exposure = "exposure",
+  outcome = "outcome",
+  latent = "variable3",
+  labels = c(variable1 = "Variable 1",
+             variable2 = "Variable 2",
+             variable3 = "Variable 3",
+             variable4 = "Variable 4",
+             exposure = "Exposure",
+             outcome = "Outcome")
+)
+```
+
+## ggdag {.small}
+
+```{r}
+#| code-fold: false
+#| eval: false
+dag %>%
+  ggdag()
+```
+
+```{r}
+dag %>%
+  tidy_dagitty() %>%
+  node_status() %>%
+  ggplot(
+    aes(x, y, xend = xend, yend = yend, color = status)
+  ) +
+  geom_dag_edges() +
+  geom_dag_point() +
+  geom_dag_label_repel() +
+  scale_color_okabe_ito(na.value = "grey90") +
+  theme_dag() +
+  theme(legend.position = "none") +
+  coord_cartesian(clip = "off")
+```
+
+## ggdag {.small}
+
+```{r}
+#| code-fold: false
+dag %>%
+  ggdag_adjustment_set(text_col = "black")
+```
+
+## Final model
+
+```{r}
+#| eval: false
+#| code-fold: false
+lm(outcome ~ exposure + variable1)
+```
+
+`r emo::ji("tada")`
+
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+::: small
+1. Open the `data-dictionary.csv` file and map the available variables to the names in the equations you developed for homework 2.
+2. Rewrite the formulas using these equations; if something is not available in this dataset, you can make up a variable name for it
+3. Open `causal-assumptions.qmd`
+4. Add your equations to the `dagify` code chunk after deleting the `# add your equations here` comment. Make sure to separate each equation with a comma
+5. Update the "exposure" with your variable of interest
+6. Update the labels vector if you added any variables that were not in the original dataset
+7. Run the `ggdag` chunk to create the causal diagram 
+8. Run the `adjustment_set` chunk to see what variables you need to adjust for
+9. Write out your final model based on this adjustment set
+
+:::
+
+```{r}
+#| echo: false
+
+countdown::countdown(20)
+```
+
+## Putting it all together {.small}
+
+* Ultimately, we are interested in the effect of changing your variable of interest on first-year retention rates. 
+* After fitting your final model, extract the coefficient and confidence interval for this effect. Consider adjusting the effect to be on a "useful" scale (for example rather than dollars, perhaps $1,000 is easier to interpret)
+* Based on the evidence presented decide whether you think Wake Forest should invest in changing your variable of interest in order to increase first-year retention
+* Report a predicted change in retention based on a change in your variable for a school with Wake Forest's same characteristics along with the appropriate 95% Interval
+
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+
+1. Open `final-model.qmd`
+2. Fit your final model -- be sure to use any transformations that you determined in your first step and include all variables determined necessary by your "adjustment set" analysis
+3. Extract the coefficient and 95% confidence interval for your effect of interest -- is this significantly related to first-year retention?
+4. Using the `wake_forest` dataset provided, predict how a specific change in this value would change the predicted first year retention rate. Include an appropriate 95% interval for this prediction
+5. Give a one sentence recommendation to Wake Forest based on what you have found.
+
+```{r}
+#| echo: false
+
+countdown::countdown(20)
+```
+
+
