@@ -52,9 +52,17 @@ https://github.com/sta-112-f22/final-project.git
 countdown::countdown(8, margin = "0em")
 ```
 
-## Examine the distribution of the other variables
+## Examine the distribution of the other variables {.small}
 
-We can build a table 
+We can build a table to examine the distribution of our variables.
+
+```{r}
+#| code-fold: false
+library(gtsummary)
+mtcars %>%
+  tbl_summary()
+```
+
 
 ## {{< fa laptop >}} `Application Exercise`
 
@@ -66,12 +74,12 @@ We can build a table
 install.packages("gtsummary")
 ```
 
-2. Edit the code in the `table-one` chunk to examine a Table of your variables.
+2. Edit the code in the `table-one` chunk to examine a Table of your variables. Where the comment says `#add your variable of interest here` add your variable of interest.
 
 ```{r}
 #| echo: false
 
-countdown::countdown(5)
+countdown::countdown(3)
 ```
 
 
