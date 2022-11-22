@@ -74,7 +74,7 @@ mtcars %>%
 install.packages("gtsummary")
 ```
 
-2. Edit the code in the `table-one` chunk to examine a Table of your variables. Where the comment says `#add your variable of interest here` add your variable of interest.
+2. Edit the code in the `table-one` chunk to examine a Table of your variables. Move your variable of interest to the top of the list so that it is the first rendered in the table.
 
 ```{r}
 #| echo: false
@@ -224,10 +224,9 @@ lm(outcome ~ exposure + variable1)
 3. Open `causal-assumptions.qmd`
 4. Add your equations to the `dagify` code chunk after deleting the `# add your equations here` comment. Make sure to separate each equation with a comma
 5. Update the "exposure" with your variable of interest
-6. Update the labels vector if you added any variables that were not in the original dataset
-7. Run the `ggdag` chunk to create the causal diagram 
-8. Run the `adjustment_set` chunk to see what variables you need to adjust for
-9. Write out your final model based on this adjustment set
+6. Run the `ggdag` chunk to create the causal diagram 
+7. Run the `adjustment_set` chunk to see what variables you need to adjust for
+8. Write out your final model based on this adjustment set
 
 :::
 
@@ -250,7 +249,7 @@ countdown::countdown(20)
 1. Open `final-model.qmd`
 2. Fit your final model -- be sure to use any transformations that you determined in your first step and include all variables determined necessary by your "adjustment set" analysis
 3. Extract the coefficient and 95% confidence interval for your effect of interest -- is this significantly related to first-year retention?
-4. Using the `wake_forest` dataset provided, predict how a specific change in this value would change the predicted first year retention rate. Include an appropriate 95% interval for this prediction
+4. Using the `wake_forest` dataset provided, predict how a specific change in this value would change the predicted first year retention rate. 
 5. Give a one sentence recommendation to Wake Forest based on what you have found.
 
 ```{r}
