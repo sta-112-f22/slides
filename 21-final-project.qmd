@@ -236,6 +236,36 @@ lm(outcome ~ exposure + variable1)
 countdown::countdown(20)
 ```
 
+## {{< fa laptop >}} `Loose ends` {.small}
+
+1. Open `data-exploration.qmd` Render the document. Do you see a figure of your variable on the x-axis and the outcome on the y-axis? If not, create that figure and re-render the document
+2. Is all of the example text "filled in" in `data-exploration.qmd`? If not, fill it in.
+3. Open `causal-assumptions.qmd` Render the document. Do you see two figures, one with the Causal Diagram and one showing the adjustment set? If not, be sure that you have set `eval: true` in all of the chunks
+**Note: if you are getting an error, raise your hand so I can come help out**
+
+```{r}
+#| echo: false
+countdown::countdown(5)
+```
+
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+1. Open `data-dictionary.csv` and examine the available variables. Are there any that you didn't include in your causal diagram that maybe should be included? Add them now
+2. Pair up with another group and present your causal diagram. Exchange thoughts on what other variables might be important to include. Add them now
+
+**Pairs**: 
+
+* student services -- endowment  
+* percent admitted -- total cost  
+* student/faculty ratio -- average instructor salary
+
+3. Re-render your `causal-assumptions.qmd` file with these changes and observe your final adjustment set.
+
+```{r}
+#| echo: false
+countdown::countdown(20)
+```
+
 ## Putting it all together {.small}
 
 * Ultimately, we are interested in the effect of changing your variable of interest on first-year retention rates. 
@@ -250,7 +280,7 @@ countdown::countdown(20)
 2. Fit your final model -- be sure to use any transformations that you determined in your first step and include all variables determined necessary by your "adjustment set" analysis
 3. Check the assumptions for linear regression -- were they met?
 3. Extract the coefficient and 95% confidence interval for your effect of interest -- is this significantly related to first-year retention?
-4. Using the `wake_forest` dataset provided, predict how a specific change in this value would change the predicted first year retention rate. 
+4. Using the `wake_forest` dataset provided, predict how a specific change in this value would change the predicted first year retention rate. (If you don't have any interaction terms, you can delete this chunk and just interpret the effect from (4))
 5. Give a one sentence recommendation to Wake Forest based on what you have found.
 
 ```{r}
