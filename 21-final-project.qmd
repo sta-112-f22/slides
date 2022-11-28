@@ -241,7 +241,7 @@ countdown::countdown(20)
 * Ultimately, we are interested in the effect of changing your variable of interest on first-year retention rates. 
 * After fitting your final model, extract the coefficient and confidence interval for this effect. Consider adjusting the effect to be on a "useful" scale (for example rather than dollars, perhaps $1,000 is easier to interpret)
 * Based on the evidence presented decide whether you think Wake Forest should invest in changing your variable of interest in order to increase first-year retention
-* Report a predicted change in retention based on a change in your variable for a school with Wake Forest's same characteristics along with the appropriate 95% Interval
+* Report a predicted change in retention based on a change in your variable for a school with Wake Forest's same characteristics
 
 ## {{< fa laptop >}} `Application Exercise` {.small}
 
