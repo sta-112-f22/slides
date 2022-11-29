@@ -304,3 +304,16 @@ countdown::countdown(20)
 countdown::countdown(10)
 ```
 
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+Let's put this all together! 
+
+1. Open `index.qmd`
+2. Write one or two sentences describing your recommendation to Wake Forest University based on your findings. This can include information from your sensitivity analysis.
+3. Render the document. Click on all of the links on the top, make sure they are rendered as well.
+
+```{r}
+#| echo: false
+countdown::countdown(10)
+```
+
