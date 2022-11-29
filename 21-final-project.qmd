@@ -291,3 +291,16 @@ countdown::countdown(20)
 ```
 
 
+## {{< fa laptop >}} `Application Exercise` {.small}
+
+1. Open the `sensitivity-data.qmd` file. This is a sensitivity analysis for including athletic data and US News Ranking data
+2. Read in the `athletics_dat`. How many observations are there? Fill in the explanation with this number.
+3. Refit your "final model" adding in the `bball_power_rating`. Does this change your result? Add an explanation of what you see.
+4. Read in the `usnews_dat`. How many observations are there? Fill in the explanation with this number.
+5. Refit your "final model" adding in the `usnews_ranking`. Does this change your result? Add an explanation of what you see.
+
+```{r}
+#| echo: false
+countdown::countdown(10)
+```
+
