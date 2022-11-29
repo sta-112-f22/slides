@@ -238,6 +238,7 @@ countdown::countdown(20)
 
 ## {{< fa laptop >}} `Loose ends` {.small}
 
+1. Click the blue, down arrow in the `Git` Panel on the top right to pull in new data. Raise your hand if this doesn't work.
 1. Open `data-exploration.qmd` Render the document. Do you see a figure of your variable on the x-axis and the outcome on the y-axis? If not, create that figure and re-render the document
 2. Is all of the example text "filled in" in `data-exploration.qmd`? If not, fill it in.
 3. Open `causal-assumptions.qmd` Render the document. Do you see two figures, one with the Causal Diagram and one showing the adjustment set? If not, be sure that you have set `eval: true` in all of the chunks
