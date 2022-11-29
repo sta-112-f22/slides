@@ -281,7 +281,6 @@ countdown::countdown(20)
 2. Fit your final model -- be sure to use any transformations that you determined in your first step and include all variables determined necessary by your "adjustment set" analysis
 3. Check the assumptions for linear regression -- were they met?
 3. Extract the coefficient and 95% confidence interval for your effect of interest -- is this significantly related to first-year retention?
-4. Using the `wake_forest` dataset provided, predict how a specific change in this value would change the predicted first year retention rate. (If you don't have any interaction terms, you can delete this chunk and just interpret the effect from (4))
 5. Give a one sentence recommendation to Wake Forest based on what you have found.
 
 ```{r}
